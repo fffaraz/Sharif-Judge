@@ -87,6 +87,8 @@ class Login extends CI_Controller
 	{
 		if ($input !== FALSE)
 			show_404();
+		if ($this->session->userdata('logged_in')) // if logged in
+			redirect('dashboard');
 		$this->form_validation->set_rules('username', 'Username', 'required|min_length[3]|max_length[20]|alpha_numeric');
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[30]|alpha_numeric');
 		$data = array(
@@ -124,6 +126,8 @@ class Login extends CI_Controller
 	{
 		if ($input !== FALSE)
 			show_404();
+		if ($this->session->userdata('logged_in')) // if logged in
+			redirect('dashboard');
 		if ( ! $this->settings_model->get_setting('enable_registration'))
 			show_error('Registration is closed.');
 		$this->form_validation->set_message('_registration_code', 'Invalid %s');
@@ -179,6 +183,8 @@ class Login extends CI_Controller
 	{
 		if ($input !== FALSE)
 			show_404();
+		if ($this->session->userdata('logged_in')) // if logged in
+			redirect('dashboard');
 		$this->form_validation->set_rules('email', 'email', 'required|max_length[40]|callback__lowercase|valid_email');
 		$data = array(
 			'title' => 'Lost Password',
