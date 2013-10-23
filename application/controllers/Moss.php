@@ -51,7 +51,6 @@ class Moss extends CI_Controller
 
 		$data['moss_problems'] = array();
 		$assignments_path = rtrim($this->settings_model->get_setting('assignments_root'), '/');
-		if(!isset($data['moss_assignment']['problems'])) $data['moss_assignment']['problems'] = 0;
 		for($i=1; $i<=$data['moss_assignment']['problems']; $i++){
 			$data['moss_problems'][$i] = FALSE;
 			$path = $assignments_path."/assignment_{$assignment_id}/p{$i}/moss_link.txt";
