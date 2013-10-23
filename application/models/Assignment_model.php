@@ -232,7 +232,9 @@ class Assignment_model extends CI_Model{
 
 
 	public function get_moss_time($assignment_id){
-		return $this->db->select('moss_update')->get_where('assignments', array('id'=>$assignment_id))->row()->moss_update;
+		$query = $this->db->select('moss_update')->get_where('assignments', array('id'=>$assignment_id));
+		if($query->num_rows() != 1) return 0;
+		return $query->row()->moss_update;
 	}
 
 
