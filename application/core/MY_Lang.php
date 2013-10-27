@@ -5,7 +5,7 @@ class MY_Lang extends CI_Lang
 
     function MY_Lang()
     {
-        parent::CI_Lang();
+        parent::__construct();
     }
     
     /**
