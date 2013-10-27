@@ -8,6 +8,7 @@ if ( ! function_exists('lang'))
 		$CI =& get_instance();
 		$args = func_get_args();
 		$line = call_user_func_array(array($CI->lang, 'fill'), $args);
-		return $line;
+		//return $line;
+		echo $line;
 	}
 }
