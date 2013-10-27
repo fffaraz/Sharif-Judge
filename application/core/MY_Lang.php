@@ -6,11 +6,6 @@ class MY_Lang extends CI_Lang
     function MY_Lang()
     {
         parent::__construct();
-        $this->load->driver('session');
-        if ( ! $this->session->userdata('lang'))
-            $this->lang->load('global', $this->session->userdata('lang'));
-        else
-            $this->lang->load('global');
     }
     
     /**
