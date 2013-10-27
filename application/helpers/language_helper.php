@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ( ! function_exists('lang'))
 {
-	function lang()
+	function t()
 	{
 		$CI =& get_instance();
 		$args = func_get_args();
