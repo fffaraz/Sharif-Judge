@@ -7,7 +7,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<script type="text/javascript" src="<?php echo base_url("assets/js/shj_functions.js") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets-fa/js/shj_functions.js") ?>"></script>
 
 <script type= "text/javascript">
 	// difference of server and browser time:
