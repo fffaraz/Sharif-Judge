@@ -29,11 +29,14 @@ class MY_Lang extends CI_Lang
         {
             //first argument should be the actual language line key
             //so remove it from the array (pop from front)
-            $line = array_shift($args);
+            $line_key = array_shift($args);
             
             //check to make sure the key is valid and load the line
             //$line = ($line == '' OR ! isset($this->language[$line])) ? FALSE : $this->language[$line];
-            $line = $this->line($line);
+            $line = $this->line($line_key);
+
+            //reurn key if couldn't find it
+            if($line==FALSE) return $line_key;
             
             //if the line exists and more function arguments remain
             //perform wildcard replacements
