@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<ul>
 
 		<div class="side_box">
-			<a href="<?php echo site_url('dashboard') ?>"><li <?php echo ($selected=='dashboard'?'class="selected"':'') ?>><i class="splashy-home_green"></i><span class="sidebar_text"><?php lang('sidebar_dashboard'); ?></span></li></a>
+			<a href="<?php echo site_url('dashboard') ?>"><li <?php echo ($selected=='dashboard'?'class="selected"':'') ?>><i class="splashy-home_green"></i><span class="sidebar_text"><?php lang('dashboard'); ?></span></li></a>
 		</div>
 
 		<?php if ($user_level==3): ?>
