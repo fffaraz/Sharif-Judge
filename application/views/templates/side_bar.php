@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		time = moment();
 		finish_time = moment("<?php echo $assignment['finish_time'] ?>");
-		extra_time = moment.duration(<?php echo $assignment['extra_time'] ?>, 'seconds');
+		extra_time = moment.duration(<?php echo $assignment['extra_time'] ?>, '<?php t('seconds'); ?>');
 		update_clock();
 		window.setInterval(update_clock,1000);
 	});

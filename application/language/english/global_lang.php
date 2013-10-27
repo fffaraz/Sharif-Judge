@@ -13,4 +13,21 @@ $lang['All Submissions'] = "All Submissions";
 $lang['Scoreboard'] = "Scoreboard";
 $lang['Sharif Judge'] = "Sharif Judge";
 $lang['Collapse Menu'] = "Collapse Menu";
+$lang['seconds'] = "seconds";
+$lang['Profile'] = "Profile";
+$lang['Logout'] = "Logout";
+$lang['day'] = "day";
+$lang['hour'] = "hour";
+$lang['minute'] = "minute";
+$lang['second'] = "second";
+$lang['Extra'] = "Extra";
+$lang['Time'] = "Time";
+$lang['Rejudge'] = "Rejudge";
+$lang['Submission Queue'] = "Submission Queue";
+$lang['Cheat Detection'] = "Cheat Detection";
 $lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+
+
