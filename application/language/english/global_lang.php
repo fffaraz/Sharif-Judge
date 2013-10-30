@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 $lang['Dashboard'] = "Dashboard";
 $lang['Settings'] = "Settings";
 $lang['Users'] = "Users";
@@ -26,8 +25,32 @@ $lang['Rejudge'] = "Rejudge";
 $lang['Submission Queue'] = "Submission Queue";
 $lang['Cheat Detection'] = "Cheat Detection";
 $lang['New Notification'] = "New Notification";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
 
+// Install
+$lang['It seems that the file'] = "It seems that the file";
+$lang['is not writable by PHP'] = "is not writable by PHP";
+$lang['So, for security, you should change the encryption key manually.'] = "So, for security, you should change the encryption key manually.";
+$lang['You should open'] = "You should open";
+$lang['and change the encryption key in this line'] = "and change the encryption key in this line";
+$lang['The key should be a 32-characters string as random as possible, with numbers and uppercase and lowercase letters.'] = "The key should be a 32-characters string as random as possible, with numbers and uppercase and lowercase letters.";
+$lang['You can use this random string'] = "You can use this random string";
+$lang['Admin username'] = "Admin username";
+$lang['Admin email'] = "Admin email";
+$lang['Admin password'] = "Admin password";
+$lang['Password, again'] = "Password, again";
+
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
 
