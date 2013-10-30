@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed');
+<?php
 #
 # Portable PHP password hashing framework.
 #
@@ -24,6 +24,8 @@
 # Obviously, since this code is in the public domain, the above are not
 # requirements (there can be none), but merely suggestions.
 #
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Password_hash {
 	var $itoa64;
 	var $iteration_count_log2;

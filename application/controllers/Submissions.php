@@ -191,29 +191,18 @@ class Submissions extends CI_Controller
 		if ($this->page_number<1)
 			show_404();
 
-		$this->load->library('pagination');
-		$pagination_config = array(
-			'base_url' => site_url('submissions/final'.($this->filter_user?'/user/'.$this->filter_user:'').($this->filter_problem?'/problem/'.$this->filter_problem:'').'/page'),
-			'total_rows' => $this->submit_model->count_final_submissions($this->assignment['id'], $this->user_level, $this->username, $this->filter_user, $this->filter_problem),
-			'per_page' => $this->settings_model->get_setting('results_per_page'),
-			'use_page_numbers' => TRUE,
-			'num_links' => 3,
-			'full_tag_open' => '<ul class="shj_pagination">',
-			'full_tag_close' => '</ul>',
-			'first_tag_open' => '<li>',
-			'first_tag_close' => '</li>',
-			'last_tag_open' => '<li>',
-			'last_tag_close' => '</li>',
-			'next_tag_open' => '<li>',
-			'next_tag_close' => '</li>',
-			'prev_tag_open' => '<li>',
-			'prev_tag_close' => '</li>',
-			'cur_tag_open' => '<li class="current_page"><span>',
-			'cur_tag_close' => '</span></li>',
-			'num_tag_open' => '<li>',
-			'num_tag_close' => '</li>'
+		$this->load->library(
+			'shj_pagination',
+			array(
+				'base_url' => site_url('submissions/final'.($this->filter_user?'/user/'.$this->filter_user:'').($this->filter_problem?'/problem/'.$this->filter_problem:'')),
+				'cur_page' => $this->page_number,
+				'total_rows' => $this->submit_model->count_final_submissions($this->assignment['id'], $this->user_level, $this->username, $this->filter_user, $this->filter_problem),
+				'per_page' => $this->settings_model->get_setting('results_per_page'),
+				'num_links' => 3,
+				'full_ul_class' => 'shj_pagination',
+				'cur_li_class' => 'current_page'
+			)
 		);
-		$this->pagination->initialize($pagination_config);
 
 		$data = array(
 			'view' => 'final',
@@ -253,29 +242,18 @@ class Submissions extends CI_Controller
 		if ($this->page_number < 1)
 			show_404();
 
-		$this->load->library('pagination');
-		$pagination_config = array(
-			'base_url' => site_url('submissions/all'.($this->filter_user?'/user/'.$this->filter_user:'').($this->filter_problem?'/problem/'.$this->filter_problem:'').'/page'),
-			'total_rows' => $this->submit_model->count_all_submissions($this->assignment['id'], $this->user_level, $this->username, $this->filter_user, $this->filter_problem),
-			'per_page' => $this->settings_model->get_setting('results_per_page'),
-			'use_page_numbers' => TRUE,
-			'num_links' => 3,
-			'full_tag_open' => '<ul class="shj_pagination">',
-			'full_tag_close' => '</ul>',
-			'first_tag_open' => '<li>',
-			'first_tag_close' => '</li>',
-			'last_tag_open' => '<li>',
-			'last_tag_close' => '</li>',
-			'next_tag_open' => '<li>',
-			'next_tag_close' => '</li>',
-			'prev_tag_open' => '<li>',
-			'prev_tag_close' => '</li>',
-			'cur_tag_open' => '<li class="current_page"><span>',
-			'cur_tag_close' => '</span></li>',
-			'num_tag_open' => '<li>',
-			'num_tag_close' => '</li>'
+		$this->load->library(
+			'shj_pagination',
+			array(
+				'base_url' => site_url('submissions/all'.($this->filter_user?'/user/'.$this->filter_user:'').($this->filter_problem?'/problem/'.$this->filter_problem:'')),
+				'cur_page' => $this->page_number,
+				'total_rows' => $this->submit_model->count_all_submissions($this->assignment['id'], $this->user_level, $this->username, $this->filter_user, $this->filter_problem),
+				'per_page' => $this->settings_model->get_setting('results_per_page'),
+				'num_links' => 3,
+				'full_ul_class' => 'shj_pagination',
+				'cur_li_class' => 'current_page'
+			)
 		);
-		$this->pagination->initialize($pagination_config);
 
 		$data = array(
 			'view' => 'all',
