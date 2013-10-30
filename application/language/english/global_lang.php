@@ -39,6 +39,21 @@ $lang['Admin email'] = "Admin email";
 $lang['Admin password'] = "Admin password";
 $lang['Password, again'] = "Password, again";
 
+// Add user
+$lang['You can use this field to add multiple users at the same time.'] = "You can use this field to add multiple users at the same time.";
+$lang['Usernames may contain lowercase letters or numbers and must be between 3 and 20 characters in length.'] = "Usernames may contain lowercase letters or numbers and must be between 3 and 20 characters in length.";
+$lang['Passwords must be between 6 and 30 characters in length.'] = "Passwords must be between 6 and 30 characters in length.";
+$lang['If you want to send passwords by email, do not add too many users at one time. This may result in mail delivery fail.'] = "If you want to send passwords by email, do not add too many users at one time. This may result in mail delivery fail.";
+
+// Submit
+$lang['Please select an assignment first.'] = "Please select an assignment first.";
+$lang['Problem:'] = "Problem:";
+$lang['Language:'] = "Language:";
+$lang['Error uploading file.'] = "Error uploading file.";
+$lang["File uploaded successfully. See the result in 'All Submissions'."] = "File uploaded successfully. See the result in 'All Submissions'.";
+
+
+$lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";

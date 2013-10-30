@@ -34,16 +34,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets/images/icons/add_user.png') ?>"/>
-		<span><?php echo $title ?></span>
+		<span><?php t($title); ?></span>
 		<span class="title_menu_item"><a href="http://docs.sharifjudge.ir/users#add_users" target="_blank"><i class="splashy-help"></i> Help</a></span>
 	</div>
 
 	<div id="main_content">
-		<p>You can use this field to add multiple users at the same time.</p>
+		<p><?php t("You can use this field to add multiple users at the same time."); ?></p>
 		<ul>
-			<li>Usernames may contain lowercase letters or numbers and must be between 3 and 20 characters in length.</li>
-			<li>Passwords must be between 6 and 30 characters in length.</li>
-			<li>If you want to send passwords by email, do not add too many users at one time. This may result in mail delivery fail.</li>
+			<li><?php t("Usernames may contain lowercase letters or numbers and must be between 3 and 20 characters in length."); ?></li>
+			<li><?php t("Passwords must be between 6 and 30 characters in length."); ?></li>
+			<li><?php t("If you want to send passwords by email, do not add too many users at one time. This may result in mail delivery fail."); ?></li>
 		</ul>
 		<p class="input_p">
 			<input type="checkbox" name="send_mail" id="send_mail" /> Send usernames and passwords by email (Waits <input type="text" name="delay" id="delay" class="sharif_input tiny" value="2"/> second(s) before sending each email, so please be patient).

@@ -39,12 +39,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets/images/icons/submit.png') ?>"/>
-		<span><?php echo $title ?></span>
+		<span><?php t($title); ?></span>
 	</div>
 
 	<div id="main_content">
 		<?php if ($assignment['id']==0): ?>
-			<p>Please select an assignment first.</p>
+			<p><?php t("Please select an assignment first."); ?></p>
 		<?php elseif ($this->user_model->get_user_level($username)==0 && !$assignment['open']): ?>
 		<?php // if assignment is closed, non-student users (admin, instructors) still can submit ?>
 			<p>Selected assignment is closed.</p>
@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			?>%</p>
 			<?php echo form_open_multipart('submit') ?>
 			<p class="input_p">
-				<label for="problem" class="tiny">Problem:</label>
+				<label for="problem" class="tiny"><?php t("Problem:"); ?></label>
 				<select id="problems" name ="problem" class="sharif_input">
 					<option value="0" selected="selected">-- Select One --</option>
 					<?php foreach ($problems as $problem): ?>
@@ -79,7 +79,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php echo form_error('problem','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<label for="problem" class="tiny">Language:</label>
+				<label for="problem" class="tiny"><?php t("Language:"); ?></label>
 				<select id="languages" name="language" class="sharif_input">
 					<option value="0" selected="selected">-- Select One --</option>
 				</select>
@@ -89,9 +89,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<label for="userfile" class="tiny">File:</label>
 				<input type="file" id="file" class="sharif_input medium" name="userfile" />
 				<?php if ($upload_state==='error'): ?>
-				<div class="shj_error">Error uploading file.</div>
+				<div class="shj_error"><?php t("Error uploading file."); ?></div>
 				<?php elseif ($upload_state==='ok'): ?>
-				<div class="shj_ok">File uploaded successfully. See the result in 'All Submissions'.</div>
+				<div class="shj_ok"><?php t("File uploaded successfully. See the result in 'All Submissions'."); ?></div>
 				<?php endif ?>
 				<?php echo $this->upload->display_errors('<div class="shj_error">','</div>'); ?>
 			</p>
