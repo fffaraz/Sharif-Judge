@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed');
+<?php
 /**
  * UnZip Class
  *
@@ -20,6 +20,8 @@
  * @license
  * @version     1.0.0
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Unzip {
 
 	private $compressed_list = array();
