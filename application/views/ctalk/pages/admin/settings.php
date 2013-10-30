@@ -88,7 +88,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<label for="output_size_limit">Registration Code</label>
 				<input type="text" name="registration_code" class="sharif_input medium" value="<?php echo $registration_code ?>"/><br>
 				<p class="form_comment clear">If you want to enable registration (above option), It is better to give a registration code<br>
-					to students in your class for validating registration. Enter 0 to disable.</p>
+					to students in your class for validating registration. Set to 0 to disable.</p>
 				<?php echo form_error('registration_code','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
