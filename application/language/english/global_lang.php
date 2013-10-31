@@ -259,9 +259,11 @@ $lang['Loading'] = "Loading";
 $lang['File not found'] = "File not found";
 
 
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
+$lang['Please note'] = "Please note";
+$lang['This may be different from the final submission selected by'] = "This may be different from the final submission selected by";
+$lang['This is the log file for the <b>last judged submission</b> of user %1 for problem %2 (%3).'] = "This is the log file for the <b>last judged submission</b> of user %1 for problem %2 (%3).";
+
+
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
