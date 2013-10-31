@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="main_container">
 
 	<div id="page_title">
-		<img src="<?php echo base_url('assets-fa/images/icons/add_user.png') ?>"/>
+		<img src="<?php echo base_url('assets/images/icons/add_user.png') ?>"/>
 		<span><?php t($title); ?></span>
 		<span class="title_menu_item"><a href="http://docs.sharifjudge.ir/users#add_users" target="_blank"><i class="splashy-help"></i> Help</a></span>
 	</div>
@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			?></textarea>
 		</p>
 		<input type="submit" class="sharif_input" id="add_users_button" value="Add Users"/>
-		<span id="loading" style="display: none;"><img src="<?php echo base_url('assets-fa/images/loading.gif') ?>" /> Adding users... Please wait</span>
+		<span id="loading" style="display: none;"><img src="<?php echo base_url('assets/images/loading.gif') ?>" /> Adding users... Please wait</span>
 
 	</div> <!-- main_content -->
 

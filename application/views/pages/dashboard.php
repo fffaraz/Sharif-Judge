@@ -7,13 +7,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<link rel='stylesheet' type='text/css' href='<?php echo base_url("assets-fa/fullcalendar/fullcalendar.css") ?>'/>
-<script type='text/javascript' src="<?php echo base_url("assets-fa/fullcalendar/fullcalendar.min.js") ?>"></script>
+<link rel='stylesheet' type='text/css' href='<?php echo base_url("assets/fullcalendar/fullcalendar.css") ?>'/>
+<script type='text/javascript' src="<?php echo base_url("assets/fullcalendar/fullcalendar.min.js") ?>"></script>
 
-<link rel='stylesheet' type='text/css' href='<?php echo base_url("assets-fa/gridster/jquery.gridster.css") ?>'/>
-<script type='text/javascript' src="<?php echo base_url("assets-fa/gridster/jquery.gridster.min.js") ?>"></script>
+<link rel='stylesheet' type='text/css' href='<?php echo base_url("assets/gridster/jquery.gridster.css") ?>'/>
+<script type='text/javascript' src="<?php echo base_url("assets/gridster/jquery.gridster.min.js") ?>"></script>
 
-<script type='text/javascript' src="<?php echo base_url("assets-fa/js/jquery.autoellipsis-1.0.10.min.js") ?>"></script>
+<script type='text/javascript' src="<?php echo base_url("assets/js/jquery.autoellipsis-1.0.10.min.js") ?>"></script>
 
 <?php $now = shj_now() ?>
 <script>
@@ -83,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="main_container">
 
 	<div id="page_title">
-		<img src="<?php echo base_url('assets-fa/images/icons/dashboard.png') ?>"/>
+		<img src="<?php echo base_url('assets/images/icons/dashboard.png') ?>"/>
 		<span><?php t($title); ?></span>
 	</div>
 

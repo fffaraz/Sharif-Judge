@@ -11,16 +11,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<title><?php t($title); ?> - <?php t('Sharif Judge'); ?></title>
 	<meta content="text/html" charset="UTF-8">
-	<link rel="icon" href="<?php echo base_url("assets-fa/images/favicon.ico") ?>"/>
-	<link rel="stylesheet" type='text/css' href="<?php echo base_url("assets-fa/styles/$style")  ?>"/>
-	<link rel="stylesheet" type='text/css' href="<?php echo base_url("assets-fa/styles/splashy.css")  ?>"/>
-	<script type="text/javascript" src="<?php echo base_url("assets-fa/js/jquery-1.10.2.min.js") ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url("assets-fa/js/moment.min.js") ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url("assets-fa/js/jquery.hoverIntent.minified.js") ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url("assets-fa/js/jquery.cookie.js") ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url("assets-fa/js/jquery.ba-resize.min.js") ?>"></script>
-	<link rel='stylesheet' type='text/css' href='<?php echo base_url("assets-fa/nano_scroller/nanoscroller.css") ?>'/>
-	<script type='text/javascript' src="<?php echo base_url("assets-fa/nano_scroller/jquery.nanoscroller.min.js") ?>"></script>
+	<link rel="icon" href="<?php echo base_url("assets/images/favicon.ico") ?>"/>
+	<link rel="stylesheet" type='text/css' href="<?php echo base_url("assets/styles/$style")  ?>"/>
+	<link rel="stylesheet" type='text/css' href="<?php echo base_url("assets/styles/splashy.css")  ?>"/>
+	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.10.2.min.js") ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url("assets/js/moment.min.js") ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery.hoverIntent.minified.js") ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery.cookie.js") ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery.ba-resize.min.js") ?>"></script>
+	<link rel='stylesheet' type='text/css' href='<?php echo base_url("assets/nano_scroller/nanoscroller.css") ?>'/>
+	<script type='text/javascript' src="<?php echo base_url("assets/nano_scroller/jquery.nanoscroller.min.js") ?>"></script>
 </head>
 <body id="body" class="nano">
 <div class="content">

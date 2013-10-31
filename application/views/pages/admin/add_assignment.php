@@ -7,9 +7,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<script type="text/javascript" src="<?php echo base_url("assets-fa/js/jquery-ui-1.10.3.custom.min.js") ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets-fa/js/jquery-ui-timepicker-addon.js") ?>"></script>
-<link rel="stylesheet" href="<?php echo base_url("assets-fa/styles/flick/jquery-ui-1.10.3.custom.min.css") ?>"/>
+<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-ui-1.10.3.custom.min.js") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-ui-timepicker-addon.js") ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url("assets/styles/flick/jquery-ui-1.10.3.custom.min.css") ?>"/>
 
 <script>
 	var numOfProblems=<?php echo count($problems); ?>;
@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="main_container">
 
 	<div id="page_title">
-		<img src="<?php echo base_url('assets-fa/images/icons/add.png') ?>"/>
+		<img src="<?php echo base_url('assets/images/icons/add.png') ?>"/>
 		<span><?php t($title); ?></span>
 		<span class="title_menu_item">
 			<a href="http://docs.sharifjudge.ir/add_assignment" target="_blank"><i class="splashy-help"></i> Help</a>
