@@ -101,12 +101,14 @@ $lang[' Assignment'] = " Assignment";
 $lang['Title'] = "Title";
 $lang['Text'] = "Text";
 
+// Add user result
+$lang['These users added successfully'] = "These users added successfully";
+$lang['Error adding these users'] = "Error adding these users";
+$lang['Username'] = "Username";
+$lang['Email'] = "Email";
+$lang['Password'] = "Password";
 
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
+
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
