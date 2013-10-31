@@ -34,10 +34,14 @@ $lang['You should open'] = "You should open";
 $lang['and change the encryption key in this line'] = "and change the encryption key in this line";
 $lang['The key should be a 32-characters string as random as possible, with numbers and uppercase and lowercase letters.'] = "The key should be a 32-characters string as random as possible, with numbers and uppercase and lowercase letters.";
 $lang['You can use this random string'] = "You can use this random string";
+$lang['Sharif Judge installed!'] = "Sharif Judge installed!";
+$lang['Now you can'] = "Now you can";
+$lang['login'] = "login";
 $lang['Admin username'] = "Admin username";
 $lang['Admin email'] = "Admin email";
 $lang['Admin password'] = "Admin password";
 $lang['Password, again'] = "Password, again";
+
 
 // Add user
 $lang['You can use this field to add multiple users at the same time.'] = "You can use this field to add multiple users at the same time.";

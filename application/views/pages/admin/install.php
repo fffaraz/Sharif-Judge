@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</p>
 				<br>
 			<?php endif ?>
-			<p class="shj_ok"><?php t("Sharif Judge installed! Now you can"); ?> <?php echo anchor('login','login') ?>.</p>
+			<p class="shj_ok"><?php t("Sharif Judge installed!"); ?> <?php t("Now you can"); ?><?php echo anchor('login', tr('login')); ?>.</p>
 		<?php else: ?>
 		<?php echo form_open('install') ?>
 		<p class="input_p">
