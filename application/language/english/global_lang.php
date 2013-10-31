@@ -97,9 +97,11 @@ $lang['Edit'] = "Edit";
 $lang['Add'] = "Add";
 $lang[' Assignment'] = " Assignment";
 
+// Add Notification
+$lang['Title'] = "Title";
+$lang['Text'] = "Text";
 
-$lang[''] = "";
-$lang[''] = "";
+
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
