@@ -189,17 +189,19 @@ $lang['Shield (for Python 2)'] = "Shield (for Python 2)";
 $lang['Shield (for Python 3)'] = "Shield (for Python 3)";
 $lang['Save Changes'] = "Save Changes";
 
+// users
+$lang['Add Users'] = "Add Users";
+$lang['Excel'] = "Excel";
+$lang['User deleted successfully.'] = "User deleted successfully.";
+$lang['Submissions of selected user deleted successfully.'] = "Submissions of selected user deleted successfully.";
+$lang['User ID'] = "User ID";
+$lang['Display Name'] = "Display Name";
+$lang['Role'] = "Role";
+$lang['First Login'] = "First Login";
+$lang['Last Login'] = "Last Login";
+$lang['Actions'] = "Actions";
 
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
+
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
