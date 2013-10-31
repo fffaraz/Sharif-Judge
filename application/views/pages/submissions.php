@@ -321,7 +321,7 @@ $finish = strtotime($assignment['finish_time']);
 			<?php endforeach ?>
 		</table>
 		<p>
-		<?php echo $this->pagination->create_links(); ?>
+		<?php echo $this->shj_pagination->create_links(); ?>
 		</p>
 
 	</div> <!-- main_content -->

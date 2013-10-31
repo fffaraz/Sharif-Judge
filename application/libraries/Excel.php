@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed');
+<?php
 /*
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
 		V1 - First Release
  		1.01 - Fixed UTF8 Issue
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Excel {
 
