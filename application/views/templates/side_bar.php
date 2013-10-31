@@ -28,10 +28,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	}
 
 	$(document).ready(function() {
-		sidebar = $.cookie('shj_sidebar');
+		if (supports_local_storage())
+			sidebar = localStorage.shj_sidebar;
+		else
+			sidebar = $.cookie('shj_sidebar');
+
 		if (sidebar!='open' && sidebar!='close'){
 			sidebar='open';
-			$.cookie('shj_sidebar','open',{path:'/', expires: 365});
+			if (supports_local_storage())
+				localStorage.shj_sidebar = 'open';
+			else
+				$.cookie('shj_sidebar','open',{path:'/', expires: 365});
 		}
 		if (sidebar=="open")
 			sidebar_open(0);
