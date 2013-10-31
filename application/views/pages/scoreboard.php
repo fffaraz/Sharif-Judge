@@ -14,21 +14,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets/images/icons/scoreboard.png') ?>"/>
-		<span><?php echo $title ?></span>
+		<span><?php t($title); ?></span>
 	</div>
 
 	<div id="main_content">
 		<?php if ($assignment['id']===0): ?>
-		<p>No assignment is selected.</p>
+		<p><?php t("No assignment is selected."); ?></p>
 		<?php elseif (!isset($scoreboard)): ?>
-		<p>Scoreboard is disabled.</p>
+		<p><?php t("Scoreboard is disabled."); ?></p>
 		<?php else: ?>
 			<p>Scoreboard of <?php echo $assignment['name'] ?></p>
 			<?php //print_r($scoreboard) ?>
 			<table class="sharif_table">
 				<thead>
 				<tr>
-					<th>#</th><th>Username</th><th>Name</th>
+					<th>#</th><th><?php t("Username"); ?></th><th><?php t("Name"); ?></th>
 					<?php foreach ($problems as $problem): ?>
 						<th><?php echo "Problem ".$problem['id']."<br>(".$problem['name'].")" ?></th>
 					<?php endforeach ?>
@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<?php if (isset($scores[$sc_username][$problem['id']]['score'])): ?>
 										<?php echo $scores[$sc_username][$problem['id']]['score']; ?>
 										<br>
-										<span class="scoreboard_hours" title="time"><?php echo floor($scores[$sc_username][$problem['id']]['time']/360)/10 ?> hours</span>
+										<span class="scoreboard_hours" title="time"><?php echo floor($scores[$sc_username][$problem['id']]['time']/360)/10 ?> <?php t("hours"); ?></span>
 								<?php else: ?>
 										-
 								<?php endif ?>
@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td>
 							<span style="font-weight: bold;"><?php echo $scoreboard['score'][$i] ?></span>
 							<br>
-							<span class="scoreboard_hours" title="total time + submit penalty"><?php echo floor($scoreboard['submit_penalty'][$i]/360)/10 ?> hours</span>
+							<span class="scoreboard_hours" title="total time + submit penalty"><?php echo floor($scoreboard['submit_penalty'][$i]/360)/10 ?> <?php t("hours"); ?></span>
 						</td>
 					</tr>
 					<?php $i++ ?>

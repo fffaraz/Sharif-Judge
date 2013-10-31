@@ -30,32 +30,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets/images/icons/queue.png') ?>"/>
-		<span><?php echo $title ?></span>
+		<span><?php t($title); ?></span>
 	</div>
 
 	<div id="main_content">
 		<p>
 			<?php if ($working): ?>
-				<i class="splashy-media_controls_dark_play"></i> Queue is working
+				<i class="splashy-media_controls_dark_play"></i> <?php t("Queue is working"); ?>
 			<?php else: ?>
-				<i class="splashy-media_controls_dark_pause"></i> Queue is not working
+				<i class="splashy-media_controls_dark_pause"></i> <?php t("Queue is not working"); ?>
 			<?php endif ?>
-			| Total submissions in queue: <?php echo count($queue) ?>
+			| <?php t("Total submissions in queue"); ?>: <?php echo count($queue) ?>
 		</p>
 		<p>
-			<a href="#" class="shj_act" id="pause"><i class="splashy-media_controls_pause_small"></i> Pause</a> |
-			<a href="#" class="shj_act" id="resume"><i class="splashy-media_controls_play_small"></i> Resume</a> |
-			<a href="#" class="shj_act" id="empty_queue"><i class="splashy-close"></i> Empty Queue</a>
+			<a href="#" class="shj_act" id="pause"><i class="splashy-media_controls_pause_small"></i> <?php t("Pause"); ?></a> |
+			<a href="#" class="shj_act" id="resume"><i class="splashy-media_controls_play_small"></i> <?php t("Resume"); ?></a> |
+			<a href="#" class="shj_act" id="empty_queue"><i class="splashy-close"></i> <?php t("Empty Queue"); ?></a>
 		</p>
 		<table class="sharif_table">
 			<thead>
 			<tr>
 				<th>#</th>
-				<th>Submit ID</th>
-				<th>Usename</th>
-				<th>Assignment</th>
-				<th>Problem</th>
-				<th>Type (judge/rejudge)</th>
+				<th><?php t("Submit ID"); ?></th>
+				<th><?php t("Username"); ?></th>
+				<th><?php t("Assignment"); ?></th>
+				<th><?php t("Problem"); ?></th>
+				<th><?php t("Type (judge/rejudge)"); ?></th>
 			</tr>
 			</thead>
 			<?php

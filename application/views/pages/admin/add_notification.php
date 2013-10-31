@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets/images/icons/notifications.png') ?>"/>
-		<span><?php echo $title ?></span>
+		<span><?php t($title); ?></span>
 	</div>
 
 	<div id="main_content">
@@ -41,15 +41,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<input type="hidden" name="id" value="<?php echo $notif_edit['id'] ?>"/>
 		<?php endif ?>
 		<p class="input_p">
-			<label for="title" class="tiny">Title:</label>
+			<label for="title" class="tiny"><?php t("Title"); ?>:</label>
 			<input name="title" type="text" class="sharif_input" value="<?php if ($notif_edit!==FALSE) { echo $notif_edit['title']; }?>"/>
 		</p>
 		<p class="input_p">
-			<label for="text" class="tiny">Text:</label><br><br>
+			<label for="text" class="tiny"><?php t("Text"); ?>:</label><br><br>
 			<textarea id="notif_text" name="text"><?php if ($notif_edit!==FALSE) { echo $notif_edit['text']; }?></textarea>
 		</p>
 		<p class="input_p">
-			<input type="submit" value="<?php echo ($notif_edit===FALSE?'Add':'Edit') ?>"" class="sharif_input"/>
+			<input type="submit" value="<?php echo ($notif_edit===FALSE?tr('Add'):tr('Edit')); ?>"" class="sharif_input"/>
 		</p>
 		</form>
 

@@ -88,7 +88,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							$(".set_final#sf"+submit_id+"_"+problem).addClass('checked');
 						}
 						else if (a == "shj_finished" ){
-							alert("This assignment is finished. You cannot change your final submissions.");
+							alert("<?php t("This assignment is finished. You cannot change your final submissions."); ?>");
 						}
 					}
 				);
@@ -107,74 +107,74 @@ $finish = strtotime($assignment['finish_time']);
 
 	<div id="page_title">
 		<img src="<?php echo base_url("assets/images/icons/{$view}_submissions.png") ?>"/>
-		<span><?php echo $title ?></span>
+		<span><?php t($title); ?></span>
 		<span class="title_menu_item">
-			<a href="<?php echo $excel_link ?>"><i class="splashy-document_small_download"></i> Excel</a>
+			<a href="<?php echo $excel_link ?>"><i class="splashy-document_small_download"></i> <?php t("Excel"); ?></a>
 		</span>
 		<?php if ($filter_user): ?>
 		<span class="title_menu_item">
-			<a href="<?php echo site_url('submissions/'.$view.($filter_problem?'/problem/'.$filter_problem:'')) ?>"><i class="splashy-tag_remove"></i> Remove Username Filter</a>
+			<a href="<?php echo site_url('submissions/'.$view.($filter_problem?'/problem/'.$filter_problem:'')) ?>"><i class="splashy-tag_remove"></i> <?php t("Remove Username Filter"); ?></a>
 		</span>
 		<?php endif ?>
 		<?php if ($filter_problem): ?>
 		<span class="title_menu_item">
-			<a href="<?php echo site_url('submissions/'.$view.($filter_user?'/user/'.$filter_user:'')) ?>"><i class="splashy-tag_remove"></i> Remove Problem Filter</a>
+			<a href="<?php echo site_url('submissions/'.$view.($filter_user?'/user/'.$filter_user:'')) ?>"><i class="splashy-tag_remove"></i> <?php t("Remove Problem Filter"); ?></a>
 		</span>
 		<?php endif ?>
 	</div>
 
 	<div id="main_content">
-		<p><?php echo ucfirst($view); ?> Submissions of <?php echo $assignment['name']; ?></p>
+		<p><?php echo ucfirst($view); ?> <?php t("Submissions of"); ?> <?php echo $assignment['name']; ?></p>
 		<?php if ($view == "all"): ?>
-		<p><i class="splashy-warning_triangle"></i> You cannot change your final submissions after assignment finishes.</p>
+		<p><i class="splashy-warning_triangle"></i> <?php t("You cannot change your final submissions after assignment finishes."); ?></p>
 		<?php endif ?>
 		<table class="sharif_table">
 			<thead>
 				<tr>
 				<?php if ($view=='all'): ?>
-					<th width="1%" rowspan="2">Final</th>
+					<th width="1%" rowspan="2"><?php t("Final"); ?></th>
 				<?php endif ?>
 				<?php if ($user_level>0): ?>
 						<?php if ($view=='all'): ?>
-						<th width="5%" rowspan="2">submit ID</th>
+						<th width="5%" rowspan="2"><?php t("submit ID"); ?></th>
 						<?php else: ?>
 						<th width="3%" rowspan="2">#1</th>
 						<th width="3%" rowspan="2">#2</th>
 						<?php endif ?>
-						<th width="6%" rowspan="2">Username</th>
-						<th width="14%" rowspan="2">Display Name</th>
-						<th width="10%" rowspan="2">Problem</th>
-						<th width="14%" rowspan="2">Submit Time</th>
-						<th colspan="3">Score</th>
-						<th width="1%" rowspan="2">Language</th>
-						<th width="6%" rowspan="2">Status</th>
-						<th width="6%" rowspan="2">Code</th>
+						<th width="6%" rowspan="2"><?php t("Username"); ?></th>
+						<th width="14%" rowspan="2"><?php t("Display Name"); ?></th>
+						<th width="10%" rowspan="2"><?php t("Problem"); ?></th>
+						<th width="14%" rowspan="2"><?php t("Submit Time"); ?></th>
+						<th colspan="3"><?php t("Score"); ?></th>
+						<th width="1%" rowspan="2"><?php t("Language"); ?></th>
+						<th width="6%" rowspan="2"><?php t("Status"); ?></th>
+						<th width="6%" rowspan="2"><?php t("Code"); ?></th>
 						<?php if ($view=="final"): ?>
-						<th width="6%" rowspan="2">Log</th>
+						<th width="6%" rowspan="2"><?php t("Log"); ?></th>
 						<?php endif ?>
 						<?php if ($user_level>=2): ?>
-						<th width="1%" rowspan="2">Rejudge</th>
+						<th width="1%" rowspan="2"><?php t("Rejudge"); ?></th>
 						<?php endif ?>
 						<th width="1%" rowspan="2">#</th>
 					</tr>
 					<tr>
-						<th width="5%" class="score">Score</th>
-						<th width="5%" class="score">Delay<br>%</th>
-						<th width="5%" class="score">Final Score</th>
+						<th width="5%" class="score"><?php t("Score"); ?></th>
+						<th width="5%" class="score"><?php t("Delay"); ?><br>%</th>
+						<th width="5%" class="score"><?php t("Final Score"); ?></th>
 					</tr>
 				<?php else: ?>
-						<th width="10%" rowspan="2">Problem</th>
-						<th width="30%" rowspan="2">Submit Time</th>
-						<th width="7%" colspan="3">Score</th>
-						<th width="1%" rowspan="2">Language</th>
-						<th width="30%" rowspan="2">Status</th>
-						<th width="15%" rowspan="2">Code</th>
+						<th width="10%" rowspan="2"><?php t("Problem"); ?></th>
+						<th width="30%" rowspan="2"><?php t("Submit Time"); ?></th>
+						<th width="7%" colspan="3"><?php t("Score"); ?></th>
+						<th width="1%" rowspan="2"><?php t("Language"); ?></th>
+						<th width="30%" rowspan="2"><?php t("Status"); ?></th>
+						<th width="15%" rowspan="2"><?php t("Code"); ?></th>
 						<th width="5%" rowspan="2">#</th>
 					</tr>
 					<tr>
-						<th width="7%" class="score">Score</th>
-						<th width="7%" class="score">Delay<br>%</th>
-						<th width="7%" class="score">Final Score</th>
+						<th width="7%" class="score"><?php t("Score"); ?></th>
+						<th width="7%" class="score"><?php t("Delay"); ?><br>%</th>
+						<th width="7%" class="score"><?php t("Final Score"); ?></th>
 					</tr>
 				<?php endif ?>
 			</thead>
@@ -196,7 +196,7 @@ $finish = strtotime($assignment['finish_time']);
 							if ($final_items[$item['username']][$item['problem']]['submit_id'] == $item['submit_id'])
 								$checked='checked';
 					?>
-					<div title="Set as Final Submission" class="set_final check p<?php echo $item['problem'] ?> <?php echo $checked ?>" id="<?php echo "sf".$item['submit_id']."_".$item['problem'] ?>"></div>
+					<div title="<?php t("Set as Final Submission"); ?>" class="set_final check p<?php echo $item['problem'] ?> <?php echo $checked ?>" id="<?php echo "sf".$item['submit_id']."_".$item['problem'] ?>"></div>
 					<?php //endif ?>
 					</td>
 				<?php endif ?>
@@ -208,7 +208,7 @@ $finish = strtotime($assignment['finish_time']);
 						<td><?php echo $j; ?></td>
 					<?php endif ?>
 
-					<td><a title="Filter Submissions by This Username" href="<?php echo site_url('submissions/'.$view.'/user/'.$item['username'].($filter_problem?'/problem/'.$filter_problem:'')) ?>"><?php echo $item['username'] ?></a></td>
+					<td><a title="<?php t("Filter Submissions by This Username"); ?>" href="<?php echo site_url('submissions/'.$view.'/user/'.$item['username'].($filter_problem?'/problem/'.$filter_problem:'')) ?>"><?php echo $item['username'] ?></a></td>
 					<td><?php
 						if(!isset($name[$item['username']]))
 							$name[$item['username']]=$this->user_model->get_user($item['username'])->display_name;
@@ -217,7 +217,7 @@ $finish = strtotime($assignment['finish_time']);
 				<?php endif ?>
 					<td><?php
 						$pi = $this->assignment_model->problem_info($assignment['id'],$item['problem']);
-						echo '<a title="Filter Submissions by This Problem" href="'.site_url('submissions/'.$view.($filter_user?'/user/'.$filter_user:'').'/problem/'.$item['problem']).'"><span dir>'.$pi['name'].'</span> <span>('.$item['problem'].')</span></a>';
+						echo '<a title="<?php t("Filter Submissions by This Problem"); ?>" href="'.site_url('submissions/'.$view.($filter_user?'/user/'.$filter_user:'').'/problem/'.$item['problem']).'"><span dir>'.$pi['name'].'</span> <span>('.$item['problem'].')</span></a>';
 					?></td>
 					<td><?php echo $item['time'] ?></td>
 					<td><?php
@@ -254,7 +254,7 @@ $finish = strtotime($assignment['finish_time']);
 
 						echo '<span style="font-size: 80%; opacity:0.7; '.($neg?'':'color:red;').'">';
 						if ($delay === 0)
-							echo 'No Delay';
+							t('No Delay');
 						else
 							echo '<span title="Hours">'.$h.'</span>:<span title="Minutes">'.$m.'</span>';
 						echo '</span><br>';
@@ -291,9 +291,9 @@ $finish = strtotime($assignment['finish_time']);
 					</td>
 					<td>
 						<?php if ($item['file_type'] === 'zip' OR $item['file_type'] === 'pdf'): ?>
-							<div class="btn view_code" shj="download">Download</div>
+							<div class="btn view_code" shj="download"><?php t("Download"); ?></div>
 						<?php else: ?>
-							<div class="btn view_code" code="1" >Code</div>
+							<div class="btn view_code" code="1" ><?php t("Code"); ?></div>
 						<?php endif ?>
 					</td>
 					<?php if($view === 'final' && $user_level>0): ?>
@@ -301,7 +301,7 @@ $finish = strtotime($assignment['finish_time']);
 							<?php if ($item['file_type'] === 'zip' OR $item['file_type'] === 'pdf'): ?>
 								---
 							<?php else: ?>
-								<div class="btn" code="2" >Log</div>
+								<div class="btn" code="2" ><?php t("Log"); ?></div>
 							<?php endif ?>
 						</td>
 					<?php endif ?>
@@ -330,7 +330,7 @@ $finish = strtotime($assignment['finish_time']);
 
 <div id="shj_modal" class="reveal-modal xlarge">
 	<div class="modal_inside">
-		<div style="text-align: center;">Loading<br><img src="<?php echo base_url('assets/images/loading.gif') ?>"/></div>
+		<div style="text-align: center;"><?php t("Loading"); ?><br><img src="<?php echo base_url('assets/images/loading.gif') ?>"/></div>
 	</div>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
