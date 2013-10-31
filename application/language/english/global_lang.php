@@ -56,12 +56,14 @@ $lang['Language:'] = "Language:";
 $lang['Error uploading file.'] = "Error uploading file.";
 $lang["File uploaded successfully. See the result in 'All Submissions'."] = "File uploaded successfully. See the result in 'All Submissions'.";
 
+// Delete User
+$lang['Are you sure you want to delete this user?'] = "Are you sure you want to delete this user?";
+$lang['Username:'] = "Username:";
+$lang["Also delete this user's submissions and submitted codes."] = "Also delete this user's submissions and submitted codes.";
+$lang["Yes, I'm Sure"] = "Yes, I'm Sure";
+$lang["No, I'm not"] = "No, I'm not";
 
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
+
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
