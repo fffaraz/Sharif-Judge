@@ -35,8 +35,8 @@ class MY_Lang extends CI_Lang
             //$line = ($line == '' OR ! isset($this->language[$line])) ? FALSE : $this->language[$line];
             $line = $this->line($line_key);
 
-            //reurn key if couldn't find it
-            if($line==FALSE) return $line_key;
+            //using the key itself if couldn't find it
+            if($line==FALSE) $line = $line_key;
             
             //if the line exists and more function arguments remain
             //perform wildcard replacements
