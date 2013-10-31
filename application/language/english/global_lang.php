@@ -201,14 +201,16 @@ $lang['First Login'] = "First Login";
 $lang['Last Login'] = "Last Login";
 $lang['Actions'] = "Actions";
 
+// login
+$lang['Incorrect username or password.'] = "Incorrect username or password.";
+$lang['Register'] = "Register";
+$lang['Lost?'] = "Lost?";
+$lang['The Username field must be between 3 and 20 characters in length, and contain only alpha-numeric characters'] = "The Username field must be between 3 and 20 characters in length, and contain only alpha-numeric characters";
+$lang['The Password field must be between 6 and 30 characters in length, and contain only alpha-numeric characters'] = "The Password field must be between 6 and 30 characters in length, and contain only alpha-numeric characters";
+$lang['We sent you an email containing a link to change your password.'] = "We sent you an email containing a link to change your password.";
+$lang['Reset Password'] = "Reset Password";
 
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
+
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
