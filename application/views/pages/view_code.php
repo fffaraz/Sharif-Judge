@@ -30,6 +30,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if (file_exists($file_path))
 			echo file_get_contents($file_path);
 		else
-			echo "File not found";
+			t("File not found");
 	?></pre>
 <?php endif ?>
