@@ -116,9 +116,9 @@ $lang['All submission results will be deleted.'] = "All submission results will 
 $lang['Also delete test cases and all submitted codes for this assignment.'] = "Also delete test cases and all submitted codes for this assignment.";
 $lang["No, I'm not"] = "No, I'm not";
 
-
-$lang[''] = "";
-$lang[''] = "";
+// Delete Submissions
+$lang["Are you sure you want to delete this user's submitted codes?"] = "Are you sure you want to delete this user's submitted codes?";
+$lang['Also delete submission results from database.'] = "Also delete submission results from database.";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
