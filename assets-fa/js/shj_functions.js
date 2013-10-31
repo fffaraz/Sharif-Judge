@@ -4,6 +4,14 @@
  * @author Mohammad Javad Naderi <mjnaderi@gmail.com>
  */
 
+function supports_local_storage() {
+	try {
+		return 'localStorage' in window && window['localStorage'] !== null;
+	} catch(e){
+		return false;
+	}
+}
+
 function update_clock(){
 	if (Math.abs(moment().diff(time))>3500){
 		//console.log('moment: '+moment()+' time: '+time+' diff: '+Math.abs(moment().diff(time)));
@@ -84,11 +92,17 @@ function toggle_collapse(){
 	if (sidebar == "open"){
 		sidebar = "close";
 		sidebar_close(200);
-		$.cookie('shj_sidebar','close',{path:'/', expires: 365});
+		if (supports_local_storage())
+			localStorage.shj_sidebar = 'close';
+		else
+			$.cookie('shj_sidebar','close',{path:'/', expires: 365});
 	}
 	else if (sidebar == "close"){
 		sidebar = "open";
 		sidebar_open(200);
-		$.cookie('shj_sidebar','open',{path:'/', expires: 365});
+		if (supports_local_storage())
+			localStorage.shj_sidebar = 'open';
+		else
+			$.cookie('shj_sidebar','open',{path:'/', expires: 365});
 	}
 }
