@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="main_container">
 
 	<div id="page_title">
-		<img src="<?php echo base_url('assets/images/icons/submit.png') ?>"/>
+		<img src="<?php echo base_url('assets-fa/images/icons/submit.png') ?>"/>
 		<span><?php t($title); ?></span>
 	</div>
 
