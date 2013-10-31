@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="box register">
 
 	<div class="judge_logo">
-		<a href="<?php echo site_url() ?>"><img src="<?php echo base_url("assets/images/banner.png") ?>"/></a>
+		<a href="<?php echo site_url() ?>"><img src="<?php echo base_url("assets-fa/images/banner.png") ?>"/></a>
 	</div>
 
 	<div class="login_form">

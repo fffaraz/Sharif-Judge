@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php $this->view('templates/top_bar'); ?>
 <?php $this->view('templates/side_bar',array('selected'=>'notifications')); ?>
 
-<script type='text/javascript' src="<?php echo base_url("assets/tinymce/tinymce.min.js") ?>"></script>
+<script type='text/javascript' src="<?php echo base_url("assets-fa/tinymce/tinymce.min.js") ?>"></script>
 
 <script>
 	$(document).ready(function(){
@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="main_container">
 
 	<div id="page_title">
-		<img src="<?php echo base_url('assets/images/icons/notifications.png') ?>"/>
+		<img src="<?php echo base_url('assets-fa/images/icons/notifications.png') ?>"/>
 		<span><?php t($title); ?></span>
 	</div>
 
