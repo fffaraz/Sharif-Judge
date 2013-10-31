@@ -105,9 +105,9 @@ class Moss extends CI_Controller
 			foreach ($group as $item)
 				if ($item['file_type'] !== 'zip' && $item['file_type'] !== 'pdf')
 					$list .= "p{$problem_id}/{$item['username']}/{$item['file_name']}".'.'.filetype_to_extension($item['file_type']). " ";
-			$rc = shell_exec("cd $assignment_path; $tester_path/moss $list | grep http >p{$problem_id}/moss_link.txt; echo $?");
-			$this->assignment_model->set_moss_time($assignment_id);
+			shell_exec("list='$list'; cd $assignment_path; $tester_path/moss \$list | grep http >p{$problem_id}/moss_link.txt;");
 		}
+		$this->assignment_model->set_moss_time($assignment_id);
 		$this->index($assignment_id);
 	}
 
