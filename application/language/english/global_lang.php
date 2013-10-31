@@ -132,10 +132,10 @@ $lang['Assignment'] = "Assignment";
 $lang['Problem'] = "Problem";
 $lang['Type (judge/rejudge)'] = "Type (judge/rejudge)";
 
-
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
+// Rejudge
+$lang['Selected Assignment'] = "Selected Assignment";
+$lang['By clicking on rejudge, all submissions of selected problem will go in <code>PENDING</code> state. Then Sharif Judge rejudges them one by one.'] = "By clicking on rejudge, all submissions of selected problem will go in <code>PENDING</code> state. Then Sharif Judge rejudges them one by one.";
+$lang['If you want to rejudge a single submission, you can click on rejudge button in %1 or %2 page.'] = "If you want to rejudge a single submission, you can click on rejudge button in %1 or %2 page.";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
