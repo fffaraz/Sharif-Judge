@@ -1,120 +1,120 @@
-<?php
+﻿<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['Dashboard'] = "Dashboard";
-$lang['Settings'] = "Settings";
-$lang['Users'] = "Users";
-$lang['Notifications'] = "Notifications";
-$lang['Assignments'] = "Assignments";
-$lang['Submit'] = "Submit";
-$lang['Final Submissions'] = "Final Submissions";
-$lang['All Submissions'] = "All Submissions";
-$lang['Scoreboard'] = "Scoreboard";
-$lang['Sharif Judge'] = "Sharif Judge";
-$lang['Collapse Menu'] = "Collapse Menu";
-$lang['seconds'] = "seconds";
-$lang['Profile'] = "Profile";
-$lang['Logout'] = "Logout";
-$lang['day'] = "day";
-$lang['hour'] = "hour";
-$lang['minute'] = "minute";
-$lang['second'] = "second";
+$lang['Settings'] = "تنظیمات";
+$lang['Users'] = "کاربران";
+$lang['Notifications'] = "اطلاعیه ها";
+$lang['Assignments'] = "مسابقات";
+$lang['Submit'] = "ثبت";
+$lang['Final Submissions'] = "ثبت شده های نهایی";
+$lang['All Submissions'] = "همه ثبت شده ها";
+$lang['Scoreboard'] = "رتبه بندی";
+$lang['Sharif Judge'] = "سیستم داوری";
+$lang['Collapse Menu'] = "باز کردن منو";
+$lang['seconds'] = "ثانیه ها";
+$lang['Profile'] = "پروفایل";
+$lang['Logout'] = "خروج";
+$lang['day'] = "روز";
+$lang['hour'] = "ساعت";
+$lang['minute'] = "دقیقه";
+$lang['second'] = "ثانیه";
 $lang['Extra'] = "Extra";
-$lang['Time'] = "Time";
-$lang['Rejudge'] = "Rejudge";
-$lang['Submission Queue'] = "Submission Queue";
-$lang['Cheat Detection'] = "Cheat Detection";
-$lang['New Notification'] = "New Notification";
+$lang['Time'] = "زمان";
+$lang['Rejudge'] = "بازداوری";
+$lang['Submission Queue'] = "صف ثبت شده ها";
+$lang['Cheat Detection'] = "تشخیص تخلف";
+$lang['New Notification'] = "اعلامیه های جدید";
 
 // Install
 $lang['It seems that the file'] = "It seems that the file";
-$lang['is not writable by PHP'] = "is not writable by PHP";
-$lang['So, for security, you should change the encryption key manually.'] = "So, for security, you should change the encryption key manually.";
-$lang['You should open'] = "You should open";
-$lang['and change the encryption key in this line'] = "and change the encryption key in this line";
+$lang['is not writable by PHP'] = "قابل نوشتن توسط PHP نیست";
+$lang['So, for security, you should change the encryption key manually.'] = "برای مسائل امنیتی لازم است کلید را به صورت دستی تنظیم کنید.";
+$lang['You should open'] = "شما باید باز کنید";
+$lang['and change the encryption key in this line'] = "و کلید امنیتی را در این خط تغییر دهید";
 $lang['The key should be a 32-characters string as random as possible, with numbers and uppercase and lowercase letters.'] = "The key should be a 32-characters string as random as possible, with numbers and uppercase and lowercase letters.";
-$lang['You can use this random string'] = "You can use this random string";
-$lang['Sharif Judge installed!'] = "Sharif Judge installed!";
-$lang['Now you can'] = "Now you can";
-$lang['login'] = "login";
-$lang['Admin username'] = "Admin username";
-$lang['Admin email'] = "Admin email";
-$lang['Admin password'] = "Admin password";
-$lang['Password, again'] = "Password, again";
+$lang['You can use this random string'] = "شما میتوانید از این رشته تصادفی استفاده کنید";
+$lang['Sharif Judge installed!'] = "سیستم داوری نصب شد!";
+$lang['Now you can'] = "حال شما میتوانید";
+$lang['login'] = "ورود";
+$lang['Admin username'] = "نام کاربری مدیر";
+$lang['Admin email'] = "پست الکترونیک مدیر";
+$lang['Admin password'] = "کلمه عبور مدیر";
+$lang['Password, again'] = "کلمه عبور، دوباره";
 
 
 // Add user
-$lang['You can use this field to add multiple users at the same time.'] = "You can use this field to add multiple users at the same time.";
-$lang['Usernames may contain lowercase letters or numbers and must be between 3 and 20 characters in length.'] = "Usernames may contain lowercase letters or numbers and must be between 3 and 20 characters in length.";
-$lang['Passwords must be between 6 and 30 characters in length.'] = "Passwords must be between 6 and 30 characters in length.";
-$lang['If you want to send passwords by email, do not add too many users at one time. This may result in mail delivery fail.'] = "If you want to send passwords by email, do not add too many users at one time. This may result in mail delivery fail.";
+$lang['You can use this field to add multiple users at the same time.'] = "شما میتوانید از این قسمت برای تعریف تعدادی کاربر به صورت همزمان استفاده کنید.";
+$lang['Usernames may contain lowercase letters or numbers and must be between 3 and 20 characters in length.'] = "نام کاربری ها باید شامل حروف کوچک و اعداد و از 3 تا 20 کاراکتر تشکیل شده باشد.";
+$lang['Passwords must be between 6 and 30 characters in length.'] = "کلمات عبور باید بین 6 تا 30 کاراکتر باشند.";
+$lang['If you want to send passwords by email, do not add too many users at one time. This may result in mail delivery fail.'] = "اگر میخواهید کلمه های عبور را توسط ایمیل ارسال کنید، تعداد زیادی کاربر را به صورت همزمان اضافه نکنید. این ممکن است خطایی در ارسال ایمیل ها ایجاد کند.";
 
 // Submit
-$lang['Please select an assignment first.'] = "Please select an assignment first.";
-$lang['Problem:'] = "Problem:";
-$lang['Language:'] = "Language:";
-$lang['Error uploading file.'] = "Error uploading file.";
-$lang["File uploaded successfully. See the result in 'All Submissions'."] = "File uploaded successfully. See the result in 'All Submissions'.";
+$lang['Please select an assignment first.'] = "لطفا مسابقه را ابتدا انتخاب کنید.";
+$lang['Problem:'] = "مساله:";
+$lang['Language:'] = "زبان:";
+$lang['Error uploading file.'] = "خطا در بارگزاری فایل.";
+$lang["File uploaded successfully. See the result in 'All Submissions'."] = "فایل با موفقیت بارگزاری شد. نتیجه را در 'همه ثبت شده ها' مشاهده کنید.";
 
 // Delete User
 $lang['Are you sure you want to delete this user?'] = "Are you sure you want to delete this user?";
-$lang['Username:'] = "Username:";
-$lang["Also delete this user's submissions and submitted codes."] = "Also delete this user's submissions and submitted codes.";
-$lang["Yes, I'm Sure"] = "Yes, I'm Sure";
-$lang["No, I'm not"] = "No, I'm not";
+$lang['Username:'] = "نام کاربری:";
+$lang["Also delete this user's submissions and submitted codes."] = "همچنین فایلها و اطلاعات ثبت شده های کاربر را نیز پاک کن.";
+$lang["Yes, I'm Sure"] = "بله، مطمئنم";
+$lang["No, I'm not"] = "خیر، نیستم";
 
 // Add Assignment
-$lang["If you don't want to change tests, just do not upload any file."] = "If you don't want to change tests, just do not upload any file.";
-$lang['Assignment Name'] = "Assignment Name";
-$lang['Start Time'] = "Start Time";
-$lang['Finish Time'] = "Finish Time";
-$lang['Extra Time (minutes)'] = "Extra Time (minutes)";
-$lang['Extra time for late submissions.'] = "Extra time for late submissions.";
-$lang['Participants'] = "Participants";
-$lang['Enter username of participants here (comma separated).'] = "Enter username of participants here (comma separated).";
-$lang['Only these users are able to submit. You can use keyword "ALL".'] = 'Only these users are able to submit. You can use keyword "ALL".';
-$lang['Tests (zip file)'] = "Tests (zip file)";
-$lang['Use this structure'] = "Use this structure";
-$lang['Open or close this assignment.'] = "Open or close this assignment.";
-$lang['Check this to enable scoreboard.'] = "Check this to enable scoreboard.";
-$lang['Open'] = "Open";
-$lang['Scoreboard'] = "Scoreboard";
-$lang['Coefficient rule'] = "Coefficient rule";
+$lang["If you don't want to change tests, just do not upload any file."] = "اگر نمی خواهید در تست کیس ها تغییری دهید، فایلی بارگزاری نکنید.";
+$lang['Assignment Name'] = "نام مسابقه";
+$lang['Start Time'] = "زمان شروع";
+$lang['Finish Time'] = "زمان پایان";
+$lang['Extra Time (minutes)'] = "زمان اضافی (دقیقه)";
+$lang['Extra time for late submissions.'] = "زمان اضافی برای ثبت شده های متاخر.";
+$lang['Participants'] = "شرکت کنندگان";
+$lang['Enter username of participants here (comma separated).'] = "نام کاربری شرکت کنندگان را اینجا وارد کنید.( با کاما جدا کنید.)";
+$lang['Only these users are able to submit. You can use keyword "ALL".'] = 'فقط این کاربران مجاز به ثبت می باشند. شما میتوانید از کلید واژه "ALL" استفاده کنید.';
+$lang['Tests (zip file)'] = "تست کیس ها (فایل zip)";
+$lang['Use this structure'] = "از این ساختار استفاده کن";
+$lang['Open or close this assignment.'] = "باز کردن یا بستن این ";
+$lang['Check this to enable scoreboard.'] = "برای فعالسازی لیست رتبه بندی این را انتخاب کنید.";
+$lang['Open'] = "باز";
+$lang['Scoreboard'] = "لیست رتبه بندی";
+$lang['Coefficient rule'] = "قانون ضریب";
 $lang['PHP script without &lt;?php ?&gt; tags'] = "PHP script without &lt;?php ?&gt; tags";
-$lang['Problems'] = "Problems";
-$lang['Name'] = "Name";
-$lang['Score'] = "Score";
-$lang['Time Limit (ms)'] = "Time Limit (ms)";
-$lang['Memory<br>Limit (kB)'] = "Memory<br>Limit (kB)";
-$lang['Allowed<br>Languages'] = "Allowed<br>Languages";
-$lang['Diff<br>Command'] = "Diff<br>Command";
-$lang['Diff<br>Argument'] = "Diff<br>Argument";
-$lang['Upload<br>Only'] = "Upload<br>Only";
+$lang['Problems'] = "سوالات";
+$lang['Name'] = "نام";
+$lang['Score'] = "امتیاز";
+$lang['Time Limit (ms)'] = "محدودیت زمان (ms)";
+$lang['Memory<br>Limit (kB)'] = "محدودیت<br>حافظه (kB)";
+$lang['Allowed<br>Languages'] = "زبان<br>های مجاز";
+$lang['Diff<br>Command'] = "دستور<br>Diff";
+$lang['Diff<br>Argument'] = "ورودی<br>Diff";
+$lang['Upload<br>Only'] = "بارگزاری<br>فقط";
 $lang['C/C++'] = "C/C++";
 $lang['Python'] = "Python";
 $lang['Java'] = "Java";
-$lang['Edit'] = "Edit";
-$lang['Add'] = "Add";
-$lang[' Assignment'] = " Assignment";
+$lang['Edit'] = "ویرایش";
+$lang['Add'] = "افزودن";
+$lang[' Assignment'] = " مسابقه";
 
 // Add Notification
-$lang['Title'] = "Title";
-$lang['Text'] = "Text";
+$lang['Title'] = "عنوان";
+$lang['Text'] = "متن";
 
 // Add user result
-$lang['These users added successfully'] = "These users added successfully";
-$lang['Error adding these users'] = "Error adding these users";
-$lang['Username'] = "Username";
-$lang['Email'] = "Email";
-$lang['Password'] = "Password";
+$lang['These users added successfully'] = "این کاربران با موفقیت افزوده شدند";
+$lang['Error adding these users'] = "خطا در افزودن این کاربران";
+$lang['Username'] = "نام کاربری";
+$lang['Email'] = "پست الکترونیک";
+$lang['Password'] = "کلمه عبور";
 
 // Delete Assignment
 $lang['Are you sure you want to delete this assignment?'] = "Are you sure you want to delete this assignment?";
-$lang['Assignment id'] = "Assignment id";
-$lang['Assignment name'] = "Assignment name";
-$lang['All submission results will be deleted.'] = "All submission results will be deleted.";
+$lang['Assignment id'] = "کد شناسایی مسابقه";
+$lang['Assignment name'] = "نام مسابقه";
+$lang['All submission results will be deleted.'] = "همه نتایج مسابقه پاک خواهد شد.";
 $lang['Also delete test cases and all submitted codes for this assignment.'] = "Also delete test cases and all submitted codes for this assignment.";
-$lang["No, I'm not"] = "No, I'm not";
+$lang["No, I'm not"] = "نه، نیستم";
 
 // Delete Submissions
 $lang["Are you sure you want to delete this user's submitted codes?"] = "Are you sure you want to delete this user's submitted codes?";
