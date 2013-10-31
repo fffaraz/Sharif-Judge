@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </script>
 
 <?php if (count($notifications)==0): ?>
-<p style="text-align: center;">Nothing yet...</p>
+<p style="text-align: center;"><?php t("Nothing yet..."); ?></p>
 <?php endif ?>
 
 <?php foreach ($notifications as $notification): ?>
@@ -43,8 +43,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?php endif ?>
 			<?php echo $notification['time'] ?>
 			<?php if ($user_level >= 2): ?>
-				<?php echo anchor('notifications/edit/' . $notification['id'], 'Edit') ?>
-				<a href="#" id="<?php echo $notification['id'] ?>" class="delete_notif">Delete</a>
+				<?php echo anchor('notifications/edit/' . $notification['id'], tr('Edit')); ?>
+				<a href="#" id="<?php echo $notification['id'] ?>" class="delete_notif"><?php t("Delete"); ?></a>
 			<?php endif ?>
 		<?php if ($type=="all"): ?>
 		</div>
