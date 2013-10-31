@@ -210,9 +210,59 @@ $lang['The Password field must be between 6 and 30 characters in length, and con
 $lang['We sent you an email containing a link to change your password.'] = "We sent you an email containing a link to change your password.";
 $lang['Reset Password'] = "Reset Password";
 
+// assignments
+$lang['Nothing to show...'] = "Nothing to show...";
+$lang['problem'] = "problem";
+$lang['submit'] = "submit";
+$lang['Finished'] = "Finished";
+$lang['Open'] = "Open";
+$lang['Close'] = "Close";
+$lang['Download Tests'] = "Download Tests";
+$lang['Download Final Codes'] = "Download Final Codes";
+$lang['Detect Similar Codes'] = "Detect Similar Codes";
+$lang['Edit'] = "Edit";
+$lang['Delete'] = "Delete";
+
 
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+
