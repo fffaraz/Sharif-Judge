@@ -119,15 +119,42 @@ $lang["No, I'm not"] = "No, I'm not";
 // Delete Submissions
 $lang["Are you sure you want to delete this user's submitted codes?"] = "Are you sure you want to delete this user's submitted codes?";
 $lang['Also delete submission results from database.'] = "Also delete submission results from database.";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
 
+// Queue
+$lang['Queue is working'] = "Queue is working";
+$lang['Queue is not working'] = "Queue is not working";
+$lang['Total submissions in queue'] = "Total submissions in queue";
+$lang['Pause'] = "Pause";
+$lang['Resume'] = "Resume";
+$lang['Empty Queue'] = "Empty Queue";
+$lang['Submit ID'] = "Submit ID";
+$lang['Assignment'] = "Assignment";
+$lang['Problem'] = "Problem";
+$lang['Type (judge/rejudge)'] = "Type (judge/rejudge)";
+
+
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
