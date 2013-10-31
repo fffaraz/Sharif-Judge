@@ -108,6 +108,14 @@ $lang['Username'] = "Username";
 $lang['Email'] = "Email";
 $lang['Password'] = "Password";
 
+// Delete Assignment
+$lang['Are you sure you want to delete this assignment?'] = "Are you sure you want to delete this assignment?";
+$lang['Assignment id'] = "Assignment id";
+$lang['Assignment name'] = "Assignment name";
+$lang['All submission results will be deleted.'] = "All submission results will be deleted.";
+$lang['Also delete test cases and all submitted codes for this assignment.'] = "Also delete test cases and all submitted codes for this assignment.";
+$lang["No, I'm not"] = "No, I'm not";
+
 
 $lang[''] = "";
 $lang[''] = "";
@@ -116,3 +124,10 @@ $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+
