@@ -63,6 +63,40 @@ $lang["Also delete this user's submissions and submitted codes."] = "Also delete
 $lang["Yes, I'm Sure"] = "Yes, I'm Sure";
 $lang["No, I'm not"] = "No, I'm not";
 
+// Add Assignment
+$lang["If you don't want to change tests, just do not upload any file."] = "If you don't want to change tests, just do not upload any file.";
+$lang['Assignment Name'] = "Assignment Name";
+$lang['Start Time'] = "Start Time";
+$lang['Finish Time'] = "Finish Time";
+$lang['Extra Time (minutes)'] = "Extra Time (minutes)";
+$lang['Extra time for late submissions.'] = "Extra time for late submissions.";
+$lang['Participants'] = "Participants";
+$lang['Enter username of participants here (comma separated).'] = "Enter username of participants here (comma separated).";
+$lang['Only these users are able to submit. You can use keyword "ALL".'] = 'Only these users are able to submit. You can use keyword "ALL".';
+$lang['Tests (zip file)'] = "Tests (zip file)";
+$lang['Use this structure'] = "Use this structure";
+$lang['Open or close this assignment.'] = "Open or close this assignment.";
+$lang['Check this to enable scoreboard.'] = "Check this to enable scoreboard.";
+$lang['Open'] = "Open";
+$lang['Scoreboard'] = "Scoreboard";
+$lang['Coefficient rule'] = "Coefficient rule";
+$lang['PHP script without &lt;?php ?&gt; tags'] = "PHP script without &lt;?php ?&gt; tags";
+$lang['Problems'] = "Problems";
+$lang['Name'] = "Name";
+$lang['Score'] = "Score";
+$lang['Time Limit (ms)'] = "Time Limit (ms)";
+$lang['Memory<br>Limit (kB)'] = "Memory<br>Limit (kB)";
+$lang['Allowed<br>Languages'] = "Allowed<br>Languages";
+$lang['Diff<br>Command'] = "Diff<br>Command";
+$lang['Diff<br>Argument'] = "Diff<br>Argument";
+$lang['Upload<br>Only'] = "Upload<br>Only";
+$lang['C/C++'] = "C/C++";
+$lang['Python'] = "Python";
+$lang['Java'] = "Java";
+$lang['Edit'] = "Edit";
+$lang['Add'] = "Add";
+$lang[' Assignment'] = " Assignment";
+
 
 $lang[''] = "";
 $lang[''] = "";
@@ -74,4 +108,7 @@ $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
-
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";

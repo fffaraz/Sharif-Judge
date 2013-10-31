@@ -69,15 +69,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div id="main_content">
 
 		<?php foreach ($success_messages as $success_message): ?>
-			<p class="shj_ok"><?php echo $success_message ?></p>
+			<p class="shj_ok"><?php t($success_message); ?></p>
 		<?php endforeach ?>
 		<?php foreach ($error_messages as $error_message): ?>
-			<p class="shj_error"><?php echo $error_message ?></p>
+			<p class="shj_error"><?php t($error_message); ?></p>
 		<?php endforeach ?>
 
 		<?php if ($edit): ?>
 		<p>
-			<i class="splashy-information"></i> If you don't want to change tests, just do not upload any file.
+			<i class="splashy-information"></i> <?php t("If you don't want to change tests, just do not upload any file."); ?>
 		</p>
 		<?php endif ?>
 
@@ -85,7 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="panel_left">
 			<input type="hidden" name="number_of_problems" id="nop" value="<?php echo $edit?$edit_assignment['problems']:count($problems); ?>"/>
 			<p class="input_p">
-				<label for="assignment_name">Assignment Name</label>
+				<label for="assignment_name"><?php t("Assignment Name"); ?></label>
 				<input type="text" name="assignment_name" class="sharif_input medium" value="<?php
 					if ($edit)
 						echo $edit_assignment['name'];
@@ -95,7 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php echo form_error('assignment_name','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<label for="start_time">Start Time</label>
+				<label for="start_time"><?php t("Start Time"); ?></label>
 				<input type="text" name="start_time" id="start_time" class="sharif_input medium" value="<?php
 					if ($edit)
 						echo date('m/d/Y H:i',strtotime($edit_assignment['start_time']));
@@ -105,7 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php echo form_error('start_time','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<label for="finish_time">Finish Time</label>
+				<label for="finish_time"><?php t("Finish Time"); ?></label>
 				<input type="text" name="finish_time" id="finish_time" class="sharif_input medium" value="<?php
 					if ($edit)
 						echo date('m/d/Y H:i',strtotime($edit_assignment['finish_time']));
@@ -116,8 +116,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</p>
 			<p class="input_p clear">
 				<label for="extra_time">
-					Extra Time (minutes)<br>
-					<span class="form_comment">Extra time for late submissions.</span>
+					<?php t("Extra Time (minutes)"); ?><br>
+					<span class="form_comment"><?php t("Extra time for late submissions."); ?></span>
 				</label>
 				<input type="text" name="extra_time" id="extra_time" class="sharif_input medium" value="<?php
 					if ($edit){
@@ -133,9 +133,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php echo form_error('extra_time','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p clear">
-				<label for="participants">Participants<br>
-					<span class="form_comment">Enter username of participants here (comma separated).
-						Only these users are able to submit. You can use keyword "ALL".</span>
+				<label for="participants"><?php t("Participants"); ?><br>
+					<span class="form_comment"><?php t("Enter username of participants here (comma separated)."); ?>
+						<?php t('Only these users are able to submit. You can use keyword "ALL".'); ?></span>
 				</label>
 				<textarea name="participants" rows="5" class="sharif_input medium"><?php
 					if ($edit)
@@ -145,9 +145,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					?></textarea>
 			</p>
 			<p class="input_p clear">
-				<label for="tests">Tests (zip file)<br>
+				<label for="tests"><?php t("Tests (zip file)"); ?><br>
 					<span class="form_comment">
-						<a href="http://docs.sharifjudge.ir/tests_structure" target="_blank">Use this structure</a>
+						<a href="http://docs.sharifjudge.ir/tests_structure" target="_blank"><?php t("Use this structure"); ?></a>
 					</span>
 				</label>
 
@@ -160,18 +160,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 		<div class="panel_right">
 			<p class="input_p">
-				<input type="checkbox" name="open" value="1" <?php if ($edit) echo $edit_assignment['open']?'checked':''; else echo set_checkbox('open','1') ?> /> Open<br>
-				<span class="form_comment">Open or close this assignment.</span>
+				<input type="checkbox" name="open" value="1" <?php if ($edit) echo $edit_assignment['open']?'checked':''; else echo set_checkbox('open','1') ?> /> <?php t("Open"); ?><br>
+				<span class="form_comment"><?php t("Open or close this assignment."); ?></span>
 				<?php echo form_error('open','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<input type="checkbox" name="scoreboard" value="1" <?php if ($edit) echo $edit_assignment['scoreboard']?'checked':''; else echo set_checkbox('scoreboard','1') ?> /> Scoreboard<br>
-				<span class="form_comment">Check this to enable scoreboard.</span>
+				<input type="checkbox" name="scoreboard" value="1" <?php if ($edit) echo $edit_assignment['scoreboard']?'checked':''; else echo set_checkbox('scoreboard','1') ?> /> <?php t("Scoreboard"); ?><br>
+				<span class="form_comment"><?php t("Check this to enable scoreboard."); ?></span>
 				<?php echo form_error('scoreboard','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<label for="late_rule">Coefficient rule (<a target="_blank" href="http://docs.sharifjudge.ir/add_assignment#coefficient_rule">?</a>)</label><br>
-				<span class="form_comment medium clear" style="display: block;">PHP script without <?php echo htmlspecialchars('<?php ?>') ?> tags</span>
+				<label for="late_rule"><?php t("Coefficient rule"); ?> (<a target="_blank" href="http://docs.sharifjudge.ir/add_assignment#coefficient_rule">?</a>)</label><br>
+				<span class="form_comment medium clear" style="display: block;"><?php t("PHP script without &lt;?php ?&gt; tags"); ?></span>
 				<textarea name="late_rule" rows="14" class="sharif_input add_text"><?php
 						if ($edit)
 							echo $edit_assignment['late_rule'];
@@ -181,23 +181,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php echo form_error('late_rule','<div class="shj_error">','</div>'); ?>
 			</p>
 		</div>
-		<p class="input_p" id="add_problems">Problems <i class="splashy-add" id="add"></i>
+		<p class="input_p" id="add_problems"><?php t("Problems"); ?> <i class="splashy-add" id="add"></i>
 		<table id="problems_table">
 			<thead>
 			<tr>
 				<th rowspan="2"></th>
-				<th rowspan="2">Name</th>
-				<th rowspan="2">Score</th>
-				<th colspan="3" style="border-bottom: 1px solid #BDBDBD">Time Limit (ms)</th>
-				<th rowspan="2">Memory<br>Limit (kB)</th>
-				<th rowspan="2">Allowed<br>Languages (<a target="_blank" href="http://docs.sharifjudge.ir/add_assignment#allowed_languages">?</a>)</th>
-				<th rowspan="2">Diff<br>Command (<a target="_blank" href="http://docs.sharifjudge.ir/add_assignment#diff_command">?</a>)</th>
-				<th rowspan="2">Diff<br>Argument (<a target="_blank" href="http://docs.sharifjudge.ir/add_assignment#diff_arguments">?</a>)</th>
-				<th rowspan="2">Upload<br>Only (<a target="_blank" href="http://docs.sharifjudge.ir/add_assignment#upload_only">?</a>)</th>
+				<th rowspan="2"><?php t("Name"); ?></th>
+				<th rowspan="2"><?php t("Score"); ?></th>
+				<th colspan="3" style="border-bottom: 1px solid #BDBDBD"><?php t("Time Limit (ms)"); ?></th>
+				<th rowspan="2"><?php t("Memory<br>Limit (kB)"); ?></th>
+				<th rowspan="2"><?php t("Allowed<br>Languages"); ?> (<a target="_blank" href="http://docs.sharifjudge.ir/add_assignment#allowed_languages">?</a>)</th>
+				<th rowspan="2"><?php t("Diff<br>Command"); ?> (<a target="_blank" href="http://docs.sharifjudge.ir/add_assignment#diff_command">?</a>)</th>
+				<th rowspan="2"><?php t("Diff<br>Argument"); ?> (<a target="_blank" href="http://docs.sharifjudge.ir/add_assignment#diff_arguments">?</a>)</th>
+				<th rowspan="2"><?php t("Upload<br>Only"); ?> (<a target="_blank" href="http://docs.sharifjudge.ir/add_assignment#upload_only">?</a>)</th>
 				<th rowspan="2"></th>
 			</tr>
 			<tr>
-				<th>C/C++</th><th>Python</th><th>Java</th>
+				<th><?php t("C/C++"); ?></th><th><?php t("Python"); ?></th><th><?php t("Java"); ?></th>
 			</tr>
 			</thead>
 			<tbody>
@@ -230,7 +230,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?php echo form_error('diff_cmd[]','<div class="shj_error">','</div>'); ?>
 		<?php echo form_error('diff_arg[]','<div class="shj_error">','</div>'); ?>
 		<p class="input_p">
-			<input type="submit" value="<?php echo $edit?'Edit':'Add' ?> Assignment" class="sharif_input"/>
+			<input type="submit" value="<?php echo $edit?tr('Edit'):tr('Add');  t(" Assignment"); ?>" class="sharif_input"/>
 		</p>
 		</form>
 
