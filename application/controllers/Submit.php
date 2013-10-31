@@ -140,15 +140,15 @@ class Submit extends CI_Controller
 		$this->ext = substr(strrchr($_FILES['userfile']['name'],'.'),1); // uploaded file extension
 		$this->file_name = basename($_FILES['userfile']['name'], ".{$this->ext}"); // uploaded file name without extension
 		if ( $this->queue_model->in_queue($this->username,$this->assignment['id'], $this->problem['id']) )
-			show_error('You have already submitted for this problem. Your last submission is still in queue.');
+			show_error(tr('You have already submitted for this problem. Your last submission is still in queue.'));
 		if ($this->user_model->get_user_level($this->username)==0 && !$this->assignment['open'])
-			show_error('Selected assignment has been closed.');
+			show_error(tr('Selected assignment has been closed.'));
 		if ($now < strtotime($this->assignment['start_time']))
-			show_error('Selected assignment has not started.');
+			show_error(tr('Selected assignment has not started.'));
 		if ($now > strtotime($this->assignment['finish_time'])+$this->assignment['extra_time'])
-			show_error('Selected assignment has finished.');
+			show_error(tr('Selected assignment has finished.'));
 		if ( ! $this->assignment_model->is_participant($this->assignment['participants'],$this->username) )
-			show_error('You are not registered for submitting.');
+			show_error(tr('You are not registered for submitting.'));
 		$filetypes = explode(",",$this->problem['allowed_languages']);
 		foreach ($filetypes as &$filetype){
 			$filetype = $this->_language_to_type(strtolower(trim($filetype)));

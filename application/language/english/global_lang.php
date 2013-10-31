@@ -264,11 +264,16 @@ $lang['This may be different from the final submission selected by'] = "This may
 $lang['This is the log file for the <b>last judged submission</b> of user %1 for problem %2 (%3).'] = "This is the log file for the <b>last judged submission</b> of user %1 for problem %2 (%3).";
 
 
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
+$lang['Selected assignment is closed.'] = "Selected assignment is closed.";
+$lang['Selected assignment has not started.'] = "Selected assignment has not started.";
+$lang['Selected assignment has finished.'] = "Selected assignment has finished.";
+$lang['You are not registered for submitting.'] = "You are not registered for submitting.";
+$lang['You have already submitted for this problem. Your last submission is still in queue.'] = "You have already submitted for this problem. Your last submission is still in queue.";
 
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
