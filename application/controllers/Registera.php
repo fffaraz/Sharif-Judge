@@ -5,6 +5,6 @@ class Registera extends CI_Controller
 {
 	public function index()
 	{
-		# code...
+		
 	}
 }
