@@ -28,7 +28,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				}
 			$("select#languages").html(text);
 
-
+if(v!=0)
+{
 var url = '<?php echo site_url('submit').'/getQuestion/'; ?>'+v;
 $.ajax({
 	type: 'GET',
@@ -39,6 +40,7 @@ $.ajax({
 		$('#question').text(e);
 	}
 });
+}
 
 
 
