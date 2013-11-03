@@ -27,6 +27,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					text += '<option value="'+p[v][i]+'">'+p[v][i]+'</option>\n';
 				}
 			$("select#languages").html(text);
+
+
+var url = '<?php echo site_url('submit').'/getQuestion/'; ?>'+v;
+$.ajax({
+	type: 'GET',
+	url: url,
+
+	success: function(e)
+	{
+		$('#question').text(e);
+	}
+});
+
+
+
 		});
 	});
 </script>
@@ -43,6 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<div id="main_content">
+		<div id="question" ></div>
 		<?php if ($assignment['id']==0): ?>
 			<p><?php t("Please select an assignment first."); ?></p>
 		<?php elseif ($this->user_model->get_user_level($username)==0 && !$assignment['open']): ?>
