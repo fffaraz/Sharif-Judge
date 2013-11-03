@@ -79,6 +79,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 
 		<div class="side_box">
+			<a href="<?php echo site_url('registera') ?>"><li <?php echo ($selected=='registera'?'class="selected"':'') ?>><i class="splashy-folder_modernist_opened"></i><span class="sidebar_text"><?php t('Register for an Assignment'); ?></span></li></a>
+		</div>
+
+		<div class="side_box">
 			<a href="<?php echo site_url('assignments') ?>"><li <?php echo ($selected=='assignments'?'class="selected"':'') ?>><i class="splashy-folder_modernist_opened"></i><span class="sidebar_text"><?php t('Assignments'); ?></span></li></a>
 		</div>
 
