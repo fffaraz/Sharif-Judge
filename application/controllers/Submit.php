@@ -200,6 +200,17 @@ class Submit extends CI_Controller
 			$this->data['upload_state'] = 'error';
 	}
 
-
+	public function getQuestion($id)
+	{
+		$q = rtrim($this->assignment_root, '/').'/assignment_'.$this->assignment['id'].'/p'.$id.'/question.html';
+		if( !file_exists($q))
+		{
+			return tr('Question not found');
+		}
+		else
+		{
+			echo file_get_contents($q);
+		}
+	}
 
 }
