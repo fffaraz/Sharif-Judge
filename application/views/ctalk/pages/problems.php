@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <?php $this->view('templates/top_bar'); ?>
-<?php $this->view('templates/side_bar',array('selected'=>'assignments')); ?>
+<?php $this->view('templates/side_bar',array('selected'=>'problems')); ?>
 
 <div id="main_container">
 
