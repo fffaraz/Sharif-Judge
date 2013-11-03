@@ -21,6 +21,10 @@ shift
 # The Command:
 CMD=$@
 
+# detecting existence of timeout
+TIMEOUT_EXISTS=true
+hash timeout 2>/dev/null || TIMEOUT_EXISTS=false
+
 # Imposing memory limit with ulimit
 if [ "$EXT" != "java" ]; then
 	ulimit -v $((MEMLIMIT+10000))
@@ -31,12 +35,19 @@ fi
 # Imposing time limit with ulimit
 ulimit -t $TIMELIMITINT
 
-
-# Run the command
-$CMD <$IN >out 2>err
+# Run the command with REAL TIME limit of TIMELIMITINT*2
+if $TIMEOUT_EXISTS; then
+	timeout -s9 $((TIMELIMITINT*2)) $CMD <$IN >out 2>err
+else
+	$CMD <$IN >out 2>err	
+fi
 # You can run submitted codes as another user:
 #
-#sudo -u another_user $CMD <$IN >out 2>err
+# if $TIMEOUT_EXISTS; then
+# 	sudo -u another_user timeout -s9 $((TIMELIMITINT*2)) $CMD <$IN >out 2>err
+# else
+# 	sudo -u another_user $CMD <$IN >out 2>err	
+# fi
 #
 # But you should change your sudoers file and allow the user running PHP (e.g. www-data in Ubuntu+Apache) to su to another_user
 # e.g. In Ubuntu (Apache running under www-data), run visudo and add this line:

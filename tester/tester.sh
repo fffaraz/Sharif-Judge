@@ -219,16 +219,23 @@ if [ "$EXT" = "c" ] || [ "$EXT" = "cpp" ]; then
 	fi
 	if $C_SHIELD_ON; then
 		judge_log "Enabling Shield"
-		cp ../shield/shield.$EXT shield.$EXT
-		cp ../shield/def$EXT.h def.h
-		# adding define to beginning of code
-		echo '#define main themainmainfunction' | cat - code.c > thetemp && mv thetemp code.c
-		$COMPILER shield.$EXT -fno-asm -Dasm=error -lm -O2 -o $EXEFILE >/dev/null 2>cerr
+		# if code contains any 'undef', raise compile error:
+		if tr -d ' \t\n\r\f' < code.c | grep -q '#undef'; then
+			echo 'code.c:#undef is not allowed' >cerr
+			EXITCODE=110
+		else
+			cp ../shield/shield.$EXT shield.$EXT
+			cp ../shield/def$EXT.h def.h
+			# adding define to beginning of code:
+			echo '#define main themainmainfunction' | cat - code.c > thetemp && mv thetemp code.c
+			$COMPILER shield.$EXT -fno-asm -Dasm=error -lm -O2 -o $EXEFILE >/dev/null 2>cerr
+			EXITCODE=$?
+		fi
 	else
 		mv code.c code.$EXT
 		$COMPILER code.$EXT -fno-asm -Dasm=error -lm -O2 -o $EXEFILE >/dev/null 2>cerr
+		EXITCODE=$?
 	fi
-	EXITCODE=$?
 	judge_log "Compiled. Exit Code=$EXITCODE"
 	if [ $EXITCODE -ne 0 ]; then
 		judge_log "Compile Error"
@@ -253,6 +260,12 @@ if [ "$EXT" = "c" ] || [ "$EXT" = "cpp" ]; then
 			while read line; do
 				if [ "`echo $line|cut -d: -f1`" = "code.c" ]; then
 					echo ${line#code.c:} >>cerr2
+				fi
+				if [ "`echo $line|cut -d: -f1`" = "shield.c" ]; then
+					echo ${line#shield.c:} >>cerr2
+				fi
+				if [ "`echo $line|cut -d: -f1`" = "shield.cpp" ]; then
+					echo ${line#shield.cpp:} >>cerr2
 				fi
 			done <cerr
 			(cat cerr2 | head -10 | sed 's/themainmainfunction/main/g' ) > cerr;
