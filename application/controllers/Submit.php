@@ -205,7 +205,7 @@ class Submit extends CI_Controller
 		$q = rtrim($this->assignment_root, '/').'/assignment_'.$this->assignment['id'].'/p'.$id.'/question.html';
 		if( !file_exists($q))
 		{
-			return tr('Question not found');
+			echo tr('Question not found');
 		}
 		else
 		{
