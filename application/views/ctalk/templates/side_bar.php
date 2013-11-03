@@ -82,6 +82,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<a href="<?php echo site_url('assignments') ?>"><li <?php echo ($selected=='assignments'?'class="selected"':'') ?>><i class="splashy-folder_modernist_opened"></i><span class="sidebar_text"><?php t('Assignments'); ?></span></li></a>
 		</div>
 
+		<?php if ($user_level==3): ?>
+		<div class="side_box">
+			<a href="<?php echo site_url('problems') ?>"><li <?php echo ($selected=='problems'?'class="selected"':'') ?>><i class="splashy-folder_modernist_opened"></i><span class="sidebar_text"><?php t('Problems'); ?></span></li></a>
+		</div>
+		<?php endif ?>
+
 		<div class="side_box">
 			<a href="<?php echo site_url('submit') ?>"><li <?php echo ($selected=='submit'?'class="selected"':'') ?>><i class="splashy-arrow_large_up"></i><span class="sidebar_text"><?php t('Submit'); ?></span></li></a>
 		</div>
