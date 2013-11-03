@@ -226,7 +226,6 @@ div#sidebar_bottom p {
 }
 
 div#shj_collapse {
-	cursor: pointer;
 	background-color: rgba(0, 0, 0, 0.1);
 	box-shadow: rgba(0, 0, 0, 0.7) 0 0 5px;
 	-webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 0 5px;
@@ -432,7 +431,7 @@ select.sharif_time {
 
 /***************************************/
 
-#add, #remove {
+.pointer {
 	cursor: pointer;
 }
 
@@ -441,10 +440,6 @@ select.sharif_time {
 	text-align: center;
 	border-radius: 5px;
 	border: 1px solid #a9a9a9;
-}
-
-#problems_table .delete_problem {
-	cursor: pointer;
 }
 
 #ui-datepicker-div {

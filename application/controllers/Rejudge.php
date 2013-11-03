@@ -56,7 +56,7 @@ class Rejudge extends CI_Controller
 			$problem_id = $this->input->post('problem_id');
 			$this->load->model('queue_model');
 			$this->queue_model->rejudge($this->assignment['id'], $problem_id);
-			shell_exec('php '.rtrim($this->settings_model->get_setting('tester_path'),'/').'/queue_process.php >/dev/null 2>/dev/null &');
+			shell_exec('php '.rtrim($this->settings_model->get_setting('tester_path'),'/').'/queue_process.php '.BASEPATH.' >/dev/null 2>/dev/null &');
 			$data['msg'] = array('Rejudge in progress');
 		}
 
@@ -87,7 +87,7 @@ class Rejudge extends CI_Controller
 				'assignment' => $this->input->post('assignment'),
 				'problem' => $this->input->post('problem'),
 			));
-			shell_exec('php '.rtrim($this->settings_model->get_setting('tester_path'),'/').'/queue_process.php >/dev/null 2>/dev/null &');
+			shell_exec('php '.rtrim($this->settings_model->get_setting('tester_path'),'/').'/queue_process.php '.BASEPATH.' >/dev/null 2>/dev/null &');
 			echo 'success';
 		}
 		else

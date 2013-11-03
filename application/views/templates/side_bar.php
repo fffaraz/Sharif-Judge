@@ -105,7 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<a href="http://docs.sharifjudge.ir" target="_blank">Docs</a>
 		</p>
 		<p class="timer"></p>
-		<div id="shj_collapse">
+		<div id="shj_collapse" class="pointer">
 			<i id="collapse" class="splashy-pagination_1_previous"></i><span class="sidebar_text">Collapse Menu</span>
 		</div>
 	</div>

@@ -7,9 +7,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-ui-1.10.3.custom.min.js") ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-ui-timepicker-addon.js") ?>"></script>
-<link rel="stylesheet" href="<?php echo base_url("assets/styles/flick/jquery-ui-1.10.3.custom.min.css") ?>"/>
 
 <script>
 	var numOfProblems=<?php echo count($problems); ?>;
@@ -26,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<td><input type="text" name="diff_cmd[]" class="sharif_input tiny" value="diff"/></td>\
 		<td><input type="text" name="diff_arg[]" class="sharif_input tiny" value="-bB"/></td>\
 		<td><input type="checkbox" name="is_upload_only[]" class="check" value="';
-	var row3='"/><td><i class="splashy-gem_remove delete_problem"></i></td></td>\
+	var row3='"/><td><i class="splashy-gem_remove delete_problem pointer"></i></td></td>\
 	</tr>';
 	$(document).ready(function(){
 		$("#add").click(function(){
@@ -181,7 +179,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php echo form_error('late_rule','<div class="shj_error">','</div>'); ?>
 			</p>
 		</div>
-		<p class="input_p" id="add_problems">Problems <i class="splashy-add" id="add"></i>
+		<p class="input_p" id="add_problems">Problems <i class="splashy-add pointer" id="add"></i>
 		<table id="problems_table">
 			<thead>
 			<tr>
@@ -214,7 +212,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><input type="text" name="diff_cmd[]" class="sharif_input tiny" value="<?php echo $problem['diff_cmd'] ?>"/></td>
 					<td><input type="text" name="diff_arg[]" class="sharif_input tiny" value="<?php echo $problem['diff_arg'] ?>"/></td>
 					<td><input type="checkbox" name="is_upload_only[]" class="check" value="<?php echo $problem['id'] ?>" <?php if ($problem['is_upload_only']) echo "checked" ?>/></td>
-					<td><i class="splashy-gem_remove delete_problem"></i></td>
+					<td><i class="splashy-gem_remove delete_problem pointer"></i></td>
 				</tr>
 			<?php endforeach ?>
 			</tbody>

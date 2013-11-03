@@ -49,8 +49,11 @@ class Submit_model extends CI_Model {
 		if ($page_number === NULL)
 			return $this->db->order_by('username asc, problem asc')->get_where('final_submissions',$arr)->result_array();
 		else{
-			$per_page = $this->settings_model->get_setting('results_per_page');
-			return $this->db->order_by('username asc, problem asc')->limit($per_page,($page_number-1)*$per_page)->get_where('final_submissions',$arr)->result_array();
+			$per_page = $this->settings_model->get_setting('results_per_page_final');
+			if ($per_page == 0)
+				return $this->db->order_by('username asc, problem asc')->get_where('final_submissions',$arr)->result_array();
+			else
+				return $this->db->order_by('username asc, problem asc')->limit($per_page,($page_number-1)*$per_page)->get_where('final_submissions',$arr)->result_array();
 		}
 
 	}
@@ -70,8 +73,11 @@ class Submit_model extends CI_Model {
 		if ($page_number === NULL)
 			return $this->db->order_by('submit_id','desc')->get_where('all_submissions',$arr)->result_array();
 		else {
-			$per_page = $this->settings_model->get_setting('results_per_page');
-			return $this->db->order_by('submit_id','desc')->limit($per_page,($page_number-1)*$per_page)->get_where('all_submissions',$arr)->result_array();
+			$per_page = $this->settings_model->get_setting('results_per_page_all');
+			if ($per_page == 0)
+				return $this->db->order_by('submit_id','desc')->get_where('all_submissions',$arr)->result_array();
+			else
+				return $this->db->order_by('submit_id','desc')->limit($per_page,($page_number-1)*$per_page)->get_where('all_submissions',$arr)->result_array();
 		}
 	}
 

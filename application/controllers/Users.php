@@ -85,80 +85,49 @@ class Users extends CI_Controller
 
 	// ------------------------------------------------------------------------
 
-
-	public function delete($user_id = FALSE)
+	/**
+	 * Controller for deleting a user
+	 * Called by ajax request
+	 */
+	public function delete()
 	{
-		if ($user_id === FALSE OR ! is_numeric($user_id))
-			show_error('Incorrect user id');
+		if ( ! $this->input->is_ajax_request() )
+			show_404();
+		$user_id = $this->input->post('user_id');
+		$delete_submissions = $this->input->post('delete_submissions');
+		if ( ! is_numeric($user_id) OR ($delete_submissions!=0 && $delete_submissions!=1) )
+			exit;
 		$username = $this->user_model->user_id_to_username($user_id);
-		if ($username === FALSE)
-			show_error('This user does not exist.');
-		$data = array(
-			'username' => $this->username,
-			'user_level' => $this->user_level,
-			'all_assignments' => $this->assignment_model->all_assignments(),
-			'assignment' => $this->assignment,
-			'title' => 'Delete User',
-			'style' => 'main.css',
-			'id' => $user_id,
-			'delete_username' => $username
-		);
-		if ($this->input->post('delete') === 'delete'){
-			$this->user_model->delete_user($username, $this->input->post('delete_submissions')===NULL?FALSE:TRUE);
-			$data['deleted_user'] = TRUE;
-			$data['title'] = 'Users';
-			$data['users'] = $this->user_model->get_all_users();
-			$this->load->view('templates/header', $data);
-			$this->load->view('pages/admin/users', $data);
-			$this->load->view('templates/footer');
-		}
-		else {
-			$this->load->view('templates/header', $data);
-			$this->load->view('pages/admin/delete_user', $data);
-			$this->load->view('templates/footer');
-		}
+		$username!==FALSE OR exit;
+		$this->user_model->delete_user($username, $delete_submissions);
+		exit('deleted');
 	}
 
 
 	// ------------------------------------------------------------------------
 
 
-	public function delete_submissions($user_id = FALSE)
+	/**
+	 * Controller for deleting a user's submissions
+	 * Called by ajax request
+	 */
+	public function delete_submissions()
 	{
-		if ($user_id === FALSE OR ! is_numeric($user_id))
-			show_error('Incorrect user id');
+		if ( ! $this->input->is_ajax_request() )
+			show_404();
+		$user_id = $this->input->post('user_id');
+		$delete_results = $this->input->post('delete_results');
+		if ( ! is_numeric($user_id) OR ($delete_results!=0 && $delete_results!=1) )
+			exit;
 		$username = $this->user_model->user_id_to_username($user_id);
-		if ($username === FALSE)
-			show_error('This user does not exist.');
-		$data = array(
-			'username' => $this->username,
-			'user_level' => $this->user_level,
-			'all_assignments' => $this->assignment_model->all_assignments(),
-			'assignment' => $this->assignment,
-			'title' => 'Delete Submissions',
-			'style' => 'main.css',
-			'id' => $user_id,
-			'delete_username' => $username
-		);
-		if ($this->input->post('delete') === 'delete'){
-			shell_exec("cd {$this->settings_model->get_setting('assignments_root')}; rm -r */*/{$username};");
-			if ($this->input->post('delete_from_database') !== NULL){// also delete all submissions from database
-				$this->db->delete('final_submissions', array('username'=>$username));
-				$this->db->delete('all_submissions', array('username'=>$username));
-			}
+		$username!==FALSE OR exit;
 
-			$data['deleted_submissions'] = TRUE;
-			$data['title'] = 'Users';
-			$data['users'] = $this->user_model->get_all_users();
-			$this->load->view('templates/header', $data);
-			$this->load->view('pages/admin/users', $data);
-			$this->load->view('templates/footer');
+		shell_exec("cd {$this->settings_model->get_setting('assignments_root')}; rm -r */*/{$username};");
+		if ($delete_results){// also delete all submissions from database
+			$this->db->delete('final_submissions', array('username'=>$username));
+			$this->db->delete('all_submissions', array('username'=>$username));
 		}
-		else{
-			$this->load->view('templates/header', $data);
-			$this->load->view('pages/admin/delete_submissions', $data);
-			$this->load->view('templates/footer');
-		}
+		exit('deleted');
 	}
 
 

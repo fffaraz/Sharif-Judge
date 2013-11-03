@@ -19,6 +19,7 @@ class Submit extends CI_Controller
 	var $filetype; //type of submitted file
 	var $ext; //uploaded file extension
 	var $file_name; //uploaded file name without extension
+	var $coefficient;
 
 
 	// ------------------------------------------------------------------------
@@ -37,6 +38,17 @@ class Submit extends CI_Controller
 		$this->assignment = $this->assignment_model->assignment_info($this->user_model->selected_assignment($this->username));
 		$this->assignment_root = $this->settings_model->get_setting('assignments_root');
 		$this->problems = $this->assignment_model->all_problems($this->assignment['id']);
+
+		$extra_time = $this->assignment['extra_time'];
+		$delay = shj_now()-strtotime($this->assignment['finish_time']);;
+		ob_start();
+		if ( eval($this->assignment['late_rule']) === FALSE )
+			$coefficient = "error";
+		if (!isset($coefficient))
+			$coefficient = "error";
+		ob_end_clean();
+		$this->coefficient = $coefficient;
+
 	}
 
 
@@ -105,6 +117,7 @@ class Submit extends CI_Controller
 			'title' => 'Submit',
 			'style' => 'main.css',
 			'in_queue' => FALSE,
+			'coefficient' => $this->coefficient,
 			'upload_state' => ''
 		);
 		$this->form_validation->set_message('greater_than', 'Select a %s.');
@@ -185,11 +198,12 @@ class Submit extends CI_Controller
 				'problem' => $this->problem['id'],
 				'file_name' => $result['raw_name'],
 				'main_file_name' => $this->file_name,
-				'file_type' => $this->filetype
+				'file_type' => $this->filetype,
+				'coefficient' => $this->coefficient
 			);
 			if($this->problem['is_upload_only'] == 0){
 				$this->queue_model->add_to_queue($submit_info);
-				shell_exec('php '.rtrim($this->settings_model->get_setting('tester_path'), '/').'/queue_process.php >/dev/null 2>/dev/null &');
+				shell_exec('php '.rtrim($this->settings_model->get_setting('tester_path'), '/').'/queue_process.php '.BASEPATH.' >/dev/null 2>/dev/null &');
 			}else{
 				$this->submit_model->add_upload_only($submit_info);
 			}

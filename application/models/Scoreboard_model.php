@@ -14,10 +14,7 @@ class Scoreboard_model extends CI_Model {
 	}
 
 
-	// ------------------------------------------------------------------------
-
-
-	public function get_scoreboard($assignment_id){
+	private function _scoreboard($assignment_id){
 		$assignment = $this->assignment_model->assignment_info($assignment_id);
 		$submissions = $this->db->get_where('final_submissions', array('assignment'=>$assignment_id))->result_array();
 		$scoreboard = array(
@@ -33,19 +30,13 @@ class Scoreboard_model extends CI_Model {
 		$scores = array();
 		foreach ($submissions as $submission){
 
-			$pi = $this->assignment_model->problem_info($this->assignment['id'], $submission['problem']);
+			$pi = $this->assignment_model->problem_info($assignment_id, $submission['problem']);
 
 			$pre_score = ceil($submission['pre_score']*$pi['score']/10000);
-			$extra_time = $assignment['extra_time'];
-			$delay = strtotime($submission['time'])-$finish;
-			ob_start();
-			if (eval($assignment['late_rule']) === FALSE){
-				$coefficient = 'error';
+			if ($submission['coefficient'] === 'error')
 				$final_score = 0;
-			}
 			else
-				$final_score = ceil($pre_score*$coefficient/100);
-			ob_end_clean();
+				$final_score = ceil($pre_score*$submission['coefficient']/100);
 			$delay = strtotime($submission['time'])-strtotime($assignment['start_time']);
 			$scores[$submission['username']][$submission['problem']]['score'] = $final_score;
 			$scores[$submission['username']][$submission['problem']]['time'] = $delay;
@@ -72,5 +63,37 @@ class Scoreboard_model extends CI_Model {
 		return array($scores, $scoreboard);
 	}
 
+
+	// ------------------------------------------------------------------------
+
+
+	public function update_scoreboard($assignment_id) {
+		$data = array();
+		$scoreboard_enabled = $this->db->select('scoreboard')->get_where('assignments', array('id'=>$assignment_id))->row()->scoreboard;
+		if ($assignment_id == 0 OR  ! $scoreboard_enabled )
+			return;
+		list ($scores, $scoreboard) = $this->_scoreboard($assignment_id);
+		$data['problems'] = $this->assignment_model->all_problems($assignment_id);
+		$data['scores'] = $scores;
+		$data['scoreboard'] = $scoreboard;
+		$scoreboard_table = $this->load->view('pages/scoreboard_table', $data, TRUE);
+		$query = $this->db->select('assignment')->get_where('scoreboard', array('assignment'=>$assignment_id));
+		if ($query->num_rows()==0)
+			$this->db->insert('scoreboard', array('assignment'=>$assignment_id, 'scoreboard'=>$scoreboard_table));
+		else
+			$this->db->where('assignment', $assignment_id)->update('scoreboard', array('scoreboard'=>$scoreboard_table));
+	}
+
+
+	// ------------------------------------------------------------------------
+
+
+	public function get_scoreboard($assignment_id) {
+		$query =  $this->db->select('scoreboard')->get_where('scoreboard', array('assignment'=>$assignment_id));
+		if ($query->num_rows()!=1)
+			return 'Scoreboard not found';
+		else
+			return $query->row()->scoreboard;
+	}
 
 }

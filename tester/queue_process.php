@@ -27,6 +27,9 @@ if ($db->connect_errno > 0){
 }
 
 
+$basepath = $argv[1];
+
+
 // ------------------------------------------------------------------------
 
 
@@ -34,6 +37,7 @@ function addJudgeResultToDB($sr, $type){
 
 	global $db;
 	global $prefix;
+	global $basepath;
 
 	$submit_id = $sr['submit_id'];
 	$username = $sr['username'];
@@ -42,6 +46,7 @@ function addJudgeResultToDB($sr, $type){
 	$time = $sr['time'];
 	$status = $sr['status'];
 	$pre_score = $sr['pre_score'];
+	$coefficient = $sr['coefficient'];
 	$submit_count = $sr['submit_number'];
 	$file_name = $sr['file_name'];
 	$main_file_name = $sr['main_file_name'];
@@ -58,8 +63,8 @@ function addJudgeResultToDB($sr, $type){
 	{
 		$db->query(
 			"INSERT INTO {$prefix}final_submissions
-			( submit_id, username, assignment, problem, time, status, pre_score, submit_count, file_name, main_file_name, file_type)
-			VALUES ('$submit_id','$username','$assignment','$problem','$time','$status','$pre_score','$submit_count','$file_name','$main_file_name','$file_type') "
+			( submit_id, username, assignment, problem, time, status, pre_score, coefficient, submit_count, file_name, main_file_name, file_type)
+			VALUES ('$submit_id','$username','$assignment','$problem','$time','$status','$pre_score','$coefficient','$submit_count','$file_name','$main_file_name','$file_type') "
 		);
 	}
 	else
@@ -68,14 +73,14 @@ function addJudgeResultToDB($sr, $type){
 		if ($type === 'judge'){
 			$db->query(
 				"UPDATE {$prefix}final_submissions
-				SET submit_id='$submit_id', time='$time', status='$status', pre_score='$pre_score', submit_count='$submit_count', file_name='$file_name', main_file_name='$main_file_name', file_type='$file_type'
+				SET submit_id='$submit_id', time='$time', status='$status', pre_score='$pre_score', coefficient='$coefficient', submit_count='$submit_count', file_name='$file_name', main_file_name='$main_file_name', file_type='$file_type'
 				WHERE username='$username' AND assignment='$assignment' AND problem='$problem' "
 			);
 		}
 		elseif ($type === 'rejudge' && $sid === $submit_id){
 			$db->query(
 				"UPDATE {$prefix}final_submissions
-				SET submit_id='$submit_id', time='$time', status='$status', pre_score='$pre_score', file_name='$file_name', main_file_name='$main_file_name', file_type='$file_type'
+				SET submit_id='$submit_id', time='$time', status='$status', pre_score='$pre_score', coefficient='$coefficient', file_name='$file_name', main_file_name='$main_file_name', file_type='$file_type'
 				WHERE username='$username' AND assignment='$assignment' AND problem='$problem' "
 			);
 		}
@@ -87,6 +92,8 @@ function addJudgeResultToDB($sr, $type){
 		WHERE submit_id='$submit_id' AND username='$username' AND assignment='$assignment' AND problem='$problem'"
 	);
 
+	// update scoreboard:
+	shell_exec("php ".escapeshellarg($basepath.'../index.php')." scoreboard update $assignment");
 }
 
 

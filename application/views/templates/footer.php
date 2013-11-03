@@ -19,8 +19,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
 			},
 			function (data) {
-				if (data=="new_notification")
+				if (data=="new_notification"){
+					noty({
+						text: 'New Notification',
+						layout: 'bottomRight',
+						type: 'information',
+						closeWith: ['click','button'],
+						animation: {
+							open: {height: 'toggle'},
+							close: {height: 'toggle'},
+							easing: 'swing',
+							speed: 300
+						}
+					});
 					alert("New Notification");
+				}
 			}
 		);
 		notif_check_time = moment().add('milliseconds',offset);

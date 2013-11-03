@@ -69,7 +69,8 @@ class Settings extends CI_Controller
 			'mail_from_name' => $this->settings_model->get_setting('mail_from_name'),
 			'reset_password_mail' => $this->settings_model->get_setting('reset_password_mail'),
 			'add_user_mail' => $this->settings_model->get_setting('add_user_mail'),
-			'results_per_page' => $this->settings_model->get_setting('results_per_page'),
+			'results_per_page_all' => $this->settings_model->get_setting('results_per_page_all'),
+			'results_per_page_final' => $this->settings_model->get_setting('results_per_page_final'),
 			'week_start' => $this->settings_model->get_setting('week_start'),
 			'form_status' => $this->form_status,
 			'errors' => $this->errors
@@ -96,7 +97,8 @@ class Settings extends CI_Controller
 		$this->form_validation->set_rules('timezone', 'timezone', 'required');
 		$this->form_validation->set_rules('file_size_limit', 'File size limit', 'integer|greater_than_equal_to[0]');
 		$this->form_validation->set_rules('output_size_limit', 'Output size limit', 'integer|greater_than_equal_to[0]');
-		$this->form_validation->set_rules('results_per_page', 'results per page', 'integer|greater_than_equal_to[0]');
+		$this->form_validation->set_rules('rpp_all', 'results per page (all submissions)', 'integer|greater_than_equal_to[0]');
+		$this->form_validation->set_rules('rpp_final', 'results per page (final submissions)', 'integer|greater_than_equal_to[0]');
 		if($this->form_validation->run()){
 			ob_start();
 			$this->form_status = 'ok';
@@ -140,7 +142,8 @@ class Settings extends CI_Controller
 			$this->settings_model->set_setting('mail_from_name', $this->input->post('mail_from_name'));
 			$this->settings_model->set_setting('reset_password_mail', $this->input->post('reset_password_mail'));
 			$this->settings_model->set_setting('add_user_mail', $this->input->post('add_user_mail'));
-			$this->settings_model->set_setting('results_per_page', $this->input->post('results_per_page'));
+			$this->settings_model->set_setting('results_per_page_all', $this->input->post('rpp_all'));
+			$this->settings_model->set_setting('results_per_page_final', $this->input->post('rpp_final'));
 			$this->settings_model->set_setting('week_start', $this->input->post('week_start'));
 		}
 		else

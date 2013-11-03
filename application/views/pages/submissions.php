@@ -13,88 +13,106 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type='text/javascript' src="<?php echo base_url("assets/reveal/jquery.reveal.js") ?>"></script>
 
 <script>
-	$(document).ready(function(){
-		$(".btn").click(function(){
-			var button = $(this);
-			var row = button.parents('tr');
-			if (button.attr('shj')=='download'){
-				window.location = '<?php echo site_url('submissions') ?>/download_file/'+row.attr('u')+'/'+row.attr('a')+'/'+row.attr('p')+'/'+row.attr('s');
-				return;
+var modal_open = false;
+$(document).ready(function(){
+	$(".btn").click(function(){
+		var button = $(this);
+		var row = button.parents('tr');
+		if (button.attr('shj')=='download'){
+			window.location = '<?php echo site_url('submissions') ?>/download_file/'+row.attr('u')+'/'+row.attr('a')+'/'+row.attr('p')+'/'+row.attr('s');
+			return;
+		}
+		var view_code_request = $.ajax({
+			cache: true,
+			type: 'POST',
+			url: '<?php echo site_url('submissions/view_code') ?>',
+			data: {
+				code: button.attr('code'),
+				username: row.data('u'),
+				assignment: row.data('a'),
+				problem: row.data('p'),
+				submit_id: row.data('s'),
+				<?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
+			},
+			success: function(data){
+				$(".modal_inside").html(data);
+				$.syntax({
+					blockLayout: 'fixed',
+					theme: 'paper'
+				});
 			}
-			var view_code_request = $.ajax({
-				cache: true,
-				type: 'POST',
-				url: '<?php echo site_url('submissions/view_code') ?>',
-				data: {
-					code: button.attr('code'),
-					username: row.attr('u'),
-					assignment: row.attr('a'),
-					problem: row.attr('p'),
-					submit_id: row.attr('s'),
-					<?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
-				},
-				success: function(data){
-					$(".modal_inside").html(data);
-					$.syntax({
-						blockLayout: 'fixed',
-						theme: 'paper'
-					});
-				}
-			});
+		});
+		if ( ! modal_open){
+			modal_open = true;
 			$('#shj_modal').reveal(
 				{
-					on_close_modal: function(){
+					animationspeed: 300,
+					on_close_modal: function(){ view_code_request.abort(); },
+					on_finish_modal: function(){
 						$(".modal_inside").html('<div style="text-align: center;">Loading<br><img src="<?php echo base_url('assets/images/loading.gif') ?>"/></div>');
-						view_code_request.abort();
+						modal_open = false;
 					}
 				}
 			);
+		}
 
-		});
-		$(".shj_rejudge").click(function(){
-			var row = $(this).parents('tr');
-			$.post(
-				'<?php echo site_url('rejudge/rejudge_one') ?>',
-				{
-					username: row.attr('u'),
-					assignment: row.attr('a'),
-					problem: row.attr('p'),
-					submit_id: row.attr('s'),
-					<?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
-				},
-				function (data) {
-					if (data == 'success')
-						location.reload();
-				}
-			);
-		});
-		$(".set_final").click(
-			function(){
-				var row = $(this).parents('tr');
-				var submit_id = row.attr('s');
-				var problem = row.attr('p');
-				var username = row.attr('u');
-				$.post(
-					'<?php echo site_url('submissions/select') ?>',
-					{
-						submit_id:submit_id,
-						problem: problem,
-						username: username,
-						<?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
-					},
-					function(a) {
-						if (a == "shj_success"){
-							$("tr[u='"+username+"'][p='"+problem+"']").find('.set_final').removeClass('checked');
-							$(".set_final#sf"+submit_id+"_"+problem).addClass('checked');
-						}
-						else if (a == "shj_finished" ){
-							alert("This assignment is finished. You cannot change your final submissions.");
-						}
-					}
-				);
+	});
+	$(".shj_rejudge").click(function(){
+		var row = $(this).parents('tr');
+		$.post(
+			'<?php echo site_url('rejudge/rejudge_one') ?>',
+			{
+				username: row.data('u'),
+				assignment: row.data('a'),
+				problem: row.data('p'),
+				submit_id: row.data('s'),
+				<?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
+			},
+			function (data) {
+				if (data == 'success')
+					location.reload();
 			}
 		);
 	});
+	$(".set_final").click(
+		function(){
+			var row = $(this).parents('tr');
+			var submit_id = row.data('s');
+			var problem = row.data('p');
+			var username = row.data('u');
+			$.post(
+				'<?php echo site_url('submissions/select') ?>',
+				{
+					submit_id:submit_id,
+					problem: problem,
+					username: username,
+					<?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
+				},
+				function(a) {
+					if (a == "shj_success"){
+						$("tr[data-u='"+username+"'][data-p='"+problem+"']").find('.set_final').removeClass('checked');
+						$(".set_final#sf"+submit_id+"_"+problem).addClass('checked');
+					}
+					else if (a == "shj_finished" ){
+						noty({
+							text: 'This assignment is finished. You cannot change your final submissions.',
+							layout: 'bottomRight',
+							type: 'warning',
+							timeout: 3000,
+							closeWith: ['click','button'],
+							animation: {
+								open: {height: 'toggle'},
+								close: {height: 'toggle'},
+								easing: 'swing',
+								speed: 300
+							}
+						});
+					}
+				}
+			);
+		}
+	);
+});
 </script>
 
 <?php $this->view('templates/top_bar'); ?>
@@ -186,10 +204,9 @@ $finish = strtotime($assignment['finish_time']);
 					$j++;
 				$un = $item['username'];
 				?>
-				<tr u="<?php echo $item['username'] ?>" a="<?php echo $item['assignment'] ?>" p="<?php echo $item['problem'] ?>" s="<?php echo $item['submit_id'] ?>" <?php if ($view=='final' && $j%2==0){ echo 'class="hl"';} ?>>
+				<tr data-u="<?php echo $item['username'] ?>" data-a="<?php echo $item['assignment'] ?>" data-p="<?php echo $item['problem'] ?>" data-s="<?php echo $item['submit_id'] ?>" <?php if ($view=='final' && $j%2==0){ echo 'class="hl"';} ?>>
 				<?php if ($view=='all'): ?>
 					<td>
-					<?php //if($item['username']==$username): ?>
 					<?php
 						$checked='';
 						if (isset($final_items[$item['username']][$item['problem']]['submit_id']))
@@ -197,7 +214,6 @@ $finish = strtotime($assignment['finish_time']);
 								$checked='checked';
 					?>
 					<div title="Set as Final Submission" class="set_final check p<?php echo $item['problem'] ?> <?php echo $checked ?>" id="<?php echo "sf".$item['submit_id']."_".$item['problem'] ?>"></div>
-					<?php //endif ?>
 					</td>
 				<?php endif ?>
 				<?php if ($user_level>0): ?>
@@ -208,7 +224,7 @@ $finish = strtotime($assignment['finish_time']);
 						<td><?php echo $j; ?></td>
 					<?php endif ?>
 
-					<td><a title="Filter Submissions by This Username" href="<?php echo site_url('submissions/'.$view.'/user/'.$item['username'].($filter_problem?'/problem/'.$filter_problem:'')) ?>"><?php echo $item['username'] ?></a></td>
+					<td><a href="<?php echo site_url('submissions/'.$view.'/user/'.$item['username'].($filter_problem?'/problem/'.$filter_problem:'')) ?>"><?php echo $item['username'] ?></a></td>
 					<td><?php
 						if(!isset($name[$item['username']]))
 							$name[$item['username']]=$this->user_model->get_user($item['username'])->display_name;
@@ -217,7 +233,7 @@ $finish = strtotime($assignment['finish_time']);
 				<?php endif ?>
 					<td><?php
 						$pi = $this->assignment_model->problem_info($assignment['id'],$item['problem']);
-						echo '<a title="Filter Submissions by This Problem" href="'.site_url('submissions/'.$view.($filter_user?'/user/'.$filter_user:'').'/problem/'.$item['problem']).'"><span dir>'.$pi['name'].'</span> <span>('.$item['problem'].')</span></a>';
+						echo '<a href="'.site_url('submissions/'.$view.($filter_user?'/user/'.$filter_user:'').'/problem/'.$item['problem']).'"><span dir>'.$pi['name'].'</span> <span>('.$item['problem'].')</span></a>';
 					?></td>
 					<td><?php echo $item['time'] ?></td>
 					<td><?php
@@ -225,19 +241,12 @@ $finish = strtotime($assignment['finish_time']);
 						echo $pre_score;
 					?></td>
 					<td><?php
-						$extra_time = $assignment['extra_time'];
 						$delay = strtotime($item['time'])-$finish;
-						ob_start();
-						if ( eval($assignment['late_rule']) === FALSE ){
-							$coefficient = 'error';
+
+						if ($item['coefficient'] === 'error')
 							$final_score = 0;
-						}
-						else {
-							$final_score = ceil($pre_score*$coefficient/100);
-						}
-						if (!isset($coefficient))
-							$coefficient = 'error';
-						ob_end_clean();
+						else
+							$final_score = ceil($pre_score*$item['coefficient']/100);
 
 						$neg = FALSE;
 						if ($delay<0){
@@ -259,7 +268,7 @@ $finish = strtotime($assignment['finish_time']);
 							echo '<span title="Hours">'.$h.'</span>:<span title="Minutes">'.$m.'</span>';
 						echo '</span><br>';
 
-						echo $coefficient;
+						echo $item['coefficient'];
 					?></td>
 					<td style="font-weight: bold;"><?php echo $final_score ?> </td>
 					<td>

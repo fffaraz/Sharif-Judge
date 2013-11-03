@@ -77,8 +77,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</p>
 			<p class="input_p">
 				<label for="results_per_page">Results Per Page</label>
-				<input type="text" name="results_per_page" class="sharif_input medium" value="<?php echo $results_per_page ?>"/>
-				<?php echo form_error('results_per_page','<div class="shj_error">','</div>'); ?>
+				<input type="text" name="rpp_all" class="sharif_input medium" value="<?php echo $results_per_page_all ?>"/>
+				<p class="form_comment clear">In "All Submissions"<br>Enter 0 for no limit</p>
+				<?php echo form_error('results_per_page_all','<div class="shj_error">','</div>'); ?>
+			</p>
+			<p class="input_p">
+				<label for="results_per_page">Results Per Page</label>
+				<input type="text" name="rpp_final" class="sharif_input medium" value="<?php echo $results_per_page_final ?>"/>
+				<p class="form_comment clear">In "Final Submissions"<br>Enter 0 for no limit</p>
+				<?php echo form_error('results_per_page_final','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
 				<input type="checkbox" name="enable_registration" value="1" <?php if ($enable_registration) echo 'checked' ?>/> <label>Registration</label><br>

@@ -1,8 +1,7 @@
 # Sharif Judge
 
 [Sharif Judge](http://sharifjudge.ir) is a free and open source online judge for C, C++, Java and
-Python programming assignments. It can also be used for programming contests, but it has features
-specially for programming assignments.
+Python programming courses.
 
 Installation doesn't need root privileges.
 The web interface is written in PHP (CodeIgniter framework) and the main backend is written in BASH.

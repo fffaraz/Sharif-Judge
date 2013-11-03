@@ -99,16 +99,11 @@ class Submissions extends CI_Controller
 			else
 				$checked='*';
 
-			$extra_time = $this->assignment['extra_time'];
 			$delay = strtotime($item['time'])-$finish;
-			ob_start();
-			if ( eval($this->assignment['late_rule']) === FALSE ){
-				$coefficient = 'error';
+			if ($item['coefficient'] === 'error')
 				$final_score = 0;
-			}
 			else
-				$final_score = ceil($pre_score*$coefficient/100);
-			ob_end_clean();
+				$final_score = ceil($pre_score*$item['coefficient']/100);
 
 			if ($delay<0)
 				$delay = 0;
@@ -127,7 +122,7 @@ class Submissions extends CI_Controller
 					$item['time'],
 					$pre_score,
 					$h.':'.$m,
-					$coefficient,
+					$item['coefficient'],
 					$final_score,
 					filetype_to_language($item['file_type']),
 					$item['status'],
@@ -143,7 +138,7 @@ class Submissions extends CI_Controller
 					$item['time'],
 					$pre_score,
 					$h.':'.$m,
-					$coefficient,
+					$item['coefficient'],
 					$final_score,
 					filetype_to_language($item['file_type']),
 					$item['status'],
@@ -191,18 +186,18 @@ class Submissions extends CI_Controller
 		if ($this->page_number<1)
 			show_404();
 
-		$this->load->library(
-			'shj_pagination',
-			array(
-				'base_url' => site_url('submissions/final'.($this->filter_user?'/user/'.$this->filter_user:'').($this->filter_problem?'/problem/'.$this->filter_problem:'')),
-				'cur_page' => $this->page_number,
-				'total_rows' => $this->submit_model->count_final_submissions($this->assignment['id'], $this->user_level, $this->username, $this->filter_user, $this->filter_problem),
-				'per_page' => $this->settings_model->get_setting('results_per_page'),
-				'num_links' => 3,
-				'full_ul_class' => 'shj_pagination',
-				'cur_li_class' => 'current_page'
-			)
+		$config = array(
+			'base_url' => site_url('submissions/final'.($this->filter_user?'/user/'.$this->filter_user:'').($this->filter_problem?'/problem/'.$this->filter_problem:'')),
+			'cur_page' => $this->page_number,
+			'total_rows' => $this->submit_model->count_final_submissions($this->assignment['id'], $this->user_level, $this->username, $this->filter_user, $this->filter_problem),
+			'per_page' => $this->settings_model->get_setting('results_per_page_final'),
+			'num_links' => 5,
+			'full_ul_class' => 'shj_pagination',
+			'cur_li_class' => 'current_page'
 		);
+		if ($config['per_page'] == 0)
+			$config['per_page'] = $config['total_rows'];
+		$this->load->library('shj_pagination', $config);
 
 		$data = array(
 			'view' => 'final',
@@ -242,18 +237,18 @@ class Submissions extends CI_Controller
 		if ($this->page_number < 1)
 			show_404();
 
-		$this->load->library(
-			'shj_pagination',
-			array(
-				'base_url' => site_url('submissions/all'.($this->filter_user?'/user/'.$this->filter_user:'').($this->filter_problem?'/problem/'.$this->filter_problem:'')),
-				'cur_page' => $this->page_number,
-				'total_rows' => $this->submit_model->count_all_submissions($this->assignment['id'], $this->user_level, $this->username, $this->filter_user, $this->filter_problem),
-				'per_page' => $this->settings_model->get_setting('results_per_page'),
-				'num_links' => 3,
-				'full_ul_class' => 'shj_pagination',
-				'cur_li_class' => 'current_page'
-			)
+		$config = array(
+			'base_url' => site_url('submissions/all'.($this->filter_user?'/user/'.$this->filter_user:'').($this->filter_problem?'/problem/'.$this->filter_problem:'')),
+			'cur_page' => $this->page_number,
+			'total_rows' => $this->submit_model->count_all_submissions($this->assignment['id'], $this->user_level, $this->username, $this->filter_user, $this->filter_problem),
+			'per_page' => $this->settings_model->get_setting('results_per_page_all'),
+			'num_links' => 5,
+			'full_ul_class' => 'shj_pagination',
+			'cur_li_class' => 'current_page'
 		);
+		if ($config['per_page']==0)
+			$config['per_page'] = $config['total_rows'];
+		$this->load->library('shj_pagination', $config);
 
 		$data = array(
 			'view' => 'all',
@@ -311,6 +306,12 @@ class Submissions extends CI_Controller
 			);
 
 			echo ($res?'shj_success':'shj_failed');
+
+			if ($res) {
+				// each time a users changes final submission, we should update scoreboard of that assignment
+				$this->load->model('scoreboard_model');
+				$this->scoreboard_model->update_scoreboard($this->assignment['id']);
+			}
 		}
 	}
 

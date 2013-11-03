@@ -7,6 +7,86 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
+<script>
+	$(document).ready(function(){
+		$('.delete_user').click(function(){
+			var row = $(this).parents('tr');
+			var user_id = row.data('id');
+			var username = row.children('#un').html();
+			noty({
+				text: 'Are you sure you want to delete this user?<br>User ID: '+user_id+'<br>Username: '+username+'<br><input type="checkbox" id="delete_submissions"/> Also delete this user\'s submissions and submitted codes.',
+				layout: 'center',
+				type: 'confirm',
+				animation: {
+					open: {height: 'toggle'},
+					close: {height: 'toggle'},
+					easing: 'swing',
+					speed: 300
+				},
+				buttons: [
+					{addClass: 'sharif_input', text: 'Yes, I\'m Sure', onClick: function($noty) {
+						var delete_submissions = $('#delete_submissions').is(':checked');
+						$noty.close();
+						$.post(
+							'<?php echo site_url('users/delete') ?>',
+							{
+								'user_id': user_id,
+								'delete_submissions': (delete_submissions?'1':'0'),
+								<?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>',
+							},
+							function(response){
+								if (response == 'deleted'){
+									row.animate({backgroundColor: '#FF7676'},1000, function(){row.remove();});
+									noty({text: 'User '+username+' deleted.', layout:'bottomRight', type: 'success', timeout: 3000});
+								}
+							}
+						);
+						}
+					},
+					{addClass: 'sharif_input', text: 'No, I\'m not', onClick: function($noty){$noty.close();}}
+				]
+			});
+		});
+
+		$('.delete_submissions').click(function(){
+			var row = $(this).parents('tr');
+			var user_id = row.data('id');
+			var username = row.children('#un').html();
+			noty({
+				text: 'Are you sure you want to delete this user\'s submitted codes?<br>User ID: '+user_id+'<br>Username: '+username+'<br><input type="checkbox" id="delete_results"/> Also delete submission results from database.',
+				layout: 'center',
+				type: 'confirm',
+				animation: {
+					open: {height: 'toggle'},
+					close: {height: 'toggle'},
+					easing: 'swing',
+					speed: 300
+				},
+				buttons: [
+					{addClass: 'sharif_input', text: 'Yes, I\'m Sure', onClick: function($noty) {
+						var delete_results = $('#delete_results').is(':checked');
+						$noty.close();
+						$.post(
+							'<?php echo site_url('users/delete_submissions') ?>',
+							{
+								'user_id': user_id,
+								'delete_results': (delete_results?'1':'0'),
+								<?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>',
+							},
+							function(response){
+								if (response == 'deleted')
+									noty({text: 'Submissions of user '+username+' deleted successfully.', layout:'bottomRight', type: 'success', timeout: 3000});
+							}
+						);
+						}
+					},
+					{addClass: 'sharif_input', text: 'No, I\'m not', onClick: function($noty){$noty.close();}}
+				]
+			});
+		});
+	});
+</script>
+
 <?php $this->view('templates/top_bar'); ?>
 <?php $this->view('templates/side_bar',array('selected'=>'users')); ?>
 
@@ -34,10 +114,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</thead>
 			<?php $counter = 0; ?>
 			<?php foreach($users as $user): ?>
-				<tr>
+				<tr data-id="<?php echo $user['id'] ?>">
 					<td><?php echo ++$counter; ?></td>
 					<td><?php echo $user['id'] ?></td>
-					<td><?php echo $user['username'] ?></td>
+					<td id="un"><?php echo $user['username'] ?></td>
 					<td><?php echo $user['display_name'] ?></td>
 					<td><?php echo $user['email'] ?></td>
 					<td><?php echo $user['role'] ?></td>
@@ -45,8 +125,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?php echo $user['last_login_time']==='0000-00-00 00:00:00'?'Never':$user['last_login_time'] ?></td>
 					<td>
 						<a title="Edit" href="<?php echo site_url('profile/'.$user['id']) ?>"><i class="splashy-contact_blue_edit"></i></a>
-						<a title="Delete User" href="<?php echo site_url('users/delete/'.$user['id']) ?>"><i class="splashy-contact_blue_remove"></i></a>
-						<a title="Delete Submissions" href="<?php echo site_url('users/delete_submissions/'.$user['id']) ?>"><i class="splashy-documents_remove"></i></a>
+						<span title="Delete User" class="delete_user pointer"><i title="Delete User" class="splashy-contact_blue_remove"></i></span>
+						<span title="Delete Submissions" class="delete_submissions pointer"><i class="splashy-documents_remove"></i></span>
 					</td>
 				</tr>
 			<?php endforeach ?>

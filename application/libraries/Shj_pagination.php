@@ -44,7 +44,7 @@ class Shj_pagination {
 		if ($end_page > $this->total_pages)
 			$end_page = $this->total_pages;
 
-		if ($end_page == 1)
+		if ($end_page == 1 || $end_page == 0)
 			return '';
 
 		// Generating Output

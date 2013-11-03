@@ -44,6 +44,11 @@ class Assignment_model extends CI_Model{
 		if($edit){
 			unset($assignment['total_submits']);
 			$this->db->where('id', $id)->update('assignments', $assignment);
+			// each time we edit an assignment, we should update coefficient of all submissions of that assignment
+			$this->_update_coefficients($id, $assignment['extra_time'], $assignment['finish_time'], $assignment['late_rule']);
+			// each time we edit an assignment, we should update scoreboard of that assignment
+			$this->load->model('scoreboard_model');
+			$this->scoreboard_model->update_scoreboard($id);
 		}
 		else
 			$this->db->insert('assignments', $assignment);
@@ -236,6 +241,46 @@ class Assignment_model extends CI_Model{
 		$query = $this->db->select('moss_update')->get_where('assignments', array('id'=>$assignment_id));
 		if($query->num_rows() != 1) return 'Never';
 		return $query->row()->moss_update;
+	}
+
+
+	// ------------------------------------------------------------------------
+
+
+	private function _update_coefficients($assignment_id, $extra_time, $finish_time, $new_late_rule){
+		$all_submissions = $this->db->get_where('all_submissions', array('assignment'=>$assignment_id))->result_array();
+		$final_submissions = $this->db->get_where('final_submissions', array('assignment'=>$assignment_id))->result_array();
+
+		foreach ($all_submissions as $item) {
+			$delay = strtotime($item['time'])-strtotime($finish_time);;
+			ob_start();
+			if ( eval($new_late_rule) === FALSE )
+				$coefficient = "error";
+			if (!isset($coefficient))
+				$coefficient = "error";
+			ob_end_clean();
+			$this->db->where(array(
+				'assignment'=>$assignment_id,
+				'problem'=>$item['problem'],
+				'username'=>$item['username'],
+				'submit_id'=>$item['submit_id']
+			))->update('all_submissions', array('coefficient'=>$coefficient));
+		}
+		foreach ($final_submissions as $item) {
+			$delay = strtotime($item['time'])-strtotime($finish_time);;
+			ob_start();
+			if ( eval($new_late_rule) === FALSE )
+				$coefficient = "error";
+			if (!isset($coefficient))
+				$coefficient = "error";
+			ob_end_clean();
+			$this->db->where(array(
+				'assignment'=>$assignment_id,
+				'problem'=>$item['problem'],
+				'username'=>$item['username'],
+				'submit_id'=>$item['submit_id']
+			))->update('final_submissions', array('coefficient'=>$coefficient));
+		}
 	}
 
 
