@@ -28,6 +28,9 @@ class Problems extends CI_Controller
 		$this->assignment = $this->assignment_model->assignment_info($this->user_model->selected_assignment($this->username));
 		$this->user_level = $this->user_model->get_user_level($this->username);
 
+		$this->problems = $this->assignment_model->all_problems($this->assignment['id']);
+		$this->assignment_root = $this->settings_model->get_setting('assignments_root');
+
 		$this->error_messages = array();
 		$this->success_messages = array();
 		$this->edit_assignment = array();
@@ -61,7 +64,7 @@ class Problems extends CI_Controller
 		$data['assignment'] = $this->assignment;
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/assignments', $data);
+		//$this->load->view('pages/assignments', $data);
 		$this->load->view('templates/footer');
 	}
 
