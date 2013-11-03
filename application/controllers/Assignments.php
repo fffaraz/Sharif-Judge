@@ -45,10 +45,18 @@ class Assignments extends CI_Controller
 
 	public function index()
 	{
+		$all_assignments = $this->assignment_model->all_assignments();
+
+		for ($i=0; $i < count($all_assignments); $i++) 
+		{ 
+			$all_assignments[$i]['allowed'] = mt_rand()%2;
+		}
+
+
 		$data = array(
 			'username' => $this->username,
 			'user_level' => $this->user_level,
-			'all_assignments' => $this->assignment_model->all_assignments(),
+			'all_assignments' => $all_assignments,
 			'title' => 'Assignments',
 			'style' => 'main.css',
 			'success_messages' => $this->success_messages,

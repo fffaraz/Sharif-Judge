@@ -63,6 +63,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<span style="color: red;"><?php t("Close"); ?></span>
 					<?php endif ?>
 					</div>
+					<div class="assignment_subitem">
+					<?php if($item['allowed']): ?>
+						<span style="color: green;"><?php t("Allowed"); ?></span>
+					<?php else: ?>
+						<span style="color: red;"><?php t("Buy"); ?></span>
+					<?php endif ?>
+					</div>
 					<?php if ($user_level>=2): ?>
 						<div class="assignment_subitem_zero"><a href="<?php echo site_url('assignments/downloadtests/'.$item['id']) ?>"><i title="<?php t("Download Tests"); ?>" class="splashy-folder_classic_down"></i></a></div>
 					<?php endif ?>
