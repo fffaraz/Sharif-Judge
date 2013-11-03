@@ -45,9 +45,9 @@ class Problems extends CI_Controller
 	{
 		for ($i=0; $i < count($this->problems); $i++) 
 		{ 
-			$this->problems[$i]['question'] = _getQuestion($this->problems[$i]['id']);
+			$this->problems[$i]['question'] = $this->_getQuestion($this->problems[$i]['id']);
 		}
-		
+
 		$data = array(
 			'username' => $this->username,
 			'user_level' => $this->user_level,
