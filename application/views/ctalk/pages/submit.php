@@ -41,6 +41,10 @@ $.ajax({
 	}
 });
 }
+else
+{
+	$('#question').text("");
+}
 
 
 
