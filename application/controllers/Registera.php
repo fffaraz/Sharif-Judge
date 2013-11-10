@@ -92,6 +92,8 @@ class Registera extends CI_Controller
 		if($result['has_error'] == false && $result['show_free'] == true)
 		{
 			$this->assignment_model->add_participant($id, $this->username);
+			$this->_log('freeactivate');
+			
 		}
 		redirect('assignments');
 	}
@@ -105,6 +107,7 @@ class Registera extends CI_Controller
 			if($this->assignment_model->is_validcode($this->buy_assignment['codes'], $code))
 			{
 				$this->assignment_model->add_participant($id, $this->username);
+				$this->_log('codeactivate', $code);
 			}
 			else
 			{
@@ -113,6 +116,17 @@ class Registera extends CI_Controller
 			
 		}
 		redirect('assignments');
+	}
+
+	private function _log($result='', $code='', $price=0)
+	{
+		$log['username'] = $this->username;
+		$log['assignment'] = $this->buy_assignment['id'];
+		$log['time'] = date('Y-m-d H:i:s');
+		$log['result'] = $result;
+		$log['code'] = $code;
+		$log['price'] = $price;
+		$this->db->insert('registerlog', $log);
 	}
 
 }
