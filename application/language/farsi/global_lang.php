@@ -1,7 +1,7 @@
 ﻿<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['Dashboard'] = "Dashboard";
+$lang['Dashboard'] = "داشبورد";
 $lang['Settings'] = "تنظیمات";
 $lang['Users'] = "کاربران";
 $lang['Notifications'] = "اطلاعیه ها";
@@ -11,7 +11,7 @@ $lang['Final Submissions'] = "ثبت شده های نهایی";
 $lang['All Submissions'] = "همه ثبت شده ها";
 $lang['Scoreboard'] = "رتبه بندی";
 $lang['Sharif Judge'] = "سیستم داوری";
-$lang['Collapse Menu'] = "باز کردن منو";
+$lang['Collapse Menu'] = "بستن منو";
 $lang['seconds'] = "ثانیه ها";
 $lang['Profile'] = "پروفایل";
 $lang['Logout'] = "خروج";
