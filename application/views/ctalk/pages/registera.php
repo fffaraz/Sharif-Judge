@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <br>
 <? t('Participation in this assignment requires payment.'); ?>
-<br> <?php t("Price"); ?> : <?php echo $buy_assignment['price'];?>
+<br> <?php t("Price"); ?> : <?php echo $buy_assignment['price'];?><br>
 <a href="<?php echo site_url('registera/buyactivate/'.$buy_assignment['id']) ?>"><?php t("Pay"); ?></a> <br>
 
 	<?php		
