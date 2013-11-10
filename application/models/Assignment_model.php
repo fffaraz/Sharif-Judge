@@ -39,7 +39,11 @@ class Assignment_model extends CI_Model{
 			'finish_time' => date('Y-m-d H:i:s', strtotime($this->input->post('finish_time'))),
 			'extra_time' => $extra_time*60,
 			'late_rule' => $this->input->post('late_rule'),
-			'participants' => $this->input->post('participants')
+			'participants' => $this->input->post('participants'),
+
+			'price' => $this->input->post('price'),
+			'codes' => $this->input->post('codes'),
+			'uselimit' => $this->input->post('uselimit')
 		);
 		if($edit){
 			unset($assignment['total_submits']);
