@@ -93,6 +93,7 @@ class Registera extends CI_Controller
 		{
 			$this->assignment_model->add_participant($id, $this->username);
 			$this->_log('freeactivate');
+			$this->assignment_model->incUsed($id);
 			
 		}
 		redirect('assignments');
@@ -109,6 +110,7 @@ class Registera extends CI_Controller
 				$this->assignment_model->add_participant($id, $this->username);
 				$this->assignment_model->del_code($id, $code);
 				$this->_log('codeactivate', $code);
+				$this->assignment_model->incUsed($id);
 			}
 			else
 			{
@@ -124,7 +126,7 @@ class Registera extends CI_Controller
 		$result = $this->_checkstatus($id);
 		if($result['has_error'] == false && $result['show_buy'] == true)
 		{
-			
+
 		}
 	}
 

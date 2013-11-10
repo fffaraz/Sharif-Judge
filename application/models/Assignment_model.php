@@ -239,6 +239,13 @@ class Assignment_model extends CI_Model{
 		$this->db->where('id', $assignment_id)->update('assignments', $d);
 	}
 
+	public function incUsed($assignment_id)
+	{
+		$query = $this->db->get_where('assignments', array('id'=>$assignment_id));
+		$d['usedcounter'] = $query->row_array()['usedcounter'] + 1;
+		$this->db->where('id', $assignment_id)->update('assignments', $d);
+	}
+
 	// ------------------------------------------------------------------------
 
 
