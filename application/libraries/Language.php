@@ -10,5 +10,6 @@ class Language
             $CI->lang->load('global', $CI->session->userdata('lang'));
         else
             $CI->lang->load('global');
+        $CI->load->helper('language');
 	}
 }

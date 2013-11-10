@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ( ! function_exists('lang'))
 {
+	if (function_exists('t'))
+	{
+		// runkit_function_rename('t','t_old');
+	}
+
 	function t()
 	{
 		$CI =& get_instance();

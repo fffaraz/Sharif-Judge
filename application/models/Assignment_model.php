@@ -228,21 +228,24 @@ class Assignment_model extends CI_Model{
 	public function add_participant($assignment_id, $participant)
 	{
 		$query = $this->db->get_where('assignments', array('id'=>$assignment_id));
-		$d['participants'] = $query->row_array()['participants'] . ',' . $participant;
+		$q = $query->row_array();
+		$d['participants'] = $q['participants'] . ',' . $participant;
 		$this->db->where('id', $assignment_id)->update('assignments', $d);
 	}
 
 	public function del_code($assignment_id, $code)
 	{
 		$query = $this->db->get_where('assignments', array('id'=>$assignment_id));
-		$d['codes'] = preg_replace('/'.$code.'/', ' ', $query->row_array()['codes'], 1);;
+		$q = $query->row_array();
+		$d['codes'] = preg_replace('/'.$code.'/', ' ', $q['codes'], 1);;
 		$this->db->where('id', $assignment_id)->update('assignments', $d);
 	}
 
 	public function incUsed($assignment_id)
 	{
 		$query = $this->db->get_where('assignments', array('id'=>$assignment_id));
-		$d['usedcounter'] = $query->row_array()['usedcounter'] + 1;
+		$q = $query->row_array();
+		$d['usedcounter'] = $q['usedcounter'] + 1;
 		$this->db->where('id', $assignment_id)->update('assignments', $d);
 	}
 

@@ -31,7 +31,7 @@ class Firststep
 
 			if(! $CI->user_model->have_user($username))
 			{
-				$email = $user->{'email'};
+				$email = $user->{'mail'};
 				$result = $CI->user_model->add_user($username, $email, '1234567890', 'student');
 				if ($result !== TRUE) die($result);
 			}
