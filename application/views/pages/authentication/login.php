@@ -17,17 +17,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="login_form">
 			<div class="login1">
 				<p>
-					<label for="username"><?php t("Username"); ?></label><br/>
-					<input type="text" name="username" required="required" pattern="[0-9A-Za-z]{3,20}" title="<?php t("The Username field must be between 3 and 20 characters in length, and contain only alpha-numeric characters"); ?>" class="sharif_input" value="<?php echo set_value('username'); ?>" autofocus="autofocus"/>
+					<label for="username"><?php tt("Username"); ?></label><br/>
+					<input type="text" name="username" required="required" pattern="[0-9A-Za-z]{3,20}" title="<?php tt("The Username field must be between 3 and 20 characters in length, and contain only alpha-numeric characters"); ?>" class="sharif_input" value="<?php echo set_value('username'); ?>" autofocus="autofocus"/>
 					<?php echo form_error('username','<div class="shj_error">','</div>'); ?>
 				</p>
 				<p>
-					<label for="password"><?php t("Password"); ?></label><br/>
-					<input type="password" name="password" required="required" pattern="[0-9A-Za-z]{6,20}" title="<?php t("The Password field must be between 6 and 30 characters in length, and contain only alpha-numeric characters"); ?>" class="sharif_input"/>
+					<label for="password"><?php tt("Password"); ?></label><br/>
+					<input type="password" name="password" required="required" pattern="[0-9A-Za-z]{6,20}" title="<?php tt("The Password field must be between 6 and 30 characters in length, and contain only alpha-numeric characters"); ?>" class="sharif_input"/>
 					<?php echo form_error('password','<div class="shj_error">','</div>'); ?>
 				</p>
 				<?php if ($error): ?>
-					<div class="shj_error"><?php t("Incorrect username or password."); ?></div>
+					<div class="shj_error"><?php tt("Incorrect username or password."); ?></div>
 				<?php endif ?>
 			</div>
 			<div class="login2">

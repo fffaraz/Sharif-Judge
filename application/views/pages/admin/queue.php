@@ -30,32 +30,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets/images/icons/queue.png') ?>"/>
-		<span><?php t($title); ?></span>
+		<span><?php tt($title); ?></span>
 	</div>
 
 	<div id="main_content">
 		<p>
 			<?php if ($working): ?>
-				<i class="splashy-media_controls_dark_play"></i> <?php t("Queue is working"); ?>
+				<i class="splashy-media_controls_dark_play"></i> <?php tt("Queue is working"); ?>
 			<?php else: ?>
-				<i class="splashy-media_controls_dark_pause"></i> <?php t("Queue is not working"); ?>
+				<i class="splashy-media_controls_dark_pause"></i> <?php tt("Queue is not working"); ?>
 			<?php endif ?>
-			| <?php t("Total submissions in queue"); ?>: <?php echo count($queue) ?>
+			| <?php tt("Total submissions in queue"); ?>: <?php echo count($queue) ?>
 		</p>
 		<p>
-			<a href="#" class="shj_act" id="pause"><i class="splashy-media_controls_pause_small"></i> <?php t("Pause"); ?></a> |
-			<a href="#" class="shj_act" id="resume"><i class="splashy-media_controls_play_small"></i> <?php t("Resume"); ?></a> |
-			<a href="#" class="shj_act" id="empty_queue"><i class="splashy-close"></i> <?php t("Empty Queue"); ?></a>
+			<a href="#" class="shj_act" id="pause"><i class="splashy-media_controls_pause_small"></i> <?php tt("Pause"); ?></a> |
+			<a href="#" class="shj_act" id="resume"><i class="splashy-media_controls_play_small"></i> <?php tt("Resume"); ?></a> |
+			<a href="#" class="shj_act" id="empty_queue"><i class="splashy-close"></i> <?php tt("Empty Queue"); ?></a>
 		</p>
 		<table class="sharif_table">
 			<thead>
 			<tr>
 				<th>#</th>
-				<th><?php t("Submit ID"); ?></th>
-				<th><?php t("Username"); ?></th>
-				<th><?php t("Assignment"); ?></th>
-				<th><?php t("Problem"); ?></th>
-				<th><?php t("Type (judge/rejudge)"); ?></th>
+				<th><?php tt("Submit ID"); ?></th>
+				<th><?php tt("Username"); ?></th>
+				<th><?php tt("Assignment"); ?></th>
+				<th><?php tt("Problem"); ?></th>
+				<th><?php tt("Type (judge/rejudge)"); ?></th>
 			</tr>
 			</thead>
 			<?php

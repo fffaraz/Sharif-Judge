@@ -14,16 +14,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets/images/icons/delete_submissions.png') ?>"/>
-		<span><?php t($title); ?></span>
+		<span><?php tt($title); ?></span>
 	</div>
 
 	<div id="main_content">
-		<p><?php t("Are you sure you want to delete this user's submitted codes?"); ?></p>
-		<p><?php t("Username"); ?>: <?php echo $delete_username ?></p>
+		<p><?php tt("Are you sure you want to delete this user's submitted codes?"); ?></p>
+		<p><?php tt("Username"); ?>: <?php echo $delete_username ?></p>
 		<?php echo form_open('users/delete_submissions/'.$id); ?>
 		<input type="hidden" name="delete" value="delete"/>
 		<p class="input_p">
-			<input type="checkbox" name="delete_from_database"/> <?php t("Also delete submission results from database."); ?>
+			<input type="checkbox" name="delete_from_database"/> <?php tt("Also delete submission results from database."); ?>
 		</p>
 		<p class="input_p">
 			<input type="submit" class="sharif_input" value="Yes, I'm Sure"/> <?php echo anchor('users', tr("No, I'm not")); ?>

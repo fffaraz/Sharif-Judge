@@ -14,13 +14,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets-fa/images/icons/assignments.png') ?>"/>
-		<span><?php t($title); ?></span>
+		<span><?php tt($title); ?></span>
 	</div>
 
 	<div id="main_content">
 
 		<?php if (count($all_problems)==0): ?>
-			<p style="text-align: center;"><?php t("Nothing to show..."); ?></p>
+			<p style="text-align: center;"><?php tt("Nothing to show..."); ?></p>
 		<?php endif ?>
 		<?php foreach($all_problems as $item): ?>
 			<div class="assignment_block" id="<?php echo $item['id'] ?>">

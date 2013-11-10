@@ -60,22 +60,22 @@ else
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets-fa/images/icons/submit.png') ?>"/>
-		<span><?php t($title); ?></span>
+		<span><?php tt($title); ?></span>
 	</div>
 
 	<div id="main_content">
 		<div id="question" ></div>
 		<?php if ($assignment['id']==0): ?>
-			<p><?php t("Please select an assignment first."); ?></p>
+			<p><?php tt("Please select an assignment first."); ?></p>
 		<?php elseif ($this->user_model->get_user_level($username)==0 && !$assignment['open']): ?>
 		<?php // if assignment is closed, non-student users (admin, instructors) still can submit ?>
-			<p><?php t("Selected assignment is closed."); ?></p>
+			<p><?php tt("Selected assignment is closed."); ?></p>
 		<?php elseif ($now < strtotime($assignment['start_time'])): ?>
-			<p><?php t("Selected assignment has not started."); ?></p>
+			<p><?php tt("Selected assignment has not started."); ?></p>
 		<?php elseif ($now > strtotime($assignment['finish_time'])+$assignment['extra_time']): // deadline = finish_time + extra_time?>
-			<p><?php t("Selected assignment has finished."); ?></p>
+			<p><?php tt("Selected assignment has finished."); ?></p>
 		<?php elseif ( !$this->assignment_model->is_participant($assignment['participants'],$username) ): ?>
-			<p><?php t("You are not registered for submitting."); ?></p>
+			<p><?php tt("You are not registered for submitting."); ?></p>
 		<?php else: ?>
 			<p>Selected assignment: <?php echo $assignment['name'] ?></p>
 			<p>Coefficient: <?php
@@ -91,7 +91,7 @@ else
 			?>%</p>
 			<?php echo form_open_multipart('submit') ?>
 			<p class="input_p">
-				<label for="problem" class="tiny"><?php t("Problem:"); ?></label>
+				<label for="problem" class="tiny"><?php tt("Problem:"); ?></label>
 				<select id="problems" name ="problem" class="sharif_input">
 					<option value="0" selected="selected">-- Select One --</option>
 					<?php foreach ($problems as $problem): ?>
@@ -101,7 +101,7 @@ else
 				<?php echo form_error('problem','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<label for="problem" class="tiny"><?php t("Language:"); ?></label>
+				<label for="problem" class="tiny"><?php tt("Language:"); ?></label>
 				<select id="languages" name="language" class="sharif_input">
 					<option value="0" selected="selected">-- Select One --</option>
 				</select>
@@ -111,9 +111,9 @@ else
 				<label for="userfile" class="tiny">File:</label>
 				<input type="file" id="file" class="sharif_input medium" name="userfile" />
 				<?php if ($upload_state==='error'): ?>
-				<div class="shj_error"><?php t("Error uploading file."); ?></div>
+				<div class="shj_error"><?php tt("Error uploading file."); ?></div>
 				<?php elseif ($upload_state==='ok'): ?>
-				<div class="shj_ok"><?php t("File uploaded successfully. See the result in 'All Submissions'."); ?></div>
+				<div class="shj_ok"><?php tt("File uploaded successfully. See the result in 'All Submissions'."); ?></div>
 				<?php endif ?>
 				<?php echo $this->upload->display_errors('<div class="shj_error">','</div>'); ?>
 			</p>

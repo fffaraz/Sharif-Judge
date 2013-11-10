@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			},
 			function (data) {
 				if (data=="new_notification")
-					alert("<?php t('New Notification'); ?>");
+					alert("<?php tt('New Notification'); ?>");
 			}
 		);
 		notif_check_time = moment().add('milliseconds',offset);

@@ -17,18 +17,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="login_form">
 			<div class="login1">
 				<p>
-					<label for="email"><?php t("Email"); ?></label><br/>
+					<label for="email"><?php tt("Email"); ?></label><br/>
 					<input type="text" name="email" class="sharif_input" value="<?php echo set_value('email'); ?>"/>
 					<?php echo form_error('email','<div class="shj_error">','</div>'); ?>
 				</p>
 				<?php if ($sent): ?>
-					<div class="shj_ok"><?php t("We sent you an email containing a link to change your password."); ?></div>
+					<div class="shj_ok"><?php tt("We sent you an email containing a link to change your password."); ?></div>
 				<?php endif ?>
 			</div>
 			<div class="login2">
 				<p style="margin:0;">
 					<?php echo anchor("login","Login") ?>
-					<input type="submit" value="<?php t("Reset Password"); ?>" id="sharif_submit"/>
+					<input type="submit" value="<?php tt("Reset Password"); ?>" id="sharif_submit"/>
 				</p>
 			</div>
 		</div>

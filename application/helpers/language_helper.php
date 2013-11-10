@@ -8,7 +8,7 @@ if ( ! function_exists('lang'))
 		// runkit_function_rename('t','t_old');
 	}
 
-	function t()
+	function tt()
 	{
 		$CI =& get_instance();
 		$args = func_get_args();

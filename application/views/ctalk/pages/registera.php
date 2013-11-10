@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets-fa/images/icons/assignments.png') ?>"/>
-		<span><?php t($title); ?></span>
+		<span><?php tt($title); ?></span>
 	</div>
 
 	<div id="main_content">
@@ -29,8 +29,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	?>
 
 <br><?php echo form_open('registera/codeactivate/'.$buy_assignment['id']); ?>
-<?php t("Activate With Code:"); ?><br>
-<?php t("Code"); ?> : <input type="text" name="code" /><br>
+<?php tt("Activate With Code:"); ?><br>
+<?php tt("Code"); ?> : <input type="text" name="code" /><br>
 <input type="submit" />
 </form><br>
 
@@ -41,9 +41,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	?>
 
 <br>
-<? t('Participation in this assignment requires payment.'); ?>
-<br> <?php t("Price"); ?> : <?php echo $buy_assignment['price'];?><br>
-<a href="<?php echo site_url('registera/buyactivate/'.$buy_assignment['id']) ?>"><?php t("Pay"); ?></a> <br>
+<?php tt('Participation in this assignment requires payment.'); ?>
+<br> <?php tt("Price"); ?> : <?php echo $buy_assignment['price'];?><br>
+<a href="<?php echo site_url('registera/buyactivate/'.$buy_assignment['id']) ?>"><?php tt("Pay"); ?></a> <br>
 
 	<?php		
 		}
@@ -52,8 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	?>
 
 <br>
-<? t('Participation in this assignment is free.'); ?>
-<br> <a href="<?php echo site_url('registera/freeactivate/'.$buy_assignment['id']) ?>"><?php t("Free Activation"); ?></a> <br>
+<?php tt('Participation in this assignment is free.'); ?>
+<br> <a href="<?php echo site_url('registera/freeactivate/'.$buy_assignment['id']) ?>"><?php tt("Free Activation"); ?></a> <br>
 
 	<?php
 		}

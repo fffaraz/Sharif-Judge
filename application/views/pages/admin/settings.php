@@ -14,172 +14,172 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets/images/icons/settings.png') ?>"/>
-		<span><?php t($title); ?></span>
+		<span><?php tt($title); ?></span>
 		<span class="title_menu_item">
-			<a href="http://docs.sharifjudge.ir/settings" target="_blank"><i class="splashy-help"></i> <?php t("Help"); ?></a>
+			<a href="http://docs.sharifjudge.ir/settings" target="_blank"><i class="splashy-help"></i> <?php tt("Help"); ?></a>
 		</span>
 	</div>
 
 	<div id="main_content">
 		<p class="input_p">
 		<?php if ($form_status === 'ok'): ?>
-			<div class="shj_ok"><?php t("Settings updated successfully."); ?></div>
+			<div class="shj_ok"><?php tt("Settings updated successfully."); ?></div>
 		<?php elseif ($form_status === 'error'): ?>
-			<div class="shj_error"><?php t("Error updating settings."); ?></div>
+			<div class="shj_error"><?php tt("Error updating settings."); ?></div>
 		<?php endif ?>
 		<?php foreach ($errors as $error): ?>
 			<div class="shj_error"><?php echo $error ?></div>
 		<?php endforeach ?>
 		<?php if ($defc === FALSE): ?>
-			<div class="shj_error"><?php t('"Tester path" is not correct.'); ?></div>
+			<div class="shj_error"><?php tt('"Tester path" is not correct.'); ?></div>
 		<?php endif ?>
 		</p>
 		<?php echo form_open('settings/update') ?>
 			<p class="input_p">
 				<label for="timezone">
-					<?php t("Timezone"); ?><br>
-					<a target="_blank" href="http://www.php.net/manual/en/timezones.php"><?php t("list of timezones"); ?></a>
+					<?php tt("Timezone"); ?><br>
+					<a target="_blank" href="http://www.php.net/manual/en/timezones.php"><?php tt("list of timezones"); ?></a>
 				</label>
 				<span class="form_comment timer"></span><br>
 				<input type="text" name="timezone" class="sharif_input medium" value="<?php echo $tz ?>"/>
 				<?php echo form_error('timezone','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<label for="week_start"><?php t("Week Start Day"); ?></label>
+				<label for="week_start"><?php tt("Week Start Day"); ?></label>
 				<select name="week_start" class="sharif_input">
-					<option value="0" <?php if($week_start==0) echo 'selected="selected"' ?>><?php t("Sunday"); ?></option>
-					<option value="1" <?php if($week_start==1) echo 'selected="selected"' ?>><?php t("Monday"); ?></option>
-					<option value="2" <?php if($week_start==2) echo 'selected="selected"' ?>><?php t("Tuesday"); ?></option>
-					<option value="3" <?php if($week_start==3) echo 'selected="selected"' ?>><?php t("Wednesday"); ?></option>
-					<option value="4" <?php if($week_start==4) echo 'selected="selected"' ?>><?php t("Thursday"); ?></option>
-					<option value="5" <?php if($week_start==5) echo 'selected="selected"' ?>><?php t("Friday"); ?></option>
-					<option value="6" <?php if($week_start==6) echo 'selected="selected"' ?>><?php t("Saturday"); ?></option>
+					<option value="0" <?php if($week_start==0) echo 'selected="selected"' ?>><?php tt("Sunday"); ?></option>
+					<option value="1" <?php if($week_start==1) echo 'selected="selected"' ?>><?php tt("Monday"); ?></option>
+					<option value="2" <?php if($week_start==2) echo 'selected="selected"' ?>><?php tt("Tuesday"); ?></option>
+					<option value="3" <?php if($week_start==3) echo 'selected="selected"' ?>><?php tt("Wednesday"); ?></option>
+					<option value="4" <?php if($week_start==4) echo 'selected="selected"' ?>><?php tt("Thursday"); ?></option>
+					<option value="5" <?php if($week_start==5) echo 'selected="selected"' ?>><?php tt("Friday"); ?></option>
+					<option value="6" <?php if($week_start==6) echo 'selected="selected"' ?>><?php tt("Saturday"); ?></option>
 				</select>
 			</p>
 			<p class="input_p">
-				<label for="tester_path"><?php t("Full Path to <code>tester</code>"); ?></label>
+				<label for="tester_path"><?php tt("Full Path to <code>tester</code>"); ?></label>
 				<input type="text" name="tester_path" class="sharif_input medium" value="<?php echo $tester_path ?>"/>
 			</p>
 			<p class="input_p">
-				<label for="assignments_root"><?php t("Full Path to <code>assignments</code>"); ?></label>
+				<label for="assignments_root"><?php tt("Full Path to <code>assignments</code>"); ?></label>
 				<input type="text" name="assignments_root" class="sharif_input medium" value="<?php echo $assignments_root ?>"/>
 			</p>
 			<p class="input_p">
-				<label for="file_size_limit"><?php t("Upload Size Limit (kB)"); ?></label>
+				<label for="file_size_limit"><?php tt("Upload Size Limit (kB)"); ?></label>
 				<input type="text" name="file_size_limit" class="sharif_input medium" value="<?php echo $file_size_limit ?>"/>
 				<?php echo form_error('file_size_limit','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<label for="output_size_limit"><?php t("Output Size Limit (kB)"); ?></label>
+				<label for="output_size_limit"><?php tt("Output Size Limit (kB)"); ?></label>
 				<input type="text" name="output_size_limit" class="sharif_input medium" value="<?php echo $output_size_limit ?>"/><br>
-				<span class="form_comment clear"><?php t("Sets a limit for size of output file generated by submitted code"); ?></span>
+				<span class="form_comment clear"><?php tt("Sets a limit for size of output file generated by submitted code"); ?></span>
 				<?php echo form_error('output_size_limit','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<label for="results_per_page"><?php t("Results Per Page"); ?></label>
+				<label for="results_per_page"><?php tt("Results Per Page"); ?></label>
 				<input type="text" name="results_per_page" class="sharif_input medium" value="<?php echo $results_per_page ?>"/>
 				<?php echo form_error('results_per_page','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<input type="checkbox" name="enable_registration" value="1" <?php if ($enable_registration) echo 'checked' ?>/> <label><?php t("Registration"); ?></label><br>
-				<span class="form_comment"><?php t("Open Public Registration."); ?></span>
+				<input type="checkbox" name="enable_registration" value="1" <?php if ($enable_registration) echo 'checked' ?>/> <label><?php tt("Registration"); ?></label><br>
+				<span class="form_comment"><?php tt("Open Public Registration."); ?></span>
 			</p>
 			<p class="input_p">
-				<label for="output_size_limit"><?php t("Registration Code"); ?></label>
+				<label for="output_size_limit"><?php tt("Registration Code"); ?></label>
 				<input type="text" name="registration_code" class="sharif_input medium" value="<?php echo $registration_code ?>"/><br>
-				<p class="form_comment clear"><?php t("If you want to enable registration (above option), It is better to give a registration code<br> to students in your class for validating registration. Enter 0 to disable."); ?></p>
+				<p class="form_comment clear"><?php tt("If you want to enable registration (above option), It is better to give a registration code<br> to students in your class for validating registration. Enter 0 to disable."); ?></p>
 				<?php echo form_error('registration_code','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<input type="checkbox" name="enable_log" value="1" <?php if ($enable_log) echo 'checked' ?>/> <label><?php t("Log"); ?></label><br>
-				<span class="form_comment"><?php t("Enable Log"); ?></span>
+				<input type="checkbox" name="enable_log" value="1" <?php if ($enable_log) echo 'checked' ?>/> <label><?php tt("Log"); ?></label><br>
+				<span class="form_comment"><?php tt("Enable Log"); ?></span>
 			</p>
 			<p class="input_p">
-				<label for="default_late_rule"><?php t("Default Coefficient Rule"); ?></label>
-				<span class="form_comment clear"><?php t("PHP script without &lt;?php ?&gt; tags"); ?></span><br>
+				<label for="default_late_rule"><?php tt("Default Coefficient Rule"); ?></label>
+				<span class="form_comment clear"><?php tt("PHP script without &lt;?php ?&gt; tags"); ?></span><br>
 				<textarea name="default_late_rule" rows="15" class="sharif_input add_text clear"><?php echo $default_late_rule ?></textarea>
 			</p>
 
-			<h2 class="shj_form"><?php t("Email"); ?></h2>
+			<h2 class="shj_form"><?php tt("Email"); ?></h2>
 
 			<p class="input_p">
-				<label for="mail_from"><?php t("Send Emails From"); ?></label>
+				<label for="mail_from"><?php tt("Send Emails From"); ?></label>
 				<input type="text" name="mail_from" class="sharif_input medium" value="<?php echo $mail_from ?>"/>
 				<?php echo form_error('mail_from','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<label for="mail_from_name"><?php t('Send Emails "From" Name'); ?></label>
+				<label for="mail_from_name"><?php tt('Send Emails "From" Name'); ?></label>
 				<input type="text" name="mail_from_name" class="sharif_input medium" value="<?php echo $mail_from_name ?>"/>
 				<?php echo form_error('mail_from_name','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<label for="reset_password_mail"><?php t("Password Reset Email"); ?></label>
+				<label for="reset_password_mail"><?php tt("Password Reset Email"); ?></label>
 				<span class="form_comment">You can use {SITE_URL}, {RESET_LINK} and {VALID_TIME}</span><br>
 				<textarea name="reset_password_mail" rows="15" class="sharif_input add_text clear"><?php echo $reset_password_mail ?></textarea>
 			</p>
 			<p class="input_p">
-				<label for="add_user_mail"><?php t("Add User Email"); ?></label>
-				<span class="form_comment clear"><?php t("You can use {SITE_URL}, {LOGIN_URL}, {ROLE}, {USERNAME} and {PASSWORD}"); ?></span><br>
+				<label for="add_user_mail"><?php tt("Add User Email"); ?></label>
+				<span class="form_comment clear"><?php tt("You can use {SITE_URL}, {LOGIN_URL}, {ROLE}, {USERNAME} and {PASSWORD}"); ?></span><br>
 				<textarea name="add_user_mail" rows="15" class="sharif_input add_text clear"><?php echo $add_user_mail ?></textarea>
 			</p>
 
 
-			<h2 class="shj_form"><?php t("Sandboxing"); ?> <span class="title_menu_item"><a href="http://docs.sharifjudge.ir/sandboxing" target="_blank"><i class="splashy-help"></i> <?php t("Help"); ?></a></span></h2>
+			<h2 class="shj_form"><?php tt("Sandboxing"); ?> <span class="title_menu_item"><a href="http://docs.sharifjudge.ir/sandboxing" target="_blank"><i class="splashy-help"></i> <?php tt("Help"); ?></a></span></h2>
 
 			<p class="input_p">
-				<input type="checkbox" name="enable_easysandbox" value="1" <?php if ($enable_easysandbox) echo 'checked' ?>/> <label><?php t("EasySandbox"); ?></label><br>
+				<input type="checkbox" name="enable_easysandbox" value="1" <?php if ($enable_easysandbox) echo 'checked' ?>/> <label><?php tt("EasySandbox"); ?></label><br>
 			</p>
-			<p class="form_comment"><?php t("Enable EasySandbox for C/C++."); ?><br>
-				<?php t("You must build EasySandbox before enabling it."); ?> <a href="http://docs.sharifjudge.ir/sandboxing#build_easysandbox" target="_blank"><?php t("Help"); ?></a><br>
+			<p class="form_comment"><?php tt("Enable EasySandbox for C/C++."); ?><br>
+				<?php tt("You must build EasySandbox before enabling it."); ?> <a href="http://docs.sharifjudge.ir/sandboxing#build_easysandbox" target="_blank"><?php tt("Help"); ?></a><br>
 				<?php if (!$sandbox_built): ?>
-					<span style="color: red;"><?php t("You have not built EasySandbox yet."); ?></span>
+					<span style="color: red;"><?php tt("You have not built EasySandbox yet."); ?></span>
 				<?php endif ?>
 			</p>
 
 			<p class="input_p">
-				<input type="checkbox" name="enable_java_policy" value="1" <?php if ($enable_java_policy) echo 'checked' ?>/> <label><?php t("Java Policy"); ?></label><br>
-				<span class="form_comment"><?php t("Enable Java Sandboxing"); ?> <a href="http://docs.sharifjudge.ir/sandboxing#java_sandboxing" target="_blank"><?php t("Help"); ?></a></span>
+				<input type="checkbox" name="enable_java_policy" value="1" <?php if ($enable_java_policy) echo 'checked' ?>/> <label><?php tt("Java Policy"); ?></label><br>
+				<span class="form_comment"><?php tt("Enable Java Sandboxing"); ?> <a href="http://docs.sharifjudge.ir/sandboxing#java_sandboxing" target="_blank"><?php tt("Help"); ?></a></span>
 			</p>
 
 
 
-			<h2 class="shj_form"><?php t("Shield"); ?> <span class="title_menu_item"><a href="http://docs.sharifjudge.ir/shield" target="_blank"><i class="splashy-help"></i> <?php t("Help"); ?></a></span></h2>
+			<h2 class="shj_form"><?php tt("Shield"); ?> <span class="title_menu_item"><a href="http://docs.sharifjudge.ir/shield" target="_blank"><i class="splashy-help"></i> <?php tt("Help"); ?></a></span></h2>
 
 			<p class="input_p">
-				<input type="checkbox" name="enable_c_shield" value="1" <?php if ($enable_c_shield) echo 'checked' ?>/> <label><?php t("C Shield"); ?></label><br>
-				<span class="form_comment"><?php t("Enable Shield for C"); ?> <a href="http://docs.sharifjudge.ir/shield" target="_blank"><?php t("Help"); ?></a></span>
+				<input type="checkbox" name="enable_c_shield" value="1" <?php if ($enable_c_shield) echo 'checked' ?>/> <label><?php tt("C Shield"); ?></label><br>
+				<span class="form_comment"><?php tt("Enable Shield for C"); ?> <a href="http://docs.sharifjudge.ir/shield" target="_blank"><?php tt("Help"); ?></a></span>
 			</p>
 			<p class="input_p">
-				<input type="checkbox" name="enable_cpp_shield" value="1" <?php if ($enable_cpp_shield) echo 'checked' ?>/> <label><?php t("C++ Shield"); ?></label><br>
-				<span class="form_comment"><?php t("Enable Shield for C++"); ?> <a href="http://docs.sharifjudge.ir/shield" target="_blank"><?php t("Help"); ?></a></span>
+				<input type="checkbox" name="enable_cpp_shield" value="1" <?php if ($enable_cpp_shield) echo 'checked' ?>/> <label><?php tt("C++ Shield"); ?></label><br>
+				<span class="form_comment"><?php tt("Enable Shield for C++"); ?> <a href="http://docs.sharifjudge.ir/shield" target="_blank"><?php tt("Help"); ?></a></span>
 			</p>
 			<p class="input_p">
-				<input type="checkbox" name="enable_py2_shield" value="1" <?php if ($enable_py2_shield) echo 'checked' ?>/> <label><?php t("Python 2 Shield"); ?></label><br>
-				<span class="form_comment"><?php t("Enable Shield for Python 2"); ?> <a href="http://docs.sharifjudge.ir/shield" target="_blank"><?php t("Help"); ?></a></span>
+				<input type="checkbox" name="enable_py2_shield" value="1" <?php if ($enable_py2_shield) echo 'checked' ?>/> <label><?php tt("Python 2 Shield"); ?></label><br>
+				<span class="form_comment"><?php tt("Enable Shield for Python 2"); ?> <a href="http://docs.sharifjudge.ir/shield" target="_blank"><?php tt("Help"); ?></a></span>
 			</p>
 			<p class="input_p">
-				<input type="checkbox" name="enable_py3_shield" value="1" <?php if ($enable_py3_shield) echo 'checked' ?>/> <label><?php t("Python 3 Shield"); ?></label><br>
-				<span class="form_comment"><?php t("Enable Shield for Python 3"); ?> <a href="http://docs.sharifjudge.ir/shield" target="_blank"><?php t("Help"); ?></a></span>
+				<input type="checkbox" name="enable_py3_shield" value="1" <?php if ($enable_py3_shield) echo 'checked' ?>/> <label><?php tt("Python 3 Shield"); ?></label><br>
+				<span class="form_comment"><?php tt("Enable Shield for Python 3"); ?> <a href="http://docs.sharifjudge.ir/shield" target="_blank"><?php tt("Help"); ?></a></span>
 			</p>
 			<p class="input_p">
-				<label for="def_c"><?php t("Shield Rules (for C)"); ?></label>
+				<label for="def_c"><?php tt("Shield Rules (for C)"); ?></label>
 				<textarea name="def_c" rows="15" class="sharif_input add_text clear"><?php if($defc!==FALSE) echo $defc ?></textarea>
 			</p>
 			<p class="input_p">
-				<label for="def_cpp"><?php t("Shield Rules (for C++)"); ?></label>
+				<label for="def_cpp"><?php tt("Shield Rules (for C++)"); ?></label>
 				<textarea name="def_cpp" rows="15" class="sharif_input add_text clear"><?php if($defcpp!==FALSE) echo $defcpp ?></textarea>
 			</p>
 			<p class="input_p">
-				<label for="shield_py2"><?php t("Shield (for Python 2)"); ?></label>
+				<label for="shield_py2"><?php tt("Shield (for Python 2)"); ?></label>
 				<textarea name="shield_py2" rows="15" class="sharif_input add_text clear"><?php if($shield_py2!==FALSE) echo $shield_py2 ?></textarea>
 			</p>
 			<p class="input_p">
-				<label for="shield_py3"><?php t("Shield (for Python 3)"); ?></label>
+				<label for="shield_py3"><?php tt("Shield (for Python 3)"); ?></label>
 				<textarea name="shield_py3" rows="15" class="sharif_input add_text clear"><?php if($shield_py3!==FALSE) echo $shield_py3 ?></textarea>
 			</p>
 			<p class="input_p">
 				<br>
-				<input type="submit" value="<?php t("Save Changes"); ?>" class="sharif_input"/>
+				<input type="submit" value="<?php tt("Save Changes"); ?>" class="sharif_input"/>
 			</p>
 		</form>
 

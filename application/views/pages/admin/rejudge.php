@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets/images/icons/rejudge.png') ?>"/>
-		<span><?php t($title); ?></span>
+		<span><?php tt($title); ?></span>
 	</div>
 
 	<div id="main_content">
@@ -22,13 +22,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<p class="shj_ok"><?php echo $message ?></p>
 		<?php endforeach ?>
 		<p>
-			<?php t("Selected Assignment"); ?>: <?php echo $assignment['name'] ?>
+			<?php tt("Selected Assignment"); ?>: <?php echo $assignment['name'] ?>
 		</p>
 		<p>
-			<?php t("By clicking on rejudge, all submissions of selected problem will go in <code>PENDING</code> state. Then Sharif Judge rejudges them one by one."); ?>
+			<?php tt("By clicking on rejudge, all submissions of selected problem will go in <code>PENDING</code> state. Then Sharif Judge rejudges them one by one."); ?>
 		</p>
 		<p>
-			<?php t("If you want to rejudge a single submission, you can click on rejudge button in %1 or %2 page.", anchor('submissions/all', 'All Submissions'), anchor('submissions/final', 'Final Submissions')); ?>
+			<?php tt("If you want to rejudge a single submission, you can click on rejudge button in %1 or %2 page.", anchor('submissions/all', 'All Submissions'), anchor('submissions/final', 'Final Submissions')); ?>
 		</p>
 		<?php foreach ($problems as $problem): ?>
 			<?php echo form_open('rejudge') ?>

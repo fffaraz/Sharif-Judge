@@ -14,23 +14,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets-fa/images/icons/users.png') ?>"/>
-		<span><?php t($title); ?></span>
-		<span class="title_menu_item"><a href="http://docs.sharifjudge.ir/users" target="_blank"><i class="splashy-help"></i> <?php t("Help"); ?></a></span>
-		<span class="title_menu_item"><a href="<?php echo site_url('users/add') ?>"><i class="splashy-group_blue_add"></i> <?php t("Add Users"); ?></a></span>
-		<span class="title_menu_item"><a href="<?php echo site_url("users/list_excel") ?>"><i class="splashy-document_small_download"></i> <?php t("Excel"); ?></a></span>
+		<span><?php tt($title); ?></span>
+		<span class="title_menu_item"><a href="http://docs.sharifjudge.ir/users" target="_blank"><i class="splashy-help"></i> <?php tt("Help"); ?></a></span>
+		<span class="title_menu_item"><a href="<?php echo site_url('users/add') ?>"><i class="splashy-group_blue_add"></i> <?php tt("Add Users"); ?></a></span>
+		<span class="title_menu_item"><a href="<?php echo site_url("users/list_excel") ?>"><i class="splashy-document_small_download"></i> <?php tt("Excel"); ?></a></span>
 	</div>
 
 	<div id="main_content">
 		<?php if (isset($deleted_user) && $deleted_user===TRUE): ?>
-			<p class="shj_ok"><?php t("User deleted successfully."); ?></p>
+			<p class="shj_ok"><?php tt("User deleted successfully."); ?></p>
 		<?php endif ?>
 		<?php if (isset($deleted_submissions) && $deleted_submissions===TRUE): ?>
-			<p class="shj_ok"><?php t("Submissions of selected user deleted successfully."); ?></p>
+			<p class="shj_ok"><?php tt("Submissions of selected user deleted successfully."); ?></p>
 		<?php endif ?>
 		<div style="height:15px"></div>
 		<table class="sharif_table">
 			<thead>
-			<tr><th>#</th><th><?php t("User ID"); ?></th><th><?php t("Username"); ?></th><th><?php t("Display Name"); ?></th><th><?php t("Email"); ?></th><th><?php t("Role"); ?></th><th><?php t("First Login"); ?></th><th><?php t("Last Login"); ?></th><th><?php t("Actions"); ?></th></tr>
+			<tr><th>#</th><th><?php tt("User ID"); ?></th><th><?php tt("Username"); ?></th><th><?php tt("Display Name"); ?></th><th><?php tt("Email"); ?></th><th><?php tt("Role"); ?></th><th><?php tt("First Login"); ?></th><th><?php tt("Last Login"); ?></th><th><?php tt("Actions"); ?></th></tr>
 			</thead>
 			<?php $counter = 0; ?>
 			<?php foreach($users as $user): ?>

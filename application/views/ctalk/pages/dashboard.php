@@ -84,7 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="page_title">
 		<img src="<?php echo base_url('assets-fa/images/icons/dashboard.png') ?>"/>
-		<span><?php t($title); ?></span>
+		<span><?php tt($title); ?></span>
 	</div>
 
 	<div id="main_content">
@@ -104,7 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>
 				<li <?php echo $position ?>>
 					<div class="shj_widget">
-						<div class="widget_title"><i class="splashy-calendar_month"></i> <?php t("Calendar"); ?></div>
+						<div class="widget_title"><i class="splashy-calendar_month"></i> <?php tt("Calendar"); ?></div>
 						<div class="widget_scrollable nano">
 							<div class="content">
 								<div id='calendar'></div>

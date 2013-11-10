@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-	<title><?php t($title); ?> - <?php t('Sharif Judge'); ?></title>
+	<title><?php tt($title); ?> - <?php tt('Sharif Judge'); ?></title>
 	<meta content="text/html" charset="UTF-8">
 	<link rel="icon" href="<?php echo base_url("assets-fa/images/favicon.ico") ?>"/>
 	<link rel="stylesheet" type='text/css' href="<?php echo base_url("assets-fa/styles/$style")  ?>"/>
