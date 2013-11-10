@@ -232,6 +232,12 @@ class Assignment_model extends CI_Model{
 		$this->db->where('id', $assignment_id)->update('assignments', $d);
 	}
 
+	public function del_code($id, $code)
+	{
+		$query = $this->db->get_where('assignments', array('id'=>$assignment_id));
+		$d['codes'] = preg_replace('/'.$code.'/', ' ', $query->row_array()['codes'], 1);;
+		$this->db->where('id', $assignment_id)->update('assignments', $d);
+	}
 
 	// ------------------------------------------------------------------------
 

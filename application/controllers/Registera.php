@@ -107,6 +107,7 @@ class Registera extends CI_Controller
 			if($this->assignment_model->is_validcode($this->buy_assignment['codes'], $code))
 			{
 				$this->assignment_model->add_participant($id, $this->username);
+				$this->assignment_model->del_code($id, $code);
 				$this->_log('codeactivate', $code);
 			}
 			else
