@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<?php
 	if($has_error == true)
-		echo $error;
+		t($error);
 	else
 	{
 		if($show_code)
