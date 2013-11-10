@@ -213,6 +213,13 @@ class Assignment_model extends CI_Model{
 		return FALSE;
 	}
 
+	public function add_participant($assignment_id, $participant)
+	{
+		$query = $this->db->get_where('assignments', array('id'=>$assignment_id));
+		$d['participants'] = $query->row_array()['participants'] . ',' . $participant;
+		$this->db->where('id', $assignment_id)->update('assignments', $d);
+	}
+
 
 	// ------------------------------------------------------------------------
 

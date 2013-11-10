@@ -15,23 +15,8 @@ class Registera extends CI_Controller
 		$this->user_level = $this->user_model->get_user_level($this->username);
 	}
 
-
-	public function index()
+	private function _checkstatus($id)
 	{
-
-	}
-
-	public function buy($id)
-	{
-		$data = array(
-			'username'=>$this->username,
-			'user_level' => $this->user_level,
-			'all_assignments'=>$this->assignment_model->all_assignments(),
-			'assignment' => $this->assignment,
-			'title'=>'Register Assignment',
-			'style'=>'main.css'
-		);
-
 		$this->buy_assignment = $this->assignment_model->assignment_info($id);
 		$data['buy_assignment'] = $this->buy_assignment;
 		$data['has_error'] = false;
@@ -74,10 +59,41 @@ class Registera extends CI_Controller
 				$data['show_free'] = false;
 			}
 		}
+		return $data;
+	}
+
+	public function index()
+	{
+
+	}
+
+	public function buy($id)
+	{
+		$data = array(
+			'username'=>$this->username,
+			'user_level' => $this->user_level,
+			'all_assignments'=>$this->assignment_model->all_assignments(),
+			'assignment' => $this->assignment,
+			'title'=>'Register Assignment',
+			'style'=>'main.css'
+		);
+
+		$result = $this->_checkstatus($id);
+		$data = array_merge($result, $data);
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/buy', $data);
 		$this->load->view('templates/footer');
-
 	}
+
+	public function freeactivate($id)
+	{
+		$result = $this->_checkstatus($id);
+		if($result['has_error'] == false && $result['show_free'] == true)
+		{
+			$this->assignment_model->add_participant($id, $this->username);
+		}
+		redirect('assignments');
+	}
+
 }
