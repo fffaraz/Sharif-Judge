@@ -28,6 +28,14 @@ class Firststep
 		if($ok)
 		{
 			$username=$user->{'name'};
+
+			if(! $CI->user_model->have_user($username))
+			{
+				$email = $user->{'email'};
+				$result = $CI->user_model->add_user($username, $email, '1234567890', 'student');
+				if ($result !== TRUE) die($result);
+			}
+			
 			$login_data = array(
 					'username'  => $username,
 					'logged_in' => TRUE

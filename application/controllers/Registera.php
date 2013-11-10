@@ -9,6 +9,6 @@ class Registera extends CI_Controller
 	}
 	public function buy($id)
 	{
-		# code...
+		
 	}
 }
