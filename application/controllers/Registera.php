@@ -119,6 +119,15 @@ class Registera extends CI_Controller
 		redirect('assignments');
 	}
 
+	public function buyactivate($id)
+	{
+		$result = $this->_checkstatus($id);
+		if($result['has_error'] == false && $result['show_buy'] == true)
+		{
+			
+		}
+	}
+
 	private function _log($result='', $code='', $price=0)
 	{
 		$log['username'] = $this->username;
