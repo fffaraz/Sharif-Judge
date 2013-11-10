@@ -3,12 +3,81 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Registera extends CI_Controller
 {
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->driver('session');
+		if ( ! $this->session->userdata('logged_in')) // if not logged in
+			redirect('login');
+
+		$this->username = $this->session->userdata('username');
+		$this->assignment = $this->assignment_model->assignment_info($this->user_model->selected_assignment($this->username));
+		$this->user_level = $this->user_model->get_user_level($this->username);
+	}
+
+
 	public function index()
 	{
 
 	}
+
 	public function buy($id)
 	{
-		
+		$data = array(
+			'username'=>$this->username,
+			'user_level' => $this->user_level,
+			'all_assignments'=>$this->assignment_model->all_assignments(),
+			'assignment' => $this->assignment,
+			'title'=>'Register Assignment',
+			'style'=>'main.css'
+		);
+
+		$this->buy_assignment = $this->assignment_model->assignment_info($id);
+		$data['buy_assignment'] = $this->buy_assignment;
+		$data['has_error'] = false;
+
+		// check limit
+		if($this->buy_assignment['usedcounter'] >= $this->buy_assignment['uselimit'])
+		{
+			$data['has_error'] = true;
+			$data['error'] = "Limit reached";
+		}
+
+		// check price : -2 => disabled
+		if($this->buy_assignment['price'] <= -2)
+		{
+			$data['has_error'] = true;
+			$data['error'] = "Disabled";
+		}
+
+		if($data['has_error'] == false)
+		{
+			// check price : -1 => only code
+			if($this->buy_assignment['price'] == -1)
+			{
+				$data['show_code'] = true;
+				$data['show_buy'] = false;
+				$data['show_free'] = false;
+			}
+			// check price : 0 => free
+			if($this->buy_assignment['price'] == 0)
+			{
+				$data['show_code'] = true;
+				$data['show_buy'] = false;
+				$data['show_free'] = true;
+			}
+			// check price : + => kharid
+			if($this->buy_assignment['price'] > 0)
+			{
+				$data['show_code'] = true;
+				$data['show_buy'] = true;
+				$data['show_free'] = false;
+			}
+		}
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/buy', $data);
+		$this->load->view('templates/footer');
+
 	}
 }
