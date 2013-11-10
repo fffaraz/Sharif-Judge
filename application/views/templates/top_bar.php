@@ -94,7 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 	<?php if ($user_level >= 2): ?>
 	<div class="top_object shj_menu top_left" id="admin_tools_top">
-		Tools
+		<?php t('Tools'); ?>
 		<div class="top_menu" id="admin_tools_menu">
 			<a href="<?php echo site_url('rejudge') ?>"><div><?php t('Rejudge'); ?></div></a>
 			<a href="<?php echo site_url('queue') ?>"><div><?php t('Submission Queue'); ?></div></a>

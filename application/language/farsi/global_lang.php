@@ -19,15 +19,16 @@ $lang['day'] = "روز";
 $lang['hour'] = "ساعت";
 $lang['minute'] = "دقیقه";
 $lang['second'] = "ثانیه";
-$lang['Extra'] = "Extra";
+$lang['Extra'] = "اضافه";
 $lang['Time'] = "زمان";
 $lang['Rejudge'] = "بازداوری";
 $lang['Submission Queue'] = "صف ثبت شده ها";
 $lang['Cheat Detection'] = "تشخیص تخلف";
 $lang['New Notification'] = "اعلامیه های جدید";
+$lang['Tools'] = "ابزار";
 
 // Install
-$lang['It seems that the file'] = "It seems that the file";
+$lang['It seems that the file'] = "به نظر میرسد که فایل";
 $lang['is not writable by PHP'] = "قابل نوشتن توسط PHP نیست";
 $lang['So, for security, you should change the encryption key manually.'] = "برای مسائل امنیتی لازم است کلید را به صورت دستی تنظیم کنید.";
 $lang['You should open'] = "شما باید باز کنید";
@@ -270,6 +271,16 @@ $lang['Selected assignment has finished.'] = "مسابقه انتخاب شده �
 $lang['You are not registered for submitting.'] = "شما برای شرکت در مسابقه ثبت نام نکرده اید.";
 $lang['You have already submitted for this problem. Your last submission is still in queue.'] = "شما در حال حاضر پاسخی را برای این سوال ثبت کرده اید و پاسخ قبلی شما در صف تصحیح قرار دارد.";
 
+$lang['Activate With Code:'] = "فعال سازی با کد";
+$lang['Participation in this assignment requires payment.'] = "شرکت در این مسابقه نیاز به پرداخت هزینه دارد.";
+$lang['Price'] = "قیمت";
+$lang['Pay'] = "پرداخت";
+$lang['Participation in this assignment is free.'] = "شرکت در این مسابقه رایگان است.";
+$lang['Free Activation'] = "فعال سازی رایگان";
+$lang['Allowed'] = "مجاز";
+
+$lang['Register Assignment'] = "ثبت نام مسابقه";
+$lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
