@@ -132,6 +132,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>" />
 				<?php echo form_error('extra_time','<div class="shj_error">','</div>'); ?>
 			</p>
+
+
+			<p class="input_p clear">
+				<label for="price">
+					<?php t("Price"); ?><br>
+				</label>
+				<input type="text" name="price" id="price" class="sharif_input medium" value="<?php
+					if ($edit){
+						$price = $edit_assignment['price'];
+						echo $price;
+					}
+					else
+						echo set_value('price');
+				?>" />
+				<?php echo form_error('price','<div class="shj_error">','</div>'); ?>
+			</p>
+
+			<p class="input_p clear">
+				<label for="uselimit">
+					<?php t("use limit"); ?><br>
+				</label>
+				<input type="text" name="uselimit" id="uselimit" class="sharif_input medium" value="<?php
+					if ($edit){
+						$uselimit = $edit_assignment['uselimit'];
+						echo $uselimit;
+					}
+					else
+						echo set_value('uselimit');
+				?>" />
+				<?php echo form_error('uselimit','<div class="shj_error">','</div>'); ?>
+			</p>
+
+			<p class="input_p clear">
+				<label for="usedcounter">
+					<?php t("used counter"); ?><br>
+				</label>
+				<input type="text" name="usedcounter" id="usedcounter" class="sharif_input medium" value="<?php
+					if ($edit){
+						$usedcounter = $edit_assignment['usedcounter'];
+						echo $usedcounter;
+					}
+					else
+						echo set_value('usedcounter');
+				?>" />
+				<?php echo form_error('usedcounter','<div class="shj_error">','</div>'); ?>
+			</p>
+
+
+
 			<p class="input_p clear">
 				<label for="participants"><?php t("Participants"); ?><br>
 					<span class="form_comment"><?php t("Enter username of participants here (comma separated)."); ?>
@@ -144,6 +193,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						echo set_value('participants','ALL');
 					?></textarea>
 			</p>
+
+			<p class="input_p clear">
+				<label for="codes"><?php t("Codes"); ?><br>
+					<span class="form_comment"><?php t("Enter codes here (comma separated)."); ?></span>
+				</label>
+				<textarea name="codes" rows="5" class="sharif_input medium"><?php
+					if ($edit)
+						echo $edit_assignment['codes'];
+					else
+						echo set_value('codes','free');
+					?></textarea>
+			</p>
+
 			<p class="input_p clear">
 				<label for="tests"><?php t("Tests (zip file)"); ?><br>
 					<span class="form_comment">
