@@ -64,10 +64,10 @@ class Registera extends CI_Controller
 
 	public function index()
 	{
-
+		redirect('assignments');
 	}
 
-	public function buy($id)
+	public function register($id)
 	{
 		$data = array(
 			'username'=>$this->username,
@@ -82,7 +82,7 @@ class Registera extends CI_Controller
 		$data = array_merge($result, $data);
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/buy', $data);
+		$this->load->view('pages/registera', $data);
 		$this->load->view('templates/footer');
 	}
 

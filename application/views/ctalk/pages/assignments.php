@@ -67,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php if($item['allowed']): ?>
 						<span style="color: green;"><?php t("Allowed"); ?></span>
 					<?php else: ?>
-						<span style="color: red;"><a href="<?php echo site_url('registera/buy/'.$item['id']) ?>"><?php t("Buy"); ?></a></span>
+						<span style="color: red;"><a href="<?php echo site_url('registera/register/'.$item['id']) ?>"><?php t("Register"); ?></a></span>
 					<?php endif ?>
 					</div>
 					<?php if ($user_level>=2): ?>
