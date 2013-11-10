@@ -28,7 +28,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		{
 	?>
 
-
+<br><?php echo form_open('registera/codeactivate/'.$buy_assignment['id']); ?>
+<?php t("Activate With Code:"); ?><br>
+<?php t("Code"); ?> : <input type="text" name="code" /><br>
+<input type="submit" />
+</form><br>
 
 	<?php
 		}
@@ -44,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		{
 	?>
 
-	<br> <a href="<?php echo site_url('registera/freeactivate/'.$buy_assignment['id']) ?>"><?php t("Activate Free"); ?></a> <br>
+<br> <a href="<?php echo site_url('registera/freeactivate/'.$buy_assignment['id']) ?>"><?php t("Activate Free"); ?></a> <br>
 
 	<?php
 		}

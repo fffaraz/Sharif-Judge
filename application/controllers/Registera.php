@@ -96,4 +96,23 @@ class Registera extends CI_Controller
 		redirect('assignments');
 	}
 
+	public function codeactivate($id)
+	{
+		$result = $this->_checkstatus($id);
+		if($result['has_error'] == false && $result['show_code'] == true)
+		{
+			$code = $this->input->post('code');
+			if($this->assignment_model->is_validcode($this->buy_assignment['codes'], $code))
+			{
+				$this->assignment_model->add_participant($id, $this->username);
+			}
+			else
+			{
+				die('Invalid code');
+			}
+			
+		}
+		redirect('assignments');
+	}
+
 }

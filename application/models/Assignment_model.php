@@ -213,6 +213,18 @@ class Assignment_model extends CI_Model{
 		return FALSE;
 	}
 
+	public function is_validcode($codes, $testcode){
+		$codes = explode(',', $codes);
+		foreach ($codes as &$code){
+			$code = trim($code);
+		}
+		if(in_array('ALL', $codes))
+			return TRUE;
+		if(in_array($testcode, $codes))
+			return TRUE;
+		return FALSE;
+	}
+
 	public function add_participant($assignment_id, $participant)
 	{
 		$query = $this->db->get_where('assignments', array('id'=>$assignment_id));
