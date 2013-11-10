@@ -218,6 +218,19 @@ class Install extends CI_Controller
 			if ( ! $this->db->simple_query($query))
 				show_error("Error creating database table");
 
+			$query = "CREATE TABLE IF NOT EXISTS `".$this->db->dbprefix('registerlog')."` (
+				`id` int(11) NOT NULL AUTO_INCREMENT,
+				`username` varchar(20) NOT NULL,
+				`assignment` smallint(6) NOT NULL,
+				`time` datetime NOT NULL,
+				`code` varchar(50) NOT NULL,
+				`price` varchar(50) NOT NULL,
+				`result` varchar(256) NOT NULL,
+				PRIMARY KEY (`id`)
+				);";
+			if ( ! $this->db->simple_query($query))
+				show_error("Error creating database table");
+
 			$this->user_model->add_user(
 				$this->input->post('username'),
 				$this->input->post('email'),
