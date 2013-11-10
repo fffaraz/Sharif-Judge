@@ -94,6 +94,10 @@ class Install extends CI_Controller
 				`late_rule` text CHARACTER SET utf8 NOT NULL,
 				`participants` text CHARACTER SET utf8 NOT NULL,
 				`moss_update` varchar(30) CHARACTER SET utf8 NOT NULL DEFAULT 'Never',
+				`price` int(11) NOT NULL DEFAULT '0',
+				`codes` text,
+				`uselimit` int(11) NOT NULL DEFAULT '1000',
+				`usedcounter` int(11) NOT NULL DEFAULT '0',
 				PRIMARY KEY (`id`)
 				);";
 			if ( ! $this->db->simple_query($query))
