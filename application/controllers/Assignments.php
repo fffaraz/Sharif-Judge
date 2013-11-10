@@ -49,7 +49,8 @@ class Assignments extends CI_Controller
 
 		for ($i=0; $i < count($all_assignments); $i++) 
 		{ 
-			$all_assignments[$i]['allowed'] = mt_rand()%2;
+			$p = $this->assignment_model->assignment_info($all_assignments[$i]);
+			$all_assignments[$i]['allowed'] = $this->assignment_model->is_participant($p, $this->username);
 		}
 
 
