@@ -60,3 +60,5 @@ sudo -u judge pkill -9 -u judge
 
 # Return exitcode
 exit $EC
+
+
