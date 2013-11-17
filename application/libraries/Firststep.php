@@ -22,11 +22,13 @@ class Firststep
 		$ok = $user->{'uid'} !== 0 ? 1:0;
 
 		$CI =& get_instance();
-		$CI->load->driver('session');
-		$CI->load->model('user_model');
+		
 
 		if($ok)
 		{
+			$CI->load->driver('session');
+			$CI->load->model('user_model');
+
 			$username=$user->{'name'};
 
 			if(! $CI->user_model->have_user($username))
@@ -47,7 +49,6 @@ class Firststep
 		{
 			$CI->session->sess_destroy();
 			header("Location: ". $loginPage);
-			//echo '<script>window.location = "'.$loginPage.'"</script>';
 		}
 	}
 }
