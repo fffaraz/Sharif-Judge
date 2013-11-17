@@ -37,9 +37,9 @@ ulimit -t $TIMELIMITINT
 
 # Run the command with REAL TIME limit of TIMELIMITINT*2
 if $TIMEOUT_EXISTS; then
-	timeout -s9 $((TIMELIMITINT*2)) $CMD <$IN >out 2>err
+	sudo -u judge timeout -s9 $((TIMELIMITINT*2)) $CMD <$IN >out 2>err
 else
-	$CMD <$IN >out 2>err	
+	sudo -u judge $CMD <$IN >out 2>err	
 fi
 # You can run submitted codes as another user:
 #
@@ -56,7 +56,7 @@ EC=$?
 
 # KILL all process of another_user (A process may still be alive!)
 # If you are running codes as another_user, also uncomment this line:
-#sudo -u another_user pkill -9 -u another_user
+sudo -u judge pkill -9 -u judge
 
 # Return exitcode
 exit $EC
