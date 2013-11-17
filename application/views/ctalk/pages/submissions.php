@@ -217,7 +217,7 @@ $finish = strtotime($assignment['finish_time']);
 				<?php endif ?>
 					<td><?php
 						$pi = $this->assignment_model->problem_info($assignment['id'],$item['problem']);
-						echo '<a title="<?php tt("Filter Submissions by This Problem"); ?>" href="'.site_url('submissions/'.$view.($filter_user?'/user/'.$filter_user:'').'/problem/'.$item['problem']).'"><span dir>'.$pi['name'].'</span> <span>('.$item['problem'].')</span></a>';
+						echo '<a title="'.tr("Filter Submissions by This Problem").'" href="'.site_url('submissions/'.$view.($filter_user?'/user/'.$filter_user:'').'/problem/'.$item['problem']).'"><span dir>'.$pi['name'].'</span> <span>('.$item['problem'].')</span></a>';
 					?></td>
 					<td><?php echo $item['time'] ?></td>
 					<td><?php
