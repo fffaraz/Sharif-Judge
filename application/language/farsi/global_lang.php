@@ -280,7 +280,7 @@ $lang['Free Activation'] = "فعال سازی رایگان";
 $lang['Allowed'] = "مجاز";
 
 $lang['Register Assignment'] = "ثبت نام مسابقه";
-$lang[''] = "";
+$lang['Latest Notifications'] = "آخرین اطلاعیه ها";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";

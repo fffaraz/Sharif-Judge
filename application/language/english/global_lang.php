@@ -270,7 +270,7 @@ $lang['Selected assignment has finished.'] = "Selected assignment has finished."
 $lang['You are not registered for submitting.'] = "You are not registered for submitting.";
 $lang['You have already submitted for this problem. Your last submission is still in queue.'] = "You have already submitted for this problem. Your last submission is still in queue.";
 
-$lang[''] = "";
+$lang['Latest Notifications'] = "Latest Notifications";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
