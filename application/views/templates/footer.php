@@ -6,6 +6,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+</div>
 <script>
 	var check_for_notifications = false; // Set to true if you want to enable checking for new notifications
 	var notif_check_time = null;

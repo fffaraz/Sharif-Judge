@@ -22,5 +22,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel='stylesheet' type='text/css' href='<?php echo base_url("assets-fa/nano_scroller/nanoscroller.css") ?>'/>
 	<script type='text/javascript' src="<?php echo base_url("assets-fa/nano_scroller/jquery.nanoscroller.min.js") ?>"></script>
 </head>
-<body id="body" class="nano">
+<body id="body" class="bodystep">
 <div class="content">

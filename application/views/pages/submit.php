@@ -54,6 +54,7 @@ else
 
 <?php $this->view('templates/top_bar'); ?>
 <?php $this->view('templates/side_bar',array('selected'=>'submit')); ?>
+<?php $this->view('templates/menu_bar'); ?>
 <?php $now = shj_now(); ?>
 
 <div id="main_container">
