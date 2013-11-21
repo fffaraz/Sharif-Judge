@@ -121,7 +121,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>
 				<li <?php echo $position ?>>
 					<div class="shj_widget">
-						<div class="widget_title"><i class="splashy-comments"></i> Latest Notifications</div>
+						<div class="widget_title"><i class="splashy-comments"></i> <?php tt('Latest Notifications'); ?></div>
 						<div class="widget_scrollable nano">
 							<div class="content">
 								<?php $this->view('pages/list_notifications',array('type'=>'latest')) ?>

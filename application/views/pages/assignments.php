@@ -39,8 +39,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="assignment_item">
 					<div class="assignment_subitem"><?php echo $item['name'] ?></div>
-					<div class="assignment_subitem"><?php echo $item['problems'] ?> <?php tt("problem"); ?><?php echo $item['problems']!=1?'s':'' ?></div>
-					<div class="assignment_subitem"><?php echo $item['total_submits'] ?> <?php tt("submit"); ?><?php echo $item['total_submits']!=1?'s':'' ?></div>
+					<div class="assignment_subitem"><?php echo $item['problems'] ?> <?php tt("problem"); ?></div>
+					<div class="assignment_subitem"><?php echo $item['total_submits'] ?> <?php tt("submit"); ?></div>
 					<div class="assignment_subitem"><?php
 						$extra_time = $item['extra_time'];
 						$delay = shj_now()-strtotime($item['finish_time']);;
