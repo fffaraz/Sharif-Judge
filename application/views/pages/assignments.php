@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="main_container">
 
 	<div id="page_title">
-		<img src="<?php echo base_url('assets/images/icons/assignments.png') ?>"/>
+		<img src="<?php echo base_url('assets-fa/images/icons/assignments.png') ?>"/>
 		<span><?php tt($title); ?></span>
 		<?php if ($user_level>=2): ?>
 		<span class="title_menu_item"><a href="<?php echo site_url('assignments/add') ?>"><i class="splashy-add_small"></i> <?php tt("Add"); ?></a></span>
@@ -61,6 +61,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<span style="color: green;"><?php tt("Open"); ?></span>
 					<?php else: ?>
 						<span style="color: red;"><?php tt("Close"); ?></span>
+					<?php endif ?>
+					</div>
+					<div class="assignment_subitem">
+					<?php if($item['allowed']): ?>
+						<span style="color: green;"><?php tt("Allowed"); ?></span>
+					<?php else: ?>
+						<span style="color: red;"><a href="<?php echo site_url('registera/register/'.$item['id']) ?>"><?php tt("Register"); ?></a></span>
 					<?php endif ?>
 					</div>
 					<?php if ($user_level>=2): ?>

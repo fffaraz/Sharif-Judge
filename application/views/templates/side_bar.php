@@ -7,7 +7,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<script type="text/javascript" src="<?php echo base_url("assets/js/shj_functions.js") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets-fa/js/shj_functions.js") ?>"></script>
 
 <script type= "text/javascript">
 	// difference of server and browser time:
@@ -79,7 +79,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 
 		<div class="side_box">
+			<a href="<?php echo site_url('registera') ?>"><li <?php echo ($selected=='registera'?'class="selected"':'') ?>><i class="splashy-folder_modernist_opened"></i><span class="sidebar_text"><?php tt('Register Assignment'); ?></span></li></a>
+		</div>
+
+		<div class="side_box">
 			<a href="<?php echo site_url('assignments') ?>"><li <?php echo ($selected=='assignments'?'class="selected"':'') ?>><i class="splashy-folder_modernist_opened"></i><span class="sidebar_text"><?php tt('Assignments'); ?></span></li></a>
+		</div>
+
+		<div class="side_box">
+			<a href="<?php echo site_url('problems') ?>"><li <?php echo ($selected=='problems'?'class="selected"':'') ?>><i class="splashy-folder_modernist_opened"></i><span class="sidebar_text"><?php tt('Problems'); ?></span></li></a>
 		</div>
 
 		<div class="side_box">

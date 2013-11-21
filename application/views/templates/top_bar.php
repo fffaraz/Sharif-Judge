@@ -88,13 +88,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 	<div id="shj_logo">
 		<a href="<?php echo site_url('/'); ?>">
-			<img src="<?php echo base_url('assets/images/logo_small.png'); ?>"/>
-			<img src="<?php echo base_url('assets/images/banner_small.png'); ?>"/>
+			<img src="<?php echo base_url('assets-fa/images/logo_small.png'); ?>"/>
+			<img src="<?php echo base_url('assets-fa/images/banner_small.png'); ?>"/>
 		</a>
 	</div>
 	<?php if ($user_level >= 2): ?>
 	<div class="top_object shj_menu top_left" id="admin_tools_top">
-		<?php tt('Tools'); ?>
+		Tools
 		<div class="top_menu" id="admin_tools_menu">
 			<a href="<?php echo site_url('rejudge') ?>"><div><?php tt('Rejudge'); ?></div></a>
 			<a href="<?php echo site_url('queue') ?>"><div><?php tt('Submission Queue'); ?></div></a>

@@ -7,9 +7,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-ui-1.10.3.custom.min.js") ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-ui-timepicker-addon.js") ?>"></script>
-<link rel="stylesheet" href="<?php echo base_url("assets/styles/flick/jquery-ui-1.10.3.custom.min.css") ?>"/>
+<script type="text/javascript" src="<?php echo base_url("assets-fa/js/jquery-ui-1.10.3.custom.min.js") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets-fa/js/jquery-ui-timepicker-addon.js") ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url("assets-fa/styles/flick/jquery-ui-1.10.3.custom.min.css") ?>"/>
 
 <script>
 	var numOfProblems=<?php echo count($problems); ?>;
@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="main_container">
 
 	<div id="page_title">
-		<img src="<?php echo base_url('assets/images/icons/add.png') ?>"/>
+		<img src="<?php echo base_url('assets-fa/images/icons/add.png') ?>"/>
 		<span><?php tt($title); ?></span>
 		<span class="title_menu_item">
 			<a href="http://docs.sharifjudge.ir/add_assignment" target="_blank"><i class="splashy-help"></i> Help</a>
@@ -132,6 +132,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>" />
 				<?php echo form_error('extra_time','<div class="shj_error">','</div>'); ?>
 			</p>
+
+
+			<p class="input_p clear">
+				<label for="price">
+					<?php tt("Price"); ?><br>
+				</label>
+				<input type="text" name="price" id="price" class="sharif_input medium" value="<?php
+					if ($edit){
+						$price = $edit_assignment['price'];
+						echo $price;
+					}
+					else
+						echo set_value('price');
+				?>" />
+				<?php echo form_error('price','<div class="shj_error">','</div>'); ?>
+			</p>
+
+			<p class="input_p clear">
+				<label for="uselimit">
+					<?php tt("use limit"); ?><br>
+				</label>
+				<input type="text" name="uselimit" id="uselimit" class="sharif_input medium" value="<?php
+					if ($edit){
+						$uselimit = $edit_assignment['uselimit'];
+						echo $uselimit;
+					}
+					else
+						echo set_value('uselimit');
+				?>" />
+				<?php echo form_error('uselimit','<div class="shj_error">','</div>'); ?>
+			</p>
+
+			<p class="input_p clear">
+				<label for="usedcounter">
+					<?php tt("used counter"); ?><br>
+				</label>
+				<input type="text" name="usedcounter" id="usedcounter" class="sharif_input medium" value="<?php
+					if ($edit){
+						$usedcounter = $edit_assignment['usedcounter'];
+						echo $usedcounter;
+					}
+					else
+						echo set_value('usedcounter');
+				?>" />
+				<?php echo form_error('usedcounter','<div class="shj_error">','</div>'); ?>
+			</p>
+
+
+
 			<p class="input_p clear">
 				<label for="participants"><?php tt("Participants"); ?><br>
 					<span class="form_comment"><?php tt("Enter username of participants here (comma separated)."); ?>
@@ -144,6 +193,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						echo set_value('participants','ALL');
 					?></textarea>
 			</p>
+
+			<p class="input_p clear">
+				<label for="codes"><?php tt("Codes"); ?><br>
+					<span class="form_comment"><?php tt("Enter codes here (comma separated)."); ?></span>
+				</label>
+				<textarea name="codes" rows="5" class="sharif_input medium"><?php
+					if ($edit)
+						echo $edit_assignment['codes'];
+					else
+						echo set_value('codes','free');
+					?></textarea>
+			</p>
+
 			<p class="input_p clear">
 				<label for="tests"><?php tt("Tests (zip file)"); ?><br>
 					<span class="form_comment">

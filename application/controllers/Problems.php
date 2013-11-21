@@ -43,16 +43,7 @@ class Problems extends CI_Controller
 
 	public function index()
 	{
-		if ( ! $this->assignment_model->is_participant($this->assignment['participants'], $this->username) )
-			show_error(tr('You are not registered for submitting.'));
-		else
-		{
-			for ($i=0; $i < count($this->problems); $i++) 
-			{ 
-				$this->problems[$i]['question'] = $this->_getQuestion($this->problems[$i]['id']);
-			}
-
-			$data = array(
+		$data = array(
 				'username' => $this->username,
 				'user_level' => $this->user_level,
 				'all_assignments' => $this->assignment_model->all_assignments(),
@@ -62,6 +53,22 @@ class Problems extends CI_Controller
 				'success_messages' => $this->success_messages,
 				'error_messages' => $this->error_messages
 			);
+
+		if ( ! $this->assignment_model->is_participant($this->assignment['participants'], $this->username) )
+		{
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/top_bar');
+			$this->load->view('templates/side_bar',array('selected'=>'problems'));
+			$data['error_messages'] = 'You are not registered for submitting.';
+			$this->load->view('errors/error_general', $data);
+			$this->load->view('templates/footer');
+		}
+		else
+		{
+			for ($i=0; $i < count($this->problems); $i++) 
+			{ 
+				$this->problems[$i]['question'] = $this->_getQuestion($this->problems[$i]['id']);
+			}
 
 			$this->form_validation->set_rules('assignment_select', 'Assignment', 'required|integer|greater_than[0]');
 

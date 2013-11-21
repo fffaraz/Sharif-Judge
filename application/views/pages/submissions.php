@@ -7,10 +7,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<script type="text/javascript" src="<?php echo base_url("assets/jquery-syntax/jquery.syntax.min.js") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets-fa/jquery-syntax/jquery.syntax.min.js") ?>"></script>
 
-<link rel='stylesheet' type='text/css' href='<?php echo base_url("assets/reveal/reveal.css") ?>'/>
-<script type='text/javascript' src="<?php echo base_url("assets/reveal/jquery.reveal.js") ?>"></script>
+<link rel='stylesheet' type='text/css' href='<?php echo base_url("assets-fa/reveal/reveal.css") ?>'/>
+<script type='text/javascript' src="<?php echo base_url("assets-fa/reveal/jquery.reveal.js") ?>"></script>
 
 <script>
 	$(document).ready(function(){
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$('#shj_modal').reveal(
 				{
 					on_close_modal: function(){
-						$(".modal_inside").html('<div style="text-align: center;">Loading<br><img src="<?php echo base_url('assets/images/loading.gif') ?>"/></div>');
+						$(".modal_inside").html('<div style="text-align: center;">Loading<br><img src="<?php echo base_url('assets-fa/images/loading.gif') ?>"/></div>');
 						view_code_request.abort();
 					}
 				}
@@ -106,7 +106,7 @@ $finish = strtotime($assignment['finish_time']);
 <div id="main_container">
 
 	<div id="page_title">
-		<img src="<?php echo base_url("assets/images/icons/{$view}_submissions.png") ?>"/>
+		<img src="<?php echo base_url("assets-fa/images/icons/{$view}_submissions.png") ?>"/>
 		<span><?php tt($title); ?></span>
 		<span class="title_menu_item">
 			<a href="<?php echo $excel_link ?>"><i class="splashy-document_small_download"></i> <?php tt("Excel"); ?></a>
@@ -330,7 +330,7 @@ $finish = strtotime($assignment['finish_time']);
 
 <div id="shj_modal" class="reveal-modal xlarge">
 	<div class="modal_inside">
-		<div style="text-align: center;"><?php tt("Loading"); ?><br><img src="<?php echo base_url('assets/images/loading.gif') ?>"/></div>
+		<div style="text-align: center;"><?php tt("Loading"); ?><br><img src="<?php echo base_url('assets-fa/images/loading.gif') ?>"/></div>
 	</div>
 	<a class="close-reveal-modal">&#215;</a>
 </div>

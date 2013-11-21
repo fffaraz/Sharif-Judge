@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="main_container">
 
 	<div id="page_title">
-		<img src="<?php echo base_url('assets/images/icons/delete_submissions.png') ?>"/>
+		<img src="<?php echo base_url('assets-fa/images/icons/delete_submissions.png') ?>"/>
 		<span><?php tt($title); ?></span>
 	</div>
 
