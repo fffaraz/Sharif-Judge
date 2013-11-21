@@ -66,19 +66,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="top_object countdown" id="countdown">
 		<div class="time_block">
 			<span id="time_days"></span><br>
-			<span class="time_label"><?php tt('day'); ?></span><span class="time_label" id="days_label">s</span>
+			<span class="time_label"><?php tt('day'); ?></span><span class="time_label" id="days_label"></span>
 		</div>
 		<div class="time_block">
 			<span id="time_hours"></span><br>
-			<span class="time_label"><?php tt('hour'); ?></span><span class="time_label" id="hours_label">s</span>
+			<span class="time_label"><?php tt('hour'); ?></span><span class="time_label" id="hours_label"></span>
 		</div>
 		<div class="time_block">
 			<span id="time_minutes"></span><br>
-			<span class="time_label"><?php tt('minute'); ?></span><span class="time_label" id="minutes_label">s</span>
+			<span class="time_label"><?php tt('minute'); ?></span><span class="time_label" id="minutes_label"></span>
 		</div>
 		<div class="time_block">
 			<span id="time_seconds"></span><br>
-			<span class="time_label"><?php tt('second'); ?></span><span class="time_label" id="seconds_label">s</span>
+			<span class="time_label"><?php tt('second'); ?></span><span class="time_label" id="seconds_label"></span>
 		</div>
 	</div>
 	<div class="top_object countdown" id="extra_time">
