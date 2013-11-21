@@ -254,7 +254,7 @@ $finish = strtotime($assignment['finish_time']);
 
 						echo '<span style="font-size: 80%; opacity:0.7; '.($neg?'':'color:red;').'">';
 						if ($delay === 0)
-							t('No Delay');
+							tt('No Delay');
 						else
 							echo '<span title="Hours">'.$h.'</span>:<span title="Minutes">'.$m.'</span>';
 						echo '</span><br>';
