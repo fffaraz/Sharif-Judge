@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?php elseif (!isset($scoreboard)): ?>
 		<p><?php tt("Scoreboard is disabled."); ?></p>
 		<?php else: ?>
-			<p>Scoreboard of <?php echo $assignment['name'] ?></p>
+			<p><?php tt("Scoreboard of"); ?> <?php echo $assignment['name'] ?></p>
 			<?php //print_r($scoreboard) ?>
 			<table class="sharif_table">
 				<thead>
@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php foreach ($problems as $problem): ?>
 						<th><?php echo "Problem ".$problem['id']."<br>(".$problem['name'].")" ?></th>
 					<?php endforeach ?>
-					<th>Total</th>
+					<th><?php tt("Total"); ?></th>
 				</tr>
 				</thead>
 				<?php $i=0; ?>
