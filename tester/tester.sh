@@ -80,9 +80,10 @@ fi
 
 LOG="$PROBLEMPATH/$UN/log"; echo "" >>$LOG
 function judge_log {
-	#echo -e "$1"
+	echo -e "$1"
 	if $LOG_ON; then
 		echo -e "$@" >>$LOG 
+		echo -e "$@"
 	fi
 }
 
@@ -228,12 +229,12 @@ if [ "$EXT" = "c" ] || [ "$EXT" = "cpp" ]; then
 			cp ../shield/def$EXT.h def.h
 			# adding define to beginning of code:
 			echo '#define main themainmainfunction' | cat - code.c > thetemp && mv thetemp code.c
-			$COMPILER shield.$EXT -fno-asm -Dasm=error -lm -O2 -o $EXEFILE >/dev/null 2>cerr
+			$COMPILER shield.$EXT -fno-asm -Dasm=error -lm -O2 -o $EXEFILE 2>cerr
 			EXITCODE=$?
 		fi
 	else
 		mv code.c code.$EXT
-		$COMPILER code.$EXT -fno-asm -Dasm=error -lm -O2 -o $EXEFILE >/dev/null 2>cerr
+		$COMPILER code.$EXT -fno-asm -Dasm=error -lm -O2 -o $EXEFILE 2>cerr
 		EXITCODE=$?
 	fi
 	judge_log "Compiled. Exit Code=$EXITCODE"

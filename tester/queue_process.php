@@ -204,6 +204,7 @@ do {
 
 	// running tester (judging the code)
 	$output = shell_exec($cmd);
+	echo $output . "\r\n\r\n";
 
 
 	// removing shield from python source if shield is on for python
