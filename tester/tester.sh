@@ -80,10 +80,10 @@ fi
 
 LOG="$PROBLEMPATH/$UN/log"; echo "" >>$LOG
 function judge_log {
-	echo -e "$1"
+	#echo -e "$1"
 	if $LOG_ON; then
 		echo -e "$@" >>$LOG 
-		echo -e "$@"
+	#	echo -e "$@"
 	fi
 }
 
