@@ -54,6 +54,17 @@ class Problems extends CI_Controller
 				'error_messages' => $this->error_messages
 			);
 
+		if(!isset($this->assignment['participants']))
+		{
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/top_bar', $data);
+			$this->load->view('templates/side_bar',array('selected'=>'problems'));
+			$data['error_messages'] = 'You are not registered for submitting.';
+			$this->load->view('errors/error_general', $data);
+			$this->load->view('templates/footer');
+			return;
+		}
+
 		if ( ! $this->assignment_model->is_participant($this->assignment['participants'], $this->username) )
 		{
 			$this->load->view('templates/header', $data);
