@@ -4,7 +4,7 @@ class Firststep
 {
 	function Firststep()
 	{
-		$loginPage = 'http://www.firststep.ir/user/login';
+		$loginPage = 'http://www.firststep.ir/user/login?destination=http://www.firststep.ir/judge';
 
 		chdir("..");
 		global $base_url;
@@ -22,11 +22,11 @@ class Firststep
 		$ok = $user->{'uid'} !== 0 ? 1:0;
 
 		$CI =& get_instance();
+		$CI->load->driver('session');
 		
-
 		if($ok)
 		{
-			$CI->load->driver('session');
+			
 			$CI->load->model('user_model');
 
 			$username=$user->{'name'};
