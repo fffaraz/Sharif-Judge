@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php $this->view('templates/top_bar'); ?>
 <?php $this->view('templates/side_bar',array('selected'=>'notifications')); ?>
+<?php $this->view('templates/menu_bar'); ?>
 
 <script type='text/javascript' src="<?php echo base_url("assets-fa/tinymce/tinymce.min.js") ?>"></script>
 

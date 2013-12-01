@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php $this->view('templates/top_bar'); ?>
 <?php $this->view('templates/side_bar',array('selected'=>'scoreboard')); ?>
+<?php $this->view('templates/menu_bar'); ?>
 
 <div id="main_container">
 

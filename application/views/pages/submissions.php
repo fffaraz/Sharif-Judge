@@ -99,6 +99,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php $this->view('templates/top_bar'); ?>
 <?php $this->view('templates/side_bar',array('selected'=>"{$view}_submissions")); ?>
+<?php $this->view('templates/menu_bar'); ?>
 <?php
 $finish = strtotime($assignment['finish_time']);
 ?>
