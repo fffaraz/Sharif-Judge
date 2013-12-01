@@ -37,7 +37,7 @@ $.ajax({
 
 	success: function(e)
 	{
-		$('#question').text(e);
+		$('#question').html(e);
 	}
 });
 }

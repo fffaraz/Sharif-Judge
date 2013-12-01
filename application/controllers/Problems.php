@@ -80,6 +80,7 @@ class Problems extends CI_Controller
 			{ 
 				$this->problems[$i]['question'] = $this->_getQuestion($this->problems[$i]['id']);
 			}
+			$data['all_problems'] = $this->problems;
 
 			$this->form_validation->set_rules('assignment_select', 'Assignment', 'required|integer|greater_than[0]');
 
