@@ -386,7 +386,7 @@ class Assignments extends CI_Controller
 		elseif ($this->upload->do_upload('tests'))
 		{
 			$this->load->library('unzip');
-			$this->unzip->allow(array('txt', 'cpp'));
+			$this->unzip->allow(array('txt', 'cpp', 'html'));
 			if ( ! file_exists($assignment_dir))
 				mkdir($assignment_dir, 0700);
 			$u_data = $this->upload->data();
