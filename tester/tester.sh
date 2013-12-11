@@ -198,6 +198,8 @@ fi
 ########################################################################################################
 ############################################ COMPILING C/C++ ###########################################
 ########################################################################################################
+COMPILERPAR = "-Wno-return-type -Wno-implicit-int -fno-asm -Dasm=error -lm -O2"
+
 if [ "$EXT" = "c" ] || [ "$EXT" = "cpp" ]; then
 	COMPILER="gcc"
 	if [ "$EXT" = "cpp" ]; then
@@ -228,13 +230,13 @@ if [ "$EXT" = "c" ] || [ "$EXT" = "cpp" ]; then
 			cp ../shield/shield.$EXT shield.$EXT
 			cp ../shield/def$EXT.h def.h
 			# adding define to beginning of code:
-			echo '#define main themainmainfunction' | cat - code.c > thetemp && mv thetemp code.c
-			$COMPILER shield.$EXT -fno-asm -Dasm=error -lm -O2 -o $EXEFILE 2>cerr
+			echo '#define main2 themainmainfunction' | cat - code.c > thetemp && mv thetemp code.c
+			$COMPILER shield.$EXT $COMPILERPAR -o $EXEFILE 2>cerr
 			EXITCODE=$?
 		fi
 	else
 		mv code.c code.$EXT
-		$COMPILER code.$EXT -fno-asm -Dasm=error -lm -O2 -o $EXEFILE 2>cerr
+		$COMPILER code.$EXT $COMPILERPAR -o $EXEFILE 2>cerr
 		EXITCODE=$?
 	fi
 	judge_log "Compiled. Exit Code=$EXITCODE"
