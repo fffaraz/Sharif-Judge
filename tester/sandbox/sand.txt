@@ -1,1 +1,0 @@
-$sand .= ' -l cpu='.escapeshellarg(($this->task->cpulimit)*1000).' -l memory='.escapeshellarg($this->task->memlimit).' -l disk=512000 '.escapeshellarg($binfile);
