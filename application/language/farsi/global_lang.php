@@ -293,7 +293,7 @@ $lang['All'] = "همه ی";
 
 $lang['Scoreboard of'] = "لیست رتبه بندی";
 $lang['Total'] = "کل";
-$lang[''] = "";
+$lang['Tools'] = "ابزار ها";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
