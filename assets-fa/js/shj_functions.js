@@ -19,7 +19,7 @@ function update_clock(){
 	}
 	time = moment();
 	var now = moment().add('milliseconds',offset);
-	$('.timer').html('Server Time: '+now.format('MMM DD - HH:mm:ss'));
+	$('.timer').html('ساعت سرور: '+now.format('MMM DD - HH:mm:ss'));
 	var countdown = finish_time.diff(now);
 	if (countdown<=0 && countdown + extra_time.asMilliseconds()>=0){
 		countdown = countdown + extra_time.asMilliseconds();

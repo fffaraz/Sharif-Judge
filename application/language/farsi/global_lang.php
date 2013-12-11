@@ -281,9 +281,11 @@ $lang['Allowed'] = "مجاز";
 
 $lang['Register Assignment'] = "ثبت نام مسابقه";
 $lang['Latest Notifications'] = "آخرین اطلاعیه ها";
-$lang[''] = "";
-$lang[''] = "";
-$lang[''] = "";
+
+$lang['Selected assignment'] = "مسابقه انتخاب شده";
+$lang['Coefficient'] = "امتیاز";
+$lang['File'] = "فایل";
+
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";

@@ -78,8 +78,8 @@ else
 		<?php elseif ( !$this->assignment_model->is_participant($assignment['participants'],$username) ): ?>
 			<p><?php tt("You are not registered for submitting."); ?></p>
 		<?php else: ?>
-			<p>Selected assignment: <?php echo $assignment['name'] ?></p>
-			<p>Coefficient: <?php
+			<p><?php tt("Selected assignment"); ?>: <?php echo $assignment['name'] ?></p>
+			<p><?php tt("Coefficient"); ?>: <?php
 				$extra_time = $assignment['extra_time'];
 				$delay = shj_now()-strtotime($assignment['finish_time']);;
 				ob_start();
@@ -94,7 +94,7 @@ else
 			<p class="input_p">
 				<label for="problem" class="tiny"><?php tt("Problem:"); ?></label>
 				<select id="problems" name ="problem" class="sharif_input">
-					<option value="0" selected="selected">-- Select One --</option>
+					<option value="0" selected="selected">-- انتخاب کنید --</option>
 					<?php foreach ($problems as $problem): ?>
 						<option value="<?php echo $problem['id'] ?>"><?php echo $problem['name'] ?></option>
 					<?php endforeach ?>
@@ -104,12 +104,12 @@ else
 			<p class="input_p">
 				<label for="problem" class="tiny"><?php tt("Language:"); ?></label>
 				<select id="languages" name="language" class="sharif_input">
-					<option value="0" selected="selected">-- Select One --</option>
+					<option value="0" selected="selected">-- انتخاب کنید --</option>
 				</select>
 				<?php echo form_error('language','<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<label for="userfile" class="tiny">File:</label>
+				<label for="userfile" class="tiny"><?php tt("File"); ?>:</label>
 				<input type="file" id="file" class="sharif_input medium" name="userfile" />
 				<?php if ($upload_state==='error'): ?>
 				<div class="shj_error"><?php tt("Error uploading file."); ?></div>
