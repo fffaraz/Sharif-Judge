@@ -288,10 +288,10 @@ $lang['File'] = "فایل";
 
 $lang['assignment_help'] = "پیش از ارسال پاسخ لازم است در چالش ثبت نام کرده و از انتهای ردیف آن را انتخاب کنید.";
 $lang['Delay'] = "تاخیر";
-$lang['Final Score'] = "امتیز نهایی";
+$lang['Final Score'] = "امتیاز نهایی";
 $lang['All'] = "همه ی";
 
-$lang['Scoreboard of'] = "لست رتبه بندی";
+$lang['Scoreboard of'] = "لیست رتبه بندی";
 $lang['Total'] = "کل";
 $lang[''] = "";
 $lang[''] = "";
