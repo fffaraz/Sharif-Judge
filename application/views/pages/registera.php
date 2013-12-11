@@ -25,6 +25,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		t($error);
 	else
 	{
+	?>
+
+	<?php
+		if($show_free)
+		{
+	?>
+
+<br>
+<?php tt('Participation in this assignment is free.'); ?>
+<br> <a href="<?php echo site_url('registera/freeactivate/'.$buy_assignment['id']) ?>"><?php tt("Free Activation"); ?></a> <br>
+
+	<?php
+		}
+		?>
+
+	<?php
+		if($show_buy)
+		{
+	?>
+
+<br>
+<?php tt('Participation in this assignment requires payment.'); ?>
+<br> <?php tt("Price"); ?> : <?php echo $buy_assignment['price'];?><br>
+<a href="<?php echo site_url('registera/buyactivate/'.$buy_assignment['id']) ?>"><?php tt("Pay"); ?></a> <br>
+
+	<?php		
+		}
+	?>
+
+	<?php
 		if($show_code)
 		{
 	?>
@@ -37,27 +67,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<?php
 		}
-		if($show_buy)
-		{
-	?>
+		?>
 
-<br>
-<?php tt('Participation in this assignment requires payment.'); ?>
-<br> <?php tt("Price"); ?> : <?php echo $buy_assignment['price'];?><br>
-<a href="<?php echo site_url('registera/buyactivate/'.$buy_assignment['id']) ?>"><?php tt("Pay"); ?></a> <br>
 
-	<?php		
-		}
-		if($show_free)
-		{
-	?>
 
-<br>
-<?php tt('Participation in this assignment is free.'); ?>
-<br> <a href="<?php echo site_url('registera/freeactivate/'.$buy_assignment['id']) ?>"><?php tt("Free Activation"); ?></a> <br>
-
-	<?php
-		}
+		<?php
 	}
 	?>
 
