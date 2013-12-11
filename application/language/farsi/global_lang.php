@@ -234,11 +234,11 @@ $lang['Add'] = "افزودن";
 
 $lang['No assignment is selected.'] = "مسابقه ای انتخاب نشده است.";
 $lang['Name'] = "نام";
-$lang['This assignment is finished. You cannot change your final submissions.'] = "This assignment is finished. You cannot change your final submissions.";
+$lang['This assignment is finished. You cannot change your final submissions.'] = "آزمون تمام شده است. نمی توانید انتخاب نهایی خود را عوض کنید";
 $lang['Remove Username Filter'] = "حذف محدودیت نام کاربری";
 $lang['Remove Problem Filter'] = "حذف محدودیت مساله";
 $lang['Submissions of'] = "ثبت شده های";
-$lang['You cannot change your final submissions after assignment finishes.'] = "You cannot change your final submissions after assignment finishes.";
+$lang['You cannot change your final submissions after assignment finishes.'] = "بعد از تمام شدن آزمون نمی توانید انتخاب نهایی خود را عوض کنید";
 $lang['Final'] = "نهایی";
 $lang['submit ID'] = "ID ثبت";
 $lang['Problem'] = "مساله";
@@ -286,7 +286,19 @@ $lang['Selected assignment'] = "مسابقه انتخاب شده";
 $lang['Coefficient'] = "امتیاز";
 $lang['File'] = "فایل";
 
+$lang['assignment_help'] = "پیش از ارسال پاسخ لازم است در چالش ثبت نام کرده و از انتهای ردیف آن را انتخاب کنید.";
+$lang['Delay'] = "تاخیر";
+$lang['Final Score'] = "امتیز نهایی";
+$lang['All'] = "همه ی";
+
+$lang['Scoreboard of'] = "لست رتبه بندی";
+$lang['Total'] = "کل";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+

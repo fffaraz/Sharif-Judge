@@ -23,6 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="main_content">
 
+	<?php tt("assignment_help");?><br>
+
 		<?php foreach ($success_messages as $success_message): ?>
 			<p class="shj_ok"><?php tt($success_message); ?></p>
 		<?php endforeach ?>

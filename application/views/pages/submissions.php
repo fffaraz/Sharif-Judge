@@ -125,7 +125,7 @@ $finish = strtotime($assignment['finish_time']);
 	</div>
 
 	<div id="main_content">
-		<p><?php echo ucfirst($view); ?> <?php tt("Submissions of"); ?> <?php echo $assignment['name']; ?></p>
+		<p><?php tt(ucfirst($view)); ?> <?php tt("Submissions of"); ?> <?php echo $assignment['name']; ?></p>
 		<?php if ($view == "all"): ?>
 		<p><i class="splashy-warning_triangle"></i> <?php tt("You cannot change your final submissions after assignment finishes."); ?></p>
 		<?php endif ?>

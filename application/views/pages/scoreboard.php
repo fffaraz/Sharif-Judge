@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<tr>
 					<th>#</th><th><?php tt("Username"); ?></th><th><?php tt("Name"); ?></th>
 					<?php foreach ($problems as $problem): ?>
-						<th><?php echo "Problem ".$problem['id']."<br>(".$problem['name'].")" ?></th>
+						<th><?php echo "سوال ".$problem['id']."<br>(".$problem['name'].")" ?></th>
 					<?php endforeach ?>
 					<th><?php tt("Total"); ?></th>
 				</tr>

@@ -119,7 +119,7 @@ else
 				<?php echo $this->upload->display_errors('<div class="shj_error">','</div>'); ?>
 			</p>
 			<p class="input_p">
-				<input type="submit" value="Submit" class="sharif_input"/>
+				<input type="submit" value="ارسال" class="sharif_input"/>
 			</p>
 			</form>
 		<?php endif ?>
