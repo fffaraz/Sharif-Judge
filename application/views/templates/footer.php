@@ -39,5 +39,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	});
 </script>
 </div>
+<img src="http://www.firststep.ir/sites/all/themes/ctalk/images/footer.png" />
 </body>
 </html>

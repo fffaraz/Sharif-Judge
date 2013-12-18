@@ -4,7 +4,7 @@ class Firststep
 {
 	function Firststep()
 	{
-		$loginPage = 'http://www.firststep.ir/user/login?current=judge';
+		$loginPage = 'http://www.firststep.ir/user/login?destination=chalesh';
 
 		chdir("..");
 		global $base_url;

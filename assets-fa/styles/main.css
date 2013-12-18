@@ -44,11 +44,11 @@ code {
 /********************************************/
 div#header_full {
 	background: url(../images/header_bg.png) white;
-	height: 130px;
+	height: 160px;
 }
 div#header_bar {
 	background: url(../images/header.png) white;
-	height: 130px;
+	height: 160px;
 	width: 1000px;
 	margin: auto;
 }
@@ -83,7 +83,8 @@ div#menu_bar {
 	float: right;
 	padding: 0;
 	z-index: 40;
-	width: 180px;
+	width: 172px;
+	margin-top: 13px;
 	height: 100%;
 	min-height:300px;
 	color: #f0f0f0;
@@ -275,10 +276,14 @@ div#main_step {
 div#main_container {
 	z-index: -1;
 	color: #414141;
-	margin-top: 37px;
+	margin-top: 13px;
 	margin-right: 180px;
 	background-color: white;
 	direction: rtl;
+	box-shadow: #A9A9A9 0 0 5px 2px;
+	-moz-box-shadow: #a9a9a9 0 0 5px 2px;
+	-webkit-box-shadow: #A9A9A9 0 0 5px 2px;
+	min-height: 300px;
 }
 
 div#page_title {
