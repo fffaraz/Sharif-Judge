@@ -133,6 +133,7 @@ class Assignment_model extends CI_Model{
 	 * Returns a list of all assignments and their information
 	 */
 	public function all_assignments(){
+		$this->db->order_by("id", "desc");
 		return $this->db->get('assignments')->result_array();
 	}
 
@@ -162,6 +163,7 @@ class Assignment_model extends CI_Model{
 
 
 	public function all_problems($assignment_id){
+		//$this->db->order_by("id", "desc");
 		return $this->db->get_where('problems', array('assignment'=>$assignment_id))->result_array();
 	}
 

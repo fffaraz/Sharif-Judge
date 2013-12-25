@@ -79,6 +79,9 @@ class Problems extends CI_Controller
 			for ($i=0; $i < count($this->problems); $i++) 
 			{ 
 				$this->problems[$i]['question'] = $this->_getQuestion($this->problems[$i]['id']);
+				$a1 = strpos($this->problems[$i]['question'], '<div class="qtitle">');
+				$a2 = strpos($this->problems[$i]['question'], '</div>', $a1);
+				$this->problems[$i]['qtitle'] = substr($this->problems[$i]['question'], $a1 + 20, $a2-$a1-20 );
 			}
 			$data['all_problems'] = $this->problems;
 

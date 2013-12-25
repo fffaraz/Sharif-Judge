@@ -23,14 +23,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?php if (count($all_problems)==0): ?>
 			<p style="text-align: center;"><?php tt("Nothing to show..."); ?></p>
 		<?php endif ?>
+
 		<?php foreach($all_problems as $item): ?>
+
 			<div class="assignment_block" id="<?php echo $item['id'] ?>">
 				<div class="assignment_item">
 					<div class="assignment_subitem"><?php echo $item['id'] ?></div>
 					<div class="assignment_subitem"><?php echo $item['name'] ?></div>
 					<div class="assignment_subitem"><?php echo $item['score'] ?> </div>
-					<div class="assignment_subitem"><?php echo $item['question'] ?> </div>
+					<div class="assignment_subitem"><a href="#" id="show<?=$item['id']?>"><?php echo $item['qtitle'] ?></a></div>
+
+					<script type="text/javascript">
+						$('#show<?=$item["id"]?>').click(function() {
+						$('#q<?=$item["id"]?>').toggle('slow',function(){}); return false;});
+					</script>
 				</div>
+			</div>
+
+			<div id="q<?=$item['id']?>" style="display:none">
+						<?php echo $item['question'] ?>
 			</div>
 
 		<?php endforeach ?>
