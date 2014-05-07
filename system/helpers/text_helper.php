@@ -85,7 +85,7 @@ if ( ! function_exists('character_limiter'))
 	 */
 	function character_limiter($str, $n = 500, $end_char = '&#8230;')
 	{
-		if (mb_strlen($str) < $n)
+		if (strlen($str) < $n)
 		{
 			return $str;
 		}
@@ -93,7 +93,7 @@ if ( ! function_exists('character_limiter'))
 		// a bit complicated, but faster than preg_replace with \s+
 		$str = preg_replace('/ {2,}/', ' ', str_replace(array("\r", "\n", "\t", "\x0B", "\x0C"), ' ', $str));
 
-		if (mb_strlen($str) <= $n)
+		if (strlen($str) <= $n)
 		{
 			return $str;
 		}
@@ -103,10 +103,10 @@ if ( ! function_exists('character_limiter'))
 		{
 			$out .= $val.' ';
 
-			if (mb_strlen($out) >= $n)
+			if (strlen($out) >= $n)
 			{
 				$out = trim($out);
-				return (mb_strlen($out) === mb_strlen($str)) ? $out : $out.$end_char;
+				return (strlen($out) === strlen($str)) ? $out : $out.$end_char;
 			}
 		}
 	}
@@ -127,7 +127,7 @@ if ( ! function_exists('ascii_to_entities'))
 	function ascii_to_entities($str)
 	{
 		$out = '';
-		for ($i = 0, $s = strlen($str), $count = 1, $temp = array(); $i < $s; $i++)
+		for ($i = 0, $s = strlen($str) - 1, $count = 1, $temp = array(); $i <= $s; $i++)
 		{
 			$ordinal = ord($str[$i]);
 
@@ -163,6 +163,11 @@ if ( ! function_exists('ascii_to_entities'))
 					$out .= '&#'.$number.';';
 					$count = 1;
 					$temp = array();
+				}
+				// If this is the last iteration, just output whatever we have
+				elseif ($i === $s)
+				{
+					$out .= '&#'.implode(';', $temp).';';
 				}
 			}
 		}
@@ -329,25 +334,17 @@ if ( ! function_exists('highlight_phrase'))
 	 *
 	 * Highlights a phrase within a text string
 	 *
-	 * @param	string	the text string
-	 * @param	string	the phrase you'd like to highlight
-	 * @param	string	the openging tag to precede the phrase with
-	 * @param	string	the closing tag to end the phrase with
+	 * @param	string	$str		the text string
+	 * @param	string	$phrase		the phrase you'd like to highlight
+	 * @param	string	$tag_open	the openging tag to precede the phrase with
+	 * @param	string	$tag_close	the closing tag to end the phrase with
 	 * @return	string
 	 */
-	function highlight_phrase($str, $phrase, $tag_open = '<strong>', $tag_close = '</strong>')
+	function highlight_phrase($str, $phrase, $tag_open = '<mark>', $tag_close = '</mark>')
 	{
-		if ($str === '')
-		{
-			return '';
-		}
-
-		if ($phrase !== '')
-		{
-			return preg_replace('/('.preg_quote($phrase, '/').')/i', $tag_open.'\\1'.$tag_close, $str);
-		}
-
-		return $str;
+		return ($str !== '' && $phrase !== '')
+			? preg_replace('/('.preg_quote($phrase, '/').')/i', $tag_open.'\\1'.$tag_close, $str)
+			: $str;
 	}
 }
 

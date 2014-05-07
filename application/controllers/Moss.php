@@ -9,24 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Moss extends CI_Controller
 {
 
-	var $username;
-	var $assignment;
-	var $user_level;
-
-	// ------------------------------------------------------------------------
-
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->driver('session');
 		if ( ! $this->session->userdata('logged_in')) // if not logged in
 			redirect('login');
-		$this->username = $this->session->userdata('username');
-		$this->assignment = $this->assignment_model->assignment_info($this->user_model->selected_assignment($this->username));
-		$this->user_level = $this->user_model->get_user_level($this->username);
-		if ( $this->user_level <=1)
-			show_error('You have not enough permission to access this page.');
+		if ($this->user->level <= 1) // permission denied
+			show_404();
 	}
 
 
@@ -37,13 +27,15 @@ class Moss extends CI_Controller
 	{
 		if ($assignment_id === FALSE)
 			show_404();
+		$this->form_validation->set_rules('detect', 'detect', 'required');
+		if ($this->form_validation->run())
+		{
+			if ($this->input->post('detect') !== 'detect')
+				exit;
+			$this->_detect($assignment_id);
+		}
 		$data = array(
-			'username' => $this->username,
-			'user_level' => $this->user_level,
 			'all_assignments' => $this->assignment_model->all_assignments(),
-			'assignment' => $this->assignment,
-			'title' => 'Detect Similar Codes',
-			'style' => 'main.css',
 			'moss_userid' => $this->settings_model->get_setting('moss_userid'),
 			'moss_assignment' => $this->assignment_model->assignment_info($assignment_id),
 			'update_time' => $this->assignment_model->get_moss_time($assignment_id)
@@ -52,14 +44,13 @@ class Moss extends CI_Controller
 		$data['moss_problems'] = array();
 		$assignments_path = rtrim($this->settings_model->get_setting('assignments_root'), '/');
 		for($i=1; $i<=$data['moss_assignment']['problems']; $i++){
-			$data['moss_problems'][$i] = FALSE;
+			$data['moss_problems'][$i] = NULL;
 			$path = $assignments_path."/assignment_{$assignment_id}/p{$i}/moss_link.txt";
 			if (file_exists($path))
 				$data['moss_problems'][$i] = file_get_contents($path);
 		}
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/admin/moss', $data);
-		$this->load->view('templates/footer');
+
+		$this->twig->display('pages/admin/moss.twig', $data);
 	}
 
 
@@ -83,7 +74,7 @@ class Moss extends CI_Controller
 	// ------------------------------------------------------------------------
 
 
-	public function detect($assignment_id = FALSE)
+	private function _detect($assignment_id = FALSE)
 	{
 		if ($assignment_id === FALSE)
 			show_404();
@@ -91,7 +82,7 @@ class Moss extends CI_Controller
 		$assignments_path = rtrim($this->settings_model->get_setting('assignments_root'), '/');
 		$tester_path = rtrim($this->settings_model->get_setting('tester_path'), '/');
 		shell_exec("chmod +x {$tester_path}/moss");
-		$items = $this->submit_model->get_final_submissions($assignment_id, $this->user_level, $this->username);
+		$items = $this->submit_model->get_final_submissions($assignment_id, $this->user->level, $this->user->username);
 		$groups = array();
 		foreach ($items as $item) {
 			if (!isset($groups[$item['problem']]))
@@ -108,7 +99,6 @@ class Moss extends CI_Controller
 			shell_exec("list='$list'; cd $assignment_path; $tester_path/moss \$list | grep http >p{$problem_id}/moss_link.txt;");
 		}
 		$this->assignment_model->set_moss_time($assignment_id);
-		$this->index($assignment_id);
 	}
 
 

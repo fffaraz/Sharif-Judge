@@ -26,7 +26,8 @@
 #
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Password_hash {
+class Password_hash
+{
 	var $itoa64;
 	var $iteration_count_log2;
 	var $portable_hashes;

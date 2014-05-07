@@ -12,7 +12,8 @@ class Server_time extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->driver('session');
+		if ( ! $this->input->is_ajax_request() )
+			show_404();
 		if ( ! $this->session->userdata('logged_in')) // if not logged in
 			exit;
 	}
@@ -22,14 +23,10 @@ class Server_time extends CI_Controller
 
 
 	/**
-	 * Prints server time, used for server synchronization by jquery script which shows server time to users
+	 * Prints server time, used for server time synchronization
 	 */
-	public function index($input = FALSE)
+	public function index()
 	{
-		if ( ! $this->input->is_ajax_request() )
-			show_404();
-		if ($input !== FALSE)
-			exit('error');
-		echo date("Y-m-d H:i:s",shj_now());
+		echo shj_now_str();
 	}
 }

@@ -102,10 +102,10 @@ class CI_Session extends CI_Driver_Library {
 	 */
 	public function __construct(array $params = array())
 	{
-		$CI =& get_instance();
+		$_config =& get_instance()->config;
 
 		// No sessions under CLI
-		if ($CI->input->is_cli_request())
+		if (is_cli())
 		{
 			return;
 		}
@@ -113,7 +113,7 @@ class CI_Session extends CI_Driver_Library {
 		log_message('debug', 'CI_Session Class Initialized');
 
 		// Add possible extra entries to our valid drivers list
-		$drivers = isset($params['sess_valid_drivers']) ? $params['sess_valid_drivers'] : $CI->config->item('sess_valid_drivers');
+		$drivers = isset($params['sess_valid_drivers']) ? $params['sess_valid_drivers'] : $_config->item('sess_valid_drivers');
 		if ( ! empty($drivers))
 		{
 			$drivers = array_map('strtolower', (array) $drivers);
@@ -121,7 +121,7 @@ class CI_Session extends CI_Driver_Library {
 		}
 
 		// Get driver to load
-		$driver = isset($params['sess_driver']) ? $params['sess_driver'] : $CI->config->item('sess_driver');
+		$driver = isset($params['sess_driver']) ? $params['sess_driver'] : $_config->item('sess_driver');
 		if ( ! $driver)
 		{
 			log_message('debug', "Session: No driver name is configured, defaulting to 'cookie'.");
@@ -288,7 +288,7 @@ class CI_Session extends CI_Driver_Library {
 	 * @param	string	Item value or empty string
 	 * @return	void
 	 */
-	public function set_userdata($newdata = array(), $newval = '')
+	public function set_userdata($newdata, $newval = '')
 	{
 		// Wrap params as array if singular
 		if (is_string($newdata))
@@ -317,7 +317,7 @@ class CI_Session extends CI_Driver_Library {
 	 * @param	mixed	Item name or array of item names
 	 * @return	void
 	 */
-	public function unset_userdata($newdata = array())
+	public function unset_userdata($newdata)
 	{
 		// Wrap single name as array
 		if (is_string($newdata))
@@ -360,7 +360,7 @@ class CI_Session extends CI_Driver_Library {
 	 * @param	string	Item value or empty string
 	 * @return	void
 	 */
-	public function set_flashdata($newdata = array(), $newval = '')
+	public function set_flashdata($newdata, $newval = '')
 	{
 		// Wrap item as array if singular
 		if (is_string($newdata))
@@ -434,7 +434,7 @@ class CI_Session extends CI_Driver_Library {
 	 * @param	int	Item lifetime in seconds or 0 for default
 	 * @return	void
 	 */
-	public function set_tempdata($newdata = array(), $newval = '', $expire = 0)
+	public function set_tempdata($newdata, $newval = '', $expire = 0)
 	{
 		// Set expiration time
 		$expire = time() + ($expire ? $expire : self::TEMP_EXP_DEF);
@@ -475,7 +475,7 @@ class CI_Session extends CI_Driver_Library {
 	 * @param	mixed	Item name or array of item names
 	 * @return	void
 	 */
-	public function unset_tempdata($newdata = array())
+	public function unset_tempdata($newdata)
 	{
 		// Get expirations list
 		$expirations = $this->userdata(self::EXPIRATION_KEY);

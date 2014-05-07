@@ -48,13 +48,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
  * ------------------------------------------------------
- *  Load the global functions
- * ------------------------------------------------------
- */
-	require_once(BASEPATH.'core/Common.php');
-
-/*
- * ------------------------------------------------------
  *  Load the framework constants
  * ------------------------------------------------------
  */
@@ -62,10 +55,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		require(APPPATH.'config/'.ENVIRONMENT.'/constants.php');
 	}
-	else
-	{
-		require(APPPATH.'config/constants.php');
-	}
+
+	require(APPPATH.'config/constants.php');
+
+/*
+ * ------------------------------------------------------
+ *  Load the global functions
+ * ------------------------------------------------------
+ */
+	require_once(BASEPATH.'core/Common.php');
 
 /*
  * ------------------------------------------------------
@@ -73,11 +71,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * ------------------------------------------------------
  */
 	set_error_handler('_exception_handler');
+	register_shutdown_function('_shutdown_handler');
 
-	if ( ! is_php('5.4'))
-	{
-		@ini_set('magic_quotes_runtime', 0); // Kill magic quotes
-	}
+	// Kill magic quotes
+	is_php('5.4') OR @ini_set('magic_quotes_runtime', 0);
 
 /*
  * ------------------------------------------------------

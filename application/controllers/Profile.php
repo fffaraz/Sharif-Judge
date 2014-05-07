@@ -9,11 +9,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Profile extends CI_Controller
 {
 
-	var $username;
-	var $assignment;
-	var $user_level;
-	var $form_status;
-	var $edit_username;
+	private $form_status;
+	private $edit_username;
 
 
 	// ------------------------------------------------------------------------
@@ -22,12 +19,8 @@ class Profile extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->driver('session');
 		if ( ! $this->session->userdata('logged_in')) // if not logged in
 			redirect('login');
-		$this->username = $this->session->userdata('username');
-		$this->assignment = $this->assignment_model->assignment_info($this->user_model->selected_assignment($this->username));
-		$this->user_level = $this->user_model->get_user_level($this->username);
 		$this->form_status = '';
 	}
 
@@ -37,43 +30,34 @@ class Profile extends CI_Controller
 
 	public function index($user_id = FALSE)
 	{
-		if ($user_id === FALSE){
-			$user_id = $this->db->get_where('users', array('username' => $this->username))->row()->id;
-		}
-		if ( ! is_numeric($user_id)){
-			show_error('Incorrect user id');
-		}
-		$query = $this->db->get_where('users', array('id'=>$user_id));
-		if ($query->num_rows() != 1)
-			show_error('Permission Denied');
-		$user = $query->row();
+		if ($user_id === FALSE)
+			$user_id = $this->user_model->username_to_user_id($this->user->username);
+
+		if ( ! is_numeric($user_id))
+			show_404();
+
+
+		$user = $this->user_model->get_user($user_id);
+		if ($user === FALSE)
+			show_404();
 		$this->edit_username = $user->username;
 
 		//Non-admins are not able to update others' profile
-		if ($this->user_level <= 2)
-			if ($this->username != $this->edit_username)
-				show_error('Permission Denied');
+		if ($this->user->level <= 2 && $this->user->username != $this->edit_username) // permission denied
+			show_404();
 
-		$this->form_validation->set_message('_email_check', 'User with same %s exists.');
-		$this->form_validation->set_message('_password_check', 'Password must be between 6 and 30 characters in length.');
-		$this->form_validation->set_message('_password_again_check', 'The Password Confirmation field does not match the Password field.');
-		$this->form_validation->set_rules('display_name', 'Display Name', 'max_length[40]|xss_clean|strip_tags');
-		$this->form_validation->set_rules('email', 'Email Address', 'required|max_length[40]|valid_email|callback__email_check');
-		$this->form_validation->set_rules('password', 'Password', 'callback__password_check|alpha_numeric');
-		$this->form_validation->set_rules('password_again', 'Password Confirmation', 'callback__password_again_check');
-		$this->form_validation->set_rules('role', 'Role', 'callback__role_check');
+		$this->form_validation->set_rules('display_name', 'name', 'max_length[40]');
+		$this->form_validation->set_rules('email', 'email address', 'required|max_length[40]|valid_email|callback__email_check', array('_email_check' => 'This %s already exists.'));
+		$this->form_validation->set_rules('password', 'password', 'callback__password_check', array('_password_check' => 'The %s field must be between 6 and 200 characters in length.'));
+		$this->form_validation->set_rules('password_again', 'password confirmation', 'callback__password_again_check', array('_password_again_check' => 'The %s field does not match the password field.'));
+		$this->form_validation->set_rules('role', 'role', 'callback__role_check');
 		if ($this->form_validation->run()){
 			$this->user_model->update_profile($user_id);
-			$user = $this->db->get_where('users', array('id'=>$user_id))->row();
+			$user = $this->user_model->get_user($user_id);
 			$this->form_status = 'ok';
 		}
 		$data = array(
-			'username' => $this->username,
-			'user_level' => $this->user_level,
 			'all_assignments' => $this->assignment_model->all_assignments(),
-			'assignment' => $this->assignment,
-			'title' => 'Profile',
-			'style' => 'main.css',
 			'id' => $user_id,
 			'edit_username' => $this->edit_username,
 			'email' => $user->email,
@@ -81,9 +65,8 @@ class Profile extends CI_Controller
 			'role' => $user->role,
 			'form_status' => $this->form_status,
 		);
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/profile', $data);
-		$this->load->view('templates/footer');
+
+		$this->twig->display('pages/profile.twig', $data);
 	}
 
 
@@ -92,7 +75,7 @@ class Profile extends CI_Controller
 
 	public function _password_check($str)
 	{
-		if (strlen($str) == 0 OR (strlen($str) >= 6 && strlen($str) <= 30))
+		if (strlen($str) == 0 OR (strlen($str) >= 6 && strlen($str) <= 200))
 			return TRUE;
 		return FALSE;
 	}
@@ -120,16 +103,12 @@ class Profile extends CI_Controller
 	public function _role_check($role)
 	{
 		// Non-admin users should not be able to change user role:
-		if ($this->user_level <= 2)
-			if($role == '')
-				return TRUE;
-			else
-				return FALSE;
+		if ($this->user->level <= 2)
+			return ($role == '');
+
 		// Admins can change everybody's user role:
 		$roles = array('admin', 'head_instructor', 'instructor', 'student');
-		if (in_array($role, $roles))
-			return TRUE;
-		return FALSE;
+		return in_array($role, $roles);
 	}
 
 

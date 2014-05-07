@@ -32,11 +32,12 @@
 }
 
 .gridster .preview-holder {
-	opacity: 0.2;
+	opacity: 0.15;
 	z-index: 1;
 	position: absolute;
 	border: 2px dashed rgba(0,0,0,1);
-	background:rgba(0,0,0,0.25) url('widget_bg.png') no-repeat center center;
+	border-radius: 10px;
+	background:rgba(0,0,0,0.15) url('widget_bg.png') no-repeat center center;
 }
 
 .gridster .player-revert {

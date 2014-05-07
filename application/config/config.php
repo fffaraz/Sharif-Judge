@@ -282,7 +282,7 @@ $config['encryption_key'] = 'PLEASE_CHANGE_ME_TO_A_RANDOM_KEY';
 | 'sess_driver'				= the driver to load: cookie (Classic), native (PHP sessions),
 |	or your custom driver name
 | 'sess_valid_drivers'		= additional valid drivers which may be loaded
-| 'sess_cookie_name'		= the name you want for the cookie
+| 'sess_cookie_name'		= the name you want for the cookie, must contain only [0-9a-z_-] characters
 | 'sess_expiration'			= the number of SECONDS you want the session to last.
 |   by default sessions last 7200 seconds (two hours).  Set to zero for no expiration.
 | 'sess_expire_on_close'	= Whether to cause the session to expire automatically
@@ -297,7 +297,7 @@ $config['encryption_key'] = 'PLEASE_CHANGE_ME_TO_A_RANDOM_KEY';
 */
 $config['sess_driver']			= 'cookie';
 $config['sess_valid_drivers']	= array();
-$config['sess_cookie_name']		= 'shj_session';
+$config['sess_cookie_name']		= 'shjsession';
 $config['sess_expiration']		= 7200;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= TRUE;
@@ -327,6 +327,20 @@ $config['cookie_httponly'] 	= FALSE;
 
 /*
 |--------------------------------------------------------------------------
+| Standardize newlines
+|--------------------------------------------------------------------------
+|
+| Determines whether to standardize newline characters in input data,
+| meaning to replace \r\n, \r, \n occurences with the PHP_EOL value.
+|
+| This is particularly useful for portability between UNIX-based OSes,
+| (usually \n) and Windows (\r\n).
+|
+*/
+$config['standardize_newlines'] = TRUE;
+
+/*
+|--------------------------------------------------------------------------
 | Global XSS Filtering
 |--------------------------------------------------------------------------
 |
@@ -351,8 +365,8 @@ $config['global_xss_filtering'] = FALSE;
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
 $config['csrf_protection'] = TRUE;
-$config['csrf_token_name'] = 'shj_csrf_hash';
-$config['csrf_cookie_name'] = 'shj_csrf_hash';
+$config['csrf_token_name'] = 'shj_csrf_token';
+$config['csrf_cookie_name'] = 'shjcsrftoken';
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = FALSE;
 $config['csrf_exclude_uris'] = array();

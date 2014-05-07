@@ -1,4 +1,4 @@
-# You also need to change 
+# You also need to change
 # $config['index_page'] = 'index.php';
 # to
 # $config['index_page'] = '';

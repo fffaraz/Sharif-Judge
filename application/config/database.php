@@ -82,7 +82,8 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 
-	/* Provide database connection settings here: */
+	/*  Enter database connection settings here:  */
+	'dbdriver' => 'mysqli',     // database driver (mysqli, postgre)
 	'hostname' => 'localhost',  // database host
 	'username' => '',           // database username
 	'password' => '',           // database password
@@ -90,9 +91,8 @@ $db['default'] = array(
 	'dbprefix' => 'shj_',       // table prefix
 	/**********************************************/
 
-	'dbdriver' => 'mysqli',
 	'pconnect' => TRUE,
-	'db_debug' => TRUE,
+	'db_debug' => FALSE,
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'utf8',

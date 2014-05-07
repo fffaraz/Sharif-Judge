@@ -22,7 +22,8 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Unzip {
+class Unzip
+{
 
 	private $compressed_list = array();
 

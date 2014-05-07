@@ -1,12 +1,6 @@
-/*	--------------------------------------------------
-	Reveal Modals
-	-------------------------------------------------- */
-
-
-.modal_inside { /* added by mjnaderi */
-	max-height: 550px;
-	overflow-y: auto;
-}
+/**
+ * Reveal Modals
+ */
 
 .reveal-modal-bg {
 	position: fixed;
@@ -25,7 +19,7 @@
 	left: 50%;
 	margin-left: -300px;
 	width: 520px;
-	background: #eee url(modal-gloss.png) no-repeat -200px -80px;
+	background-color: #fcfcfc;
 	position: fixed; /* changed by mjnaderi from absolute to fixed */
 	z-index: 101;
 	padding: 5px 20px 10px;
@@ -64,7 +58,6 @@
 	top: 8px;
 	right: 3px;
 	color: #aaa;
-	text-shadow: 0 -1px 1px rbga(0, 0, 0, .6);
 	font-weight: bold;
 	cursor: pointer;
 }

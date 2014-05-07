@@ -9,24 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Queue extends CI_Controller
 {
 
-	var $username;
-	var $assignment;
-	var $user_level;
-
-	// ------------------------------------------------------------------------
-
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->driver('session');
 		if ( ! $this->session->userdata('logged_in')) // if not logged in
 		redirect('login');
-		$this->username = $this->session->userdata('username');
-		$this->assignment = $this->assignment_model->assignment_info($this->user_model->selected_assignment($this->username));
-		$this->user_level = $this->user_model->get_user_level($this->username);
-		if ( $this->user_level <= 1)
-			show_error('You have not enough permission to access this page.');
+		if ( $this->user->level <= 1) // permission denied
+			show_404();
 		$this->load->model('queue_model');
 	}
 
@@ -34,37 +24,25 @@ class Queue extends CI_Controller
 	// ------------------------------------------------------------------------
 
 
-	public function index($input = FALSE)
+	public function index()
 	{
 
-		if ($input !== FALSE)
-			show_404();
-
 		$data = array(
-			'username' => $this->username,
-			'user_level' => $this->user_level,
 			'all_assignments' => $this->assignment_model->all_assignments(),
-			'assignment' => $this->assignment,
-			'title' => 'Submission Queue',
-			'style' => 'main.css',
 			'queue' => $this->queue_model->get_queue(),
 			'working' => $this->settings_model->get_setting('queue_is_working')
 		);
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/admin/queue', $data);
-		$this->load->view('templates/footer');
+		$this->twig->display('pages/admin/queue.twig', $data);
 	}
 
 
 	// ------------------------------------------------------------------------
 
 
-	public function pause($input = FALSE)
+	public function pause()
 	{
 		if ( ! $this->input->is_ajax_request() )
-			show_404();
-		if ($input !== FALSE)
 			show_404();
 		$this->settings_model->set_setting('queue_is_working','0');
 		echo 'success';
@@ -74,14 +52,11 @@ class Queue extends CI_Controller
 	// ------------------------------------------------------------------------
 
 
-	public function resume($input = FALSE)
+	public function resume()
 	{
 		if ( ! $this->input->is_ajax_request() )
 			show_404();
-		if ($input !== FALSE)
-			show_404();
-		// Run queue_process.php
-		shell_exec('php '.rtrim($this->settings_model->get_setting('tester_path'), '/').'/queue_process.php '.BASEPATH.' >/dev/null 2>/dev/null &');
+		process_the_queue();
 		echo 'success';
 	}
 
@@ -89,11 +64,9 @@ class Queue extends CI_Controller
 	// ------------------------------------------------------------------------
 
 
-	public function empty_queue($input = FALSE)
+	public function empty_queue()
 	{
 		if ( ! $this->input->is_ajax_request() )
-			show_404();
-		if ($input !== FALSE)
 			show_404();
 		$this->queue_model->empty_queue();
 		echo 'success';

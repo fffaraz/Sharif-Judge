@@ -52,14 +52,7 @@ if ( ! function_exists('site_url'))
 	 */
 	function site_url($uri = '', $protocol = NULL)
 	{
-		$uri = get_instance()->config->site_url($uri);
-
-		if (isset($protocol))
-		{
-			return $protocol.substr($uri, strpos($uri, '://'));
-		}
-
-		return $uri;
+		return get_instance()->config->site_url($uri, $protocol);
 	}
 }
 
@@ -80,14 +73,7 @@ if ( ! function_exists('base_url'))
 	 */
 	function base_url($uri = '', $protocol = NULL)
 	{
-		$uri = get_instance()->config->base_url($uri);
-
-		if (isset($protocol))
-		{
-			return $protocol.substr($uri, strpos($uri, '://'));
-		}
-
-		return $uri;
+		return get_instance()->config->base_url($uri, $protocol);
 	}
 }
 
@@ -123,8 +109,7 @@ if ( ! function_exists('uri_string'))
 	 */
 	function uri_string()
 	{
-		$CI =& get_instance();
-		return $CI->uri->uri_string();
+		return get_instance()->uri->uri_string();
 	}
 }
 
@@ -141,8 +126,7 @@ if ( ! function_exists('index_page'))
 	 */
 	function index_page()
 	{
-		$CI =& get_instance();
-		return $CI->config->item('index_page');
+		return get_instance()->config->item('index_page');
 	}
 }
 

@@ -6,11 +6,12 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User_model extends CI_Model{
+class User_model extends CI_Model
+{
 
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
-		$this->load->database();
 	}
 
 
@@ -18,9 +19,15 @@ class User_model extends CI_Model{
 
 
 	/**
+	 * Have User
+	 *
 	 * Returns TRUE if there is a user with username $username in database
+	 *
+	 * @param $username
+	 * @return bool
 	 */
-	public function have_user($username){
+	public function have_user($username)
+	{
 		$query = $this->db->get_where('users', array('username'=>$username));
 		if ($query->num_rows() == 0)
 			return FALSE;
@@ -34,9 +41,15 @@ class User_model extends CI_Model{
 
 
 	/**
+	 * User ID to Username
+	 *
 	 * Converts user id to username (returns FALSE if user does not exist)
+	 *
+	 * @param $user_id
+	 * @return bool
 	 */
-	public function user_id_to_username($user_id){
+	public function user_id_to_username($user_id)
+	{
 		if( ! is_numeric($user_id))
 			return FALSE;
 		$query = $this->db->select('username')->get_where('users', array('id'=>$user_id));
@@ -50,9 +63,36 @@ class User_model extends CI_Model{
 
 
 	/**
-	 * Returns TRUE if there is a user (except $username) with email $email in database
+	 * Username to User ID
+	 *
+	 * Converts username to user id (returns FALSE if user does not exist)
+	 *
+	 * @param $username
+	 * @return bool
 	 */
-	public function have_email($email, $username = FALSE){
+	public function username_to_user_id($username)
+	{
+		$query = $this->db->select('id')->get_where('users', array('username'=>$username));
+		if ($query->num_rows() == 0)
+			return FALSE;
+		return $query->row()->id;
+	}
+
+
+	// ------------------------------------------------------------------------
+
+
+	/**
+	 * Have Email
+	 *
+	 * Returns TRUE if a user (except $username) with given email exists
+	 *
+	 * @param $email
+	 * @param bool $username
+	 * @return bool
+	 */
+	public function have_email($email, $username = FALSE)
+	{
 		$query = $this->db->get_where('users', array('email'=>$email));
 		if ($query->num_rows() >= 1){
 			if($username !== FALSE && $query->row()->username == $username)
@@ -68,10 +108,21 @@ class User_model extends CI_Model{
 
 
 	/**
-	 * Add a new user to database
+	 * Add User
+	 *
+	 * Adds a single user
+	 *
+	 * @param $username
+	 * @param $email
+	 * @param $password
+	 * @param $role
+	 * @return bool|string
 	 */
-	public function add_user($username, $email, $password, $role){
-		if (strlen($username) < 3 OR strlen($username) > 20 OR strlen($password) < 6 OR strlen($password) > 30)
+	public function add_user($username, $email, $password, $role)
+	{
+		if ( ! $this->form_validation->alpha_numeric($username) )
+			return 'Username may only contain alpha-numeric characters.';
+		if (strlen($username) < 3 OR strlen($username) > 20 OR strlen($password) < 6 OR strlen($password) > 200)
 			return 'Username or password length error.';
 		if ($this->have_user($username))
 			return 'User with this username exists.';
@@ -98,17 +149,25 @@ class User_model extends CI_Model{
 
 
 	/**
-	 * Add multiple users
+	 * Add Users
+	 *
+	 * Adds multiple users
+	 *
+	 * @param $text
+	 * @param $send_mail
+	 * @param $delay
+	 * @return array
 	 */
-	public function add_users($text, $send_mail, $delay){
+	public function add_users($text, $send_mail, $delay)
+	{
 
 		$lines = preg_split('/\r?\n|\n?\r/', $text);
 		$users_ok = array();
 		$users_error = array();
 
 		// loop over lines of $text :
-		foreach ($lines as $line){
-
+		foreach ($lines as $line)
+		{
 			$line = trim($line);
 
 			if (strlen($line) == 0 OR $line[0] == '#')
@@ -118,11 +177,13 @@ class User_model extends CI_Model{
 			if (count($parts) != 4)
 				continue; //ignore lines that not contain 4 parts
 
-			if (strtolower(substr($parts[2], 0, 6)) == 'random'){ // generate random password
-				$n = trim(substr($parts[2], 6), '[]');
-				if (is_numeric($n)){
+			if (strtolower(substr($parts[2], 0, 6)) == 'random')
+			{
+				// generate random password
+				$len = trim(substr($parts[2], 6), '[]');
+				if (is_numeric($len)){
 					$this->load->helper('string');
-					$parts[2] = random_string('alnum', $n);
+					$parts[2] = shj_random_password($len);
 				}
 			}
 
@@ -135,14 +196,33 @@ class User_model extends CI_Model{
 
 		} // end of loop
 
-		if ($send_mail){ // sending usernames and passwords by email
+		if ($send_mail)
+		{
+			// sending usernames and passwords by email
 			$this->load->library('email');
+			$config = array(
+				'mailtype'  => 'html',
+				'charset'   => 'iso-8859-1'
+			);
+			/*
+			// You can use gmail's smtp server
+			$config = Array(
+				'protocol' => 'smtp',
+				'smtp_host' => 'ssl://smtp.googlemail.com',
+				'smtp_port' => 465,
+				'smtp_user' => 'example@gmail.com',
+				'smtp_pass' => 'your-gmail-password',
+				'mailtype'  => 'html',
+				'charset'   => 'iso-8859-1'
+			);
+			*/
+			$this->email->initialize($config);
+			$this->email->set_newline("\r\n");
 			$count_users = count($users_ok);
 			$counter = 0;
-			foreach ($users_ok as $user){
+			foreach ($users_ok as $user)
+			{
 				$counter++;
-				$config['mailtype'] = 'html';
-				$this->email->initialize($config);
 				$this->email->from($this->settings_model->get_setting('mail_from'), $this->settings_model->get_setting('mail_from_name'));
 				$this->email->to($user[1]);
 				$this->email->subject('Sharif Judge Username and Password');
@@ -150,7 +230,7 @@ class User_model extends CI_Model{
 				$text = str_replace('{SITE_URL}', base_url(), $text);
 				$text = str_replace('{ROLE}', $user[3], $text);
 				$text = str_replace('{USERNAME}', $user[0], $text);
-				$text = str_replace('{PASSWORD}', $user[2], $text);
+				$text = str_replace('{PASSWORD}', htmlspecialchars($user[2]), $text);
 				$text = str_replace('{LOGIN_URL}', base_url(), $text);
 				$this->email->message($text);
 				$this->email->send();
@@ -168,15 +248,35 @@ class User_model extends CI_Model{
 
 
 	/**
-	 * Delete a user from database
+	 * Delete User
+	 *
+	 * Deletes a user with given user id
+	 * Returns TRUE (success) or FALSE (failure)
+	 *
+	 * @param $user_id
+	 * @return bool
 	 */
-	public function delete_user($username, $delete_submissions){
-		$this->db->delete('users', array('username'=>$username));
-		if ($delete_submissions){// also delete all submissions and submitted codes
-			$this->db->delete('final_submissions', array('username' => $username));
-			$this->db->delete('all_submissions', array('username' => $username));
+	public function delete_user($user_id)
+	{
+		$this->db->trans_start();
+
+		$username = $this->user_id_to_username($user_id);
+		if ($username === FALSE)
+			return FALSE;
+		$this->db->delete('users', array('id'=>$user_id));
+		$this->db->delete('submissions', array('username' => $username));
+		// each time we delete a user, we should update all scoreboards
+		$this->load->model('scoreboard_model');
+		$this->scoreboard_model->update_scoreboards();
+
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status()) {
+			// Delete submitted files
 			shell_exec("cd {$this->settings_model->get_setting('assignments_root')}; rm -r */*/{$username};");
+			return TRUE; //success
 		}
+		return FALSE; // failure
 	}
 
 
@@ -184,9 +284,53 @@ class User_model extends CI_Model{
 
 
 	/**
-	 * Function used for validating user login
+	 * Delete Submissions
+	 *
+	 * Deletes all submissions of user with given user id
+	 * Returns TRUE (success) or FALSE (failure)
+	 *
+	 * @param $user_id
+	 * @return bool
 	 */
-	public function validate_user($username, $password){
+	public function delete_submissions($user_id)
+	{
+		$this->db->trans_start();
+
+		$username = $this->user_id_to_username($user_id);
+		if ($username === FALSE)
+			return FALSE;
+		// delete all submissions from database
+		$this->db->delete('submissions', array('username'=>$username));
+		// each time we delete a user's submissions, we should update all scoreboards
+		$this->load->model('scoreboard_model');
+		$this->scoreboard_model->update_scoreboards();
+
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status()) {
+			// delete all submitted files
+			shell_exec("cd {$this->settings_model->get_setting('assignments_root')}; rm -r */*/{$username};");
+			return TRUE; // success
+		}
+
+		return FALSE; // failure
+	}
+
+
+	// ------------------------------------------------------------------------
+
+
+	/**
+	 * Validate User
+	 *
+	 * Returns TRUE if given username and password is valid for login
+	 *
+	 * @param $username
+	 * @param $password
+	 * @return bool
+	 */
+	public function validate_user($username, $password)
+	{
 		$this->load->library('password_hash', array(8, FALSE));
 		$query = $this->db->get_where('users', array('username' => $username));
 		if ($query->num_rows() != 1)
@@ -202,23 +346,15 @@ class User_model extends CI_Model{
 	// ------------------------------------------------------------------------
 
 
-	public function update_login_time($username) {
-		$now = date('Y-m-d H:i:s', shj_now());
-
-		$first_login = $this->db->select('first_login_time')->get_where('users', array('username'=>$username))->row()->first_login_time;
-		if ($first_login === '0000-00-00 00:00:00')
-			$this->db->where('username', $username)->update('users', array('first_login_time'=>$now));
-
-		$this->db->where('username', $username)->update('users', array('last_login_time'=>$now));
-	}
-
-	// ------------------------------------------------------------------------
-
-
 	/**
-	 * Returns selected assignment by user $username
+	 * Selected Assignment
+	 *
+	 * Returns selected assignment by given username
+	 * @param $username
+	 * @return mixed
 	 */
-	public function selected_assignment($username){
+	public function selected_assignment($username)
+	{
 		$query = $this->db->select('selected_assignment')->get_where('users', array('username'=>$username));
 		if ($query->num_rows() != 1){//logout
 			$this->session->sess_destroy();
@@ -232,10 +368,20 @@ class User_model extends CI_Model{
 
 
 	/**
-	 * Sets selected assignment for $username
+	 * Get Display Name
+	 *
+	 * Returns name of the user with given username
+	 *
+	 * @return array
 	 */
-	public function select_assignment($username, $assignment_id){
-		$this->db->where('username', $username)->update('users', array('selected_assignment'=>$assignment_id));
+	public function get_names()
+	{
+		$query = $this->db->select('username, display_name')->get('users');
+		$tmp = $query->result_array();
+		$result = array();
+		foreach ($tmp as $row)
+			$result[$row['username']] = $row['display_name'];
+		return $result;
 	}
 
 
@@ -243,44 +389,15 @@ class User_model extends CI_Model{
 
 
 	/**
-	 * Returns database row of user $username
+	 * Update Profile
+	 *
+	 * Updates User Profile (Name, Email, Password, Role)
+	 *
+	 * @param $user_id
+	 * @return bool
 	 */
-	public function get_user($username){
-		$query = $this->db->select('display_name, email')->get_where('users', array('username'=>$username));
-		if ($query->num_rows() != 1)
-			return FALSE;
-		return $query->row();
-	}
-
-
-	// ------------------------------------------------------------------------
-
-
-	/**
-	 * Returns permission level of given user
-	 * admin            -> 3
-	 * head_instructor  -> 2
-	 * instructor       -> 1
-	 * student          -> 0
-	 */
-	public function get_user_level($username){
-		$role = $this->db->select('role')->get_where('users', array('username'=>$username))->row()->role;
-		switch ($role){
-			case 'admin': return 3;
-			case 'head_instructor': return 2;
-			case 'instructor': return 1;
-			case 'student': return 0;
-		}
-	}
-
-
-	// ------------------------------------------------------------------------
-
-
-	/**
-	 * Update user profile
-	 */
-	public function update_profile($user_id){
+	public function update_profile($user_id)
+	{
 		$query = $this->db->get_where('users', array('id'=>$user_id));
 		if ($query->num_rows() != 1)
 			return FALSE;
@@ -311,10 +428,15 @@ class User_model extends CI_Model{
 
 
 	/**
-	 * Generate a password reset key and
-	 * send an email containing the link for resetting password (in case of password lost)
+	 * Send Password Reset Mail
+	 *
+	 * Generates a password reset key and sends an email containing the link
+	 * for resetting password (in case of password lost)
+	 *
+	 * @param $email
 	 */
-	public function send_passchange_mail($email){
+	public function send_password_reset_mail($email)
+	{
 		// exit if $email is invalid:
 		if ( ! $this->have_email($email) )
 			return;
@@ -329,8 +451,24 @@ class User_model extends CI_Model{
 
 		// send the email:
 		$this->load->library('email');
-		$config['mailtype'] = 'html';
+		$config = array(
+			'mailtype'  => 'html',
+			'charset'   => 'iso-8859-1'
+		);
+		/*
+		// You can use gmail's smtp server
+		$config = Array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'example@gmail.com',
+			'smtp_pass' => 'your-gmail-password',
+			'mailtype'  => 'html',
+			'charset'   => 'iso-8859-1'
+		);
+		*/
 		$this->email->initialize($config);
+		$this->email->set_newline("\r\n");
 		$this->email->from($this->settings_model->get_setting('mail_from'), $this->settings_model->get_setting('mail_from_name'));
 		$this->email->to($email);
 		$this->email->subject('Password Reset');
@@ -347,9 +485,16 @@ class User_model extends CI_Model{
 
 
 	/**
+	 * Password Reset Key Is Valid
+	 *
 	 * Returns TRUE if the given password reset key is valid
+	 * And returns an error message if key is invalid
+	 *
+	 * @param $passchange_key
+	 * @return bool|string
 	 */
-	public function have_passchange($passchange_key){
+	public function passchange_is_valid($passchange_key)
+	{
 		$query = $this->db->select('passchange_time')->get_where('users', array('passchange_key'=>$passchange_key));
 		if ($query->num_rows() != 1)
 			return 'Invalid password reset link.';
@@ -365,9 +510,16 @@ class User_model extends CI_Model{
 
 
 	/**
+	 * Reset Password
+	 *
 	 * Resets password for given password reset key (in case of lost password)
+	 *
+	 * @param $passchange_key
+	 * @param $newpassword
+	 * @return bool
 	 */
-	public function reset_password($passchange_key, $newpassword){
+	public function reset_password($passchange_key, $newpassword)
+	{
 		$query = $this->db->get_where('users', array('passchange_key'=>$passchange_key));
 		if ($query->num_rows() != 1)
 			return FALSE; //failure
@@ -381,10 +533,15 @@ class User_model extends CI_Model{
 
 
 	/**
-	 * Get All Users Table (for users page)
+	 * Get All Users
+	 *
+	 * Returns an array of all users (for Users page)
+	 *
+	 * @return mixed
 	 */
-	public function get_all_users(){
-		return $this->db->order_by('role', 'asc')->get('users')->result_array();
+	public function get_all_users()
+	{
+		return $this->db->order_by('role', 'asc')->order_by('id')->get('users')->result_array();
 	}
 
 
@@ -392,10 +549,19 @@ class User_model extends CI_Model{
 
 
 	/**
-	 * Saves positions of dashboard widgets in database
+	 * Get User
+	 *
+	 * Returns database row for given user id
+	 *
+	 * @param $user_id
+	 * @return bool
 	 */
-	public function save_widget_positions($username, $positions){
-		$this->db->where('username', $username)->update('users', array('dashboard_widget_positions'=>$positions));
+	public function get_user($user_id)
+	{
+		$query = $this->db->get_where('users', array('id'=>$user_id));
+		if ($query->num_rows() != 1)
+			return FALSE;
+		return $query->row();
 	}
 
 
@@ -403,10 +569,24 @@ class User_model extends CI_Model{
 
 
 	/**
-	 * Returns positions of dashboard widgets from database
+	 * Update Login Time
+	 *
+	 * Updates First Login Time and Last Login Time for given username
+	 *
 	 */
-	public function get_widget_positions($username){
-		return json_decode($this->db->select('dashboard_widget_positions')->get_where('users', array('username'=>$username))->row()->dashboard_widget_positions, TRUE);
+	public function update_login_time($username)
+	{
+		$now = shj_now_str();
+
+		$first_login = $this->db->select('first_login_time')->get_where('users', array('username'=>$username))->row()->first_login_time;
+		if ($first_login === NULL)
+			$this->db->where('username', $username)->update('users', array('first_login_time'=>$now));
+
+		$this->db->where('username', $username)->update('users', array('last_login_time'=>$now));
 	}
+
+
+
+
 
 }

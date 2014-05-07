@@ -96,9 +96,9 @@
 					this.$bar.css({
 						borderRadius: '5px',
 						border: '1px solid #eee',
-						boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
+						boxShadow: "0 2px 10px rgba(0, 0, 0, 0.6)"
 					});
-					this.$message.css({fontSize: '13px', textAlign: 'center'});
+					this.$message.css({fontSize: '13px', textAlign: 'left'});
 				break;
 				case 'topLeft': case 'topRight':
 				case 'bottomLeft': case 'bottomRight':
